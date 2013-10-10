@@ -54,9 +54,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.61062F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.38938F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 226);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.01075F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.98925F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 186);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -66,7 +66,7 @@
             this.labelTimer.Font = new System.Drawing.Font("Nina", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimer.Location = new System.Drawing.Point(3, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(378, 84);
+            this.labelTimer.Size = new System.Drawing.Size(378, 80);
             this.labelTimer.TabIndex = 2;
             this.labelTimer.Text = "00:00:00";
             this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,9 +83,9 @@
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 87);
+            this.panel1.Location = new System.Drawing.Point(3, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 136);
+            this.panel1.Size = new System.Drawing.Size(378, 100);
             this.panel1.TabIndex = 3;
             // 
             // buttonStartPause
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 226);
+            this.ClientSize = new System.Drawing.Size(384, 186);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 173);

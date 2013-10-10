@@ -116,7 +116,11 @@ namespace CountdownTimer
 
         private void buttonSet_Click(object sender, EventArgs e)
         {
-
+            SetTimeForm stf = new SetTimeForm();
+            if (stf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                SetTime = stf.Time;
+            }
         }
         #endregion
 

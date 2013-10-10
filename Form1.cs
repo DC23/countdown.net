@@ -6,11 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CountdownTimer
 {
     public partial class Timer : Form
     {
+        Stopwatch timer = new Stopwatch();
+        TimeSpan setTime = new TimeSpan();
+
         public Timer()
         {
             InitializeComponent();
@@ -62,7 +66,7 @@ namespace CountdownTimer
 
         }
         #endregion
-
+        
         bool IsStopwatch 
         { 
             get 
@@ -76,6 +80,14 @@ namespace CountdownTimer
             get
             {
                 return this.radioButtonTimer.Checked;
+            }
+        }
+
+        bool IsRunning
+        {
+            get
+            {
+                return timer.IsRunning;
             }
         }
     }

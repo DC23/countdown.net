@@ -161,6 +161,7 @@
             // radioButtonTimer
             // 
             this.radioButtonTimer.AutoSize = true;
+            this.radioButtonTimer.Checked = true;
             this.radioButtonTimer.Location = new System.Drawing.Point(29, 77);
             this.radioButtonTimer.Name = "radioButtonTimer";
             this.radioButtonTimer.Size = new System.Drawing.Size(51, 17);

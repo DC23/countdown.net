@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.timerLabel = new System.Windows.Forms.Label();
+            this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonStartPause = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelTimer, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -59,17 +59,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 226);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // timerLabel
+            // labelTimer
             // 
-            this.timerLabel.AutoSize = true;
-            this.timerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timerLabel.Font = new System.Drawing.Font("Nina", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timerLabel.Location = new System.Drawing.Point(3, 0);
-            this.timerLabel.Name = "timerLabel";
-            this.timerLabel.Size = new System.Drawing.Size(378, 84);
-            this.timerLabel.TabIndex = 2;
-            this.timerLabel.Text = "00:00:00";
-            this.timerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelTimer.AutoSize = true;
+            this.labelTimer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTimer.Font = new System.Drawing.Font("Nina", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTimer.Location = new System.Drawing.Point(3, 0);
+            this.labelTimer.Name = "labelTimer";
+            this.labelTimer.Size = new System.Drawing.Size(378, 84);
+            this.labelTimer.TabIndex = 2;
+            this.labelTimer.Text = "00:00:00";
+            this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -124,7 +124,7 @@
             this.buttonPresetOne.Name = "buttonPresetOne";
             this.buttonPresetOne.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetOne.TabIndex = 3;
-            this.buttonPresetOne.Text = "1:05";
+            this.buttonPresetOne.Text = "one";
             this.buttonPresetOne.UseVisualStyleBackColor = true;
             this.buttonPresetOne.Click += new System.EventHandler(this.buttonPresetOne_Click);
             // 
@@ -134,7 +134,7 @@
             this.buttonPresetTwo.Name = "buttonPresetTwo";
             this.buttonPresetTwo.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetTwo.TabIndex = 4;
-            this.buttonPresetTwo.Text = "3:00";
+            this.buttonPresetTwo.Text = "two";
             this.buttonPresetTwo.UseVisualStyleBackColor = true;
             this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPresetTwo_Click);
             // 
@@ -144,7 +144,7 @@
             this.buttonPresetThree.Name = "buttonPresetThree";
             this.buttonPresetThree.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetThree.TabIndex = 5;
-            this.buttonPresetThree.Text = "5:00";
+            this.buttonPresetThree.Text = "three";
             this.buttonPresetThree.UseVisualStyleBackColor = true;
             this.buttonPresetThree.Click += new System.EventHandler(this.buttonPresetThree_Click);
             // 
@@ -154,7 +154,7 @@
             this.buttonPresetFour.Name = "buttonPresetFour";
             this.buttonPresetFour.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetFour.TabIndex = 6;
-            this.buttonPresetFour.Text = "10:00";
+            this.buttonPresetFour.Text = "four";
             this.buttonPresetFour.UseVisualStyleBackColor = true;
             this.buttonPresetFour.Click += new System.EventHandler(this.buttonPresetFour_Click);
             // 
@@ -174,11 +174,11 @@
             // radioButtonStopwatch
             // 
             this.radioButtonStopwatch.AutoSize = true;
+            this.radioButtonStopwatch.Enabled = false;
             this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 77);
             this.radioButtonStopwatch.Name = "radioButtonStopwatch";
             this.radioButtonStopwatch.Size = new System.Drawing.Size(76, 17);
             this.radioButtonStopwatch.TabIndex = 8;
-            this.radioButtonStopwatch.TabStop = true;
             this.radioButtonStopwatch.Text = "Stopwatch";
             this.radioButtonStopwatch.UseVisualStyleBackColor = true;
             this.radioButtonStopwatch.CheckedChanged += new System.EventHandler(this.radioButtonStopwatch_CheckedChanged);
@@ -204,7 +204,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label timerLabel;
+        private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonStartPause;

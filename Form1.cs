@@ -14,6 +14,7 @@ namespace CountdownTimer
     {
         Stopwatch timer = new Stopwatch();
         TimeSpan setTime = new TimeSpan();
+        
         TimeSpan[] presets = new TimeSpan[4] 
         { 
             new TimeSpan(0,1,15),
@@ -32,6 +33,16 @@ namespace CountdownTimer
             SetButtonText(buttonPresetFour, presets[3]);
 
             UpdateButtonStates();
+
+            Application.Idle += new EventHandler(Application_Idle);
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            if (IsRunning && IsTimer)
+            {
+                labelTimer.Text = (setTime - timer.Elapsed).ToString();
+            }
         }
 
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -170,6 +181,7 @@ namespace CountdownTimer
                 if (IsStopped && IsTimer)
                 {
                     setTime = value;
+                    timer.Reset();
                     this.labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", setTime.Hours, setTime.Minutes, setTime.Seconds);
                 }
             }

@@ -16,6 +16,7 @@ namespace CountdownTimer
             InitializeComponent();
         }
 
+        #region Event Handlers
         private void radioButtonStopwatch_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -59,6 +60,23 @@ namespace CountdownTimer
         private void buttonSet_Click(object sender, EventArgs e)
         {
 
+        }
+        #endregion
+
+        bool IsStopwatch 
+        { 
+            get 
+            {
+                return this.radioButtonStopwatch.Checked;
+            } 
+        }
+
+        bool IsTimer
+        {
+            get
+            {
+                return this.radioButtonTimer.Checked;
+            }
         }
     }
 }

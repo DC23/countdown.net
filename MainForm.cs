@@ -89,7 +89,7 @@ namespace CountdownTimer
         private void UpdateTimeDisplay(TimeSpan time)
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
-            if (time.TotalMinutes < 1)
+            if (IsRunning && time.TotalMinutes < 1)
                 labelTimer.ForeColor = colourNearlyThere;
             else
                 labelTimer.ForeColor = colourNormal;

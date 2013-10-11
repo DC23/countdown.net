@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Media;
 
 namespace CountdownTimer
 {
@@ -15,6 +16,9 @@ namespace CountdownTimer
         Stopwatch timer = new Stopwatch();
         TimeSpan setTime = new TimeSpan();
         Timer updateTick = new Timer();
+        SoundPlayer soundPlayer = new SoundPlayer();
+        Color colourNormal = Color.Black;
+        Color colourNearlyThere = Color.Firebrick;
         
         TimeSpan[] presets = new TimeSpan[4] 
         { 
@@ -37,6 +41,9 @@ namespace CountdownTimer
 
             updateTick.Tick += updateTick_Tick;
             updateTick.Interval = 200;
+
+            soundPlayer.SoundLocation = "TimesUp.wav";
+            soundPlayer.Load();
         }
         
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -82,6 +89,10 @@ namespace CountdownTimer
         private void UpdateTimeDisplay(TimeSpan time)
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
+            if (time.TotalMinutes < 1)
+                labelTimer.ForeColor = colourNearlyThere;
+            else
+                labelTimer.ForeColor = colourNormal;
         }
 
         #region Event Handlers
@@ -100,7 +111,9 @@ namespace CountdownTimer
                     // time's up
                     ToggleTimerState();
                     UpdateTimeDisplay(TimeSpan.Zero);
-                    MessageBox.Show("Done!!");
+                    soundPlayer.PlayLooping();
+                    MessageBox.Show("Time's Up!!", "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    soundPlayer.Stop();
                 }
             }
         }

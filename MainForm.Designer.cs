@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,8 +41,11 @@
             this.buttonSet = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -54,9 +58,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.01075F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.98925F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 186);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.65101F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.34899F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 149);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -66,7 +70,7 @@
             this.labelTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimer.Location = new System.Drawing.Point(3, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(378, 79);
+            this.labelTimer.Size = new System.Drawing.Size(378, 71);
             this.labelTimer.TabIndex = 2;
             this.labelTimer.Text = "00:00:00";
             this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,9 +87,9 @@
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 82);
+            this.panel1.Location = new System.Drawing.Point(3, 74);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 101);
+            this.panel1.Size = new System.Drawing.Size(378, 72);
             this.panel1.TabIndex = 3;
             // 
             // radioButtonStopwatch
@@ -98,6 +102,7 @@
             this.radioButtonStopwatch.TabIndex = 8;
             this.radioButtonStopwatch.Text = "Stopwatch";
             this.radioButtonStopwatch.UseVisualStyleBackColor = true;
+            this.radioButtonStopwatch.Visible = false;
             this.radioButtonStopwatch.CheckedChanged += new System.EventHandler(this.radioButtonStopwatch_CheckedChanged);
             // 
             // radioButtonTimer
@@ -111,92 +116,131 @@
             this.radioButtonTimer.TabStop = true;
             this.radioButtonTimer.Text = "Timer";
             this.radioButtonTimer.UseVisualStyleBackColor = true;
+            this.radioButtonTimer.Visible = false;
             this.radioButtonTimer.CheckedChanged += new System.EventHandler(this.radioButtonTimer_CheckedChanged);
             // 
             // buttonPresetFour
             // 
+            this.buttonPresetFour.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetFour.FlatAppearance.BorderSize = 0;
+            this.buttonPresetFour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetFour.Location = new System.Drawing.Point(275, 38);
             this.buttonPresetFour.Name = "buttonPresetFour";
             this.buttonPresetFour.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetFour.TabIndex = 6;
             this.buttonPresetFour.Text = "four";
-            this.buttonPresetFour.UseVisualStyleBackColor = true;
+            this.buttonPresetFour.UseVisualStyleBackColor = false;
             this.buttonPresetFour.Click += new System.EventHandler(this.buttonPresetFour_Click);
             // 
             // buttonPresetThree
             // 
+            this.buttonPresetThree.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetThree.FlatAppearance.BorderSize = 0;
+            this.buttonPresetThree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetThree.Location = new System.Drawing.Point(193, 38);
             this.buttonPresetThree.Name = "buttonPresetThree";
             this.buttonPresetThree.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetThree.TabIndex = 5;
             this.buttonPresetThree.Text = "three";
-            this.buttonPresetThree.UseVisualStyleBackColor = true;
+            this.buttonPresetThree.UseVisualStyleBackColor = false;
             this.buttonPresetThree.Click += new System.EventHandler(this.buttonPresetThree_Click);
             // 
             // buttonPresetTwo
             // 
+            this.buttonPresetTwo.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetTwo.FlatAppearance.BorderSize = 0;
+            this.buttonPresetTwo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetTwo.Location = new System.Drawing.Point(111, 38);
             this.buttonPresetTwo.Name = "buttonPresetTwo";
             this.buttonPresetTwo.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetTwo.TabIndex = 4;
             this.buttonPresetTwo.Text = "two";
-            this.buttonPresetTwo.UseVisualStyleBackColor = true;
+            this.buttonPresetTwo.UseVisualStyleBackColor = false;
             this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPresetTwo_Click);
             // 
             // buttonPresetOne
             // 
+            this.buttonPresetOne.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetOne.FlatAppearance.BorderSize = 0;
+            this.buttonPresetOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetOne.Location = new System.Drawing.Point(29, 38);
             this.buttonPresetOne.Name = "buttonPresetOne";
             this.buttonPresetOne.Size = new System.Drawing.Size(75, 23);
             this.buttonPresetOne.TabIndex = 3;
             this.buttonPresetOne.Text = "one";
-            this.buttonPresetOne.UseVisualStyleBackColor = true;
+            this.buttonPresetOne.UseVisualStyleBackColor = false;
             this.buttonPresetOne.Click += new System.EventHandler(this.buttonPresetOne_Click);
             // 
             // buttonSet
             // 
+            this.buttonSet.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonSet.FlatAppearance.BorderSize = 0;
+            this.buttonSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSet.Location = new System.Drawing.Point(234, 6);
             this.buttonSet.Name = "buttonSet";
             this.buttonSet.Size = new System.Drawing.Size(75, 23);
             this.buttonSet.TabIndex = 2;
             this.buttonSet.Text = "Se&t";
-            this.buttonSet.UseVisualStyleBackColor = true;
+            this.buttonSet.UseVisualStyleBackColor = false;
             this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
             // 
             // buttonReset
             // 
+            this.buttonReset.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonReset.FlatAppearance.BorderSize = 0;
+            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReset.Location = new System.Drawing.Point(152, 6);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(75, 23);
             this.buttonReset.TabIndex = 1;
             this.buttonReset.Text = "&Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonStartPause
             // 
+            this.buttonStartPause.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonStartPause.FlatAppearance.BorderSize = 0;
+            this.buttonStartPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStartPause.Location = new System.Drawing.Point(70, 6);
             this.buttonStartPause.Name = "buttonStartPause";
             this.buttonStartPause.Size = new System.Drawing.Size(75, 23);
             this.buttonStartPause.TabIndex = 0;
             this.buttonStartPause.Text = "&Start";
-            this.buttonStartPause.UseVisualStyleBackColor = true;
+            this.buttonStartPause.UseVisualStyleBackColor = false;
             this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alwaysOnTopToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 26);
+            // 
+            // alwaysOnTopToolStripMenuItem
+            // 
+            this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
+            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.alwaysOnTopToolStripMenuItem.Text = "&Always on top";
+            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 186);
+            this.ClientSize = new System.Drawing.Size(384, 149);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 173);
             this.Name = "MainForm";
             this.Text = "DC\'s Timer";
+            this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -215,6 +259,8 @@
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.RadioButton radioButtonStopwatch;
         private System.Windows.Forms.RadioButton radioButtonTimer;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
 
     }
 }

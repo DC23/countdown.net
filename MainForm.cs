@@ -44,6 +44,8 @@ namespace CountdownTimer
 
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
+
+            alwaysOnTopToolStripMenuItem.Checked = TopMost;
         }
         
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -221,5 +223,11 @@ namespace CountdownTimer
 
         
         #endregion
+
+        private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopMost = !TopMost;
+            alwaysOnTopToolStripMenuItem.Checked = TopMost;
+        }
     }
 }

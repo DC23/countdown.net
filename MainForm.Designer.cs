@@ -1,6 +1,6 @@
 ﻿namespace CountdownTimer
 {
-    partial class Timer
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,15 +31,15 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonStartPause = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonSet = new System.Windows.Forms.Button();
-            this.buttonPresetOne = new System.Windows.Forms.Button();
-            this.buttonPresetTwo = new System.Windows.Forms.Button();
-            this.buttonPresetThree = new System.Windows.Forms.Button();
-            this.buttonPresetFour = new System.Windows.Forms.Button();
-            this.radioButtonTimer = new System.Windows.Forms.RadioButton();
             this.radioButtonStopwatch = new System.Windows.Forms.RadioButton();
+            this.radioButtonTimer = new System.Windows.Forms.RadioButton();
+            this.buttonPresetFour = new System.Windows.Forms.Button();
+            this.buttonPresetThree = new System.Windows.Forms.Button();
+            this.buttonPresetTwo = new System.Windows.Forms.Button();
+            this.buttonPresetOne = new System.Windows.Forms.Button();
+            this.buttonSet = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
+            this.buttonStartPause = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,10 +63,10 @@
             // 
             this.labelTimer.AutoSize = true;
             this.labelTimer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTimer.Font = new System.Drawing.Font("Nina", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimer.Location = new System.Drawing.Point(3, 0);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(378, 80);
+            this.labelTimer.Size = new System.Drawing.Size(378, 79);
             this.labelTimer.TabIndex = 2;
             this.labelTimer.Text = "00:00:00";
             this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,80 +83,22 @@
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 83);
+            this.panel1.Location = new System.Drawing.Point(3, 82);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 100);
+            this.panel1.Size = new System.Drawing.Size(378, 101);
             this.panel1.TabIndex = 3;
             // 
-            // buttonStartPause
+            // radioButtonStopwatch
             // 
-            this.buttonStartPause.Location = new System.Drawing.Point(70, 6);
-            this.buttonStartPause.Name = "buttonStartPause";
-            this.buttonStartPause.Size = new System.Drawing.Size(75, 23);
-            this.buttonStartPause.TabIndex = 0;
-            this.buttonStartPause.Text = "Start";
-            this.buttonStartPause.UseVisualStyleBackColor = true;
-            this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Location = new System.Drawing.Point(152, 6);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(75, 23);
-            this.buttonReset.TabIndex = 1;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
-            // 
-            // buttonSet
-            // 
-            this.buttonSet.Location = new System.Drawing.Point(234, 6);
-            this.buttonSet.Name = "buttonSet";
-            this.buttonSet.Size = new System.Drawing.Size(75, 23);
-            this.buttonSet.TabIndex = 2;
-            this.buttonSet.Text = "Set";
-            this.buttonSet.UseVisualStyleBackColor = true;
-            this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
-            // 
-            // buttonPresetOne
-            // 
-            this.buttonPresetOne.Location = new System.Drawing.Point(29, 38);
-            this.buttonPresetOne.Name = "buttonPresetOne";
-            this.buttonPresetOne.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetOne.TabIndex = 3;
-            this.buttonPresetOne.Text = "one";
-            this.buttonPresetOne.UseVisualStyleBackColor = true;
-            this.buttonPresetOne.Click += new System.EventHandler(this.buttonPresetOne_Click);
-            // 
-            // buttonPresetTwo
-            // 
-            this.buttonPresetTwo.Location = new System.Drawing.Point(111, 38);
-            this.buttonPresetTwo.Name = "buttonPresetTwo";
-            this.buttonPresetTwo.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetTwo.TabIndex = 4;
-            this.buttonPresetTwo.Text = "two";
-            this.buttonPresetTwo.UseVisualStyleBackColor = true;
-            this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPresetTwo_Click);
-            // 
-            // buttonPresetThree
-            // 
-            this.buttonPresetThree.Location = new System.Drawing.Point(193, 38);
-            this.buttonPresetThree.Name = "buttonPresetThree";
-            this.buttonPresetThree.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetThree.TabIndex = 5;
-            this.buttonPresetThree.Text = "three";
-            this.buttonPresetThree.UseVisualStyleBackColor = true;
-            this.buttonPresetThree.Click += new System.EventHandler(this.buttonPresetThree_Click);
-            // 
-            // buttonPresetFour
-            // 
-            this.buttonPresetFour.Location = new System.Drawing.Point(275, 38);
-            this.buttonPresetFour.Name = "buttonPresetFour";
-            this.buttonPresetFour.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetFour.TabIndex = 6;
-            this.buttonPresetFour.Text = "four";
-            this.buttonPresetFour.UseVisualStyleBackColor = true;
-            this.buttonPresetFour.Click += new System.EventHandler(this.buttonPresetFour_Click);
+            this.radioButtonStopwatch.AutoSize = true;
+            this.radioButtonStopwatch.Enabled = false;
+            this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 77);
+            this.radioButtonStopwatch.Name = "radioButtonStopwatch";
+            this.radioButtonStopwatch.Size = new System.Drawing.Size(76, 17);
+            this.radioButtonStopwatch.TabIndex = 8;
+            this.radioButtonStopwatch.Text = "Stopwatch";
+            this.radioButtonStopwatch.UseVisualStyleBackColor = true;
+            this.radioButtonStopwatch.CheckedChanged += new System.EventHandler(this.radioButtonStopwatch_CheckedChanged);
             // 
             // radioButtonTimer
             // 
@@ -171,19 +113,77 @@
             this.radioButtonTimer.UseVisualStyleBackColor = true;
             this.radioButtonTimer.CheckedChanged += new System.EventHandler(this.radioButtonTimer_CheckedChanged);
             // 
-            // radioButtonStopwatch
+            // buttonPresetFour
             // 
-            this.radioButtonStopwatch.AutoSize = true;
-            this.radioButtonStopwatch.Enabled = false;
-            this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 77);
-            this.radioButtonStopwatch.Name = "radioButtonStopwatch";
-            this.radioButtonStopwatch.Size = new System.Drawing.Size(76, 17);
-            this.radioButtonStopwatch.TabIndex = 8;
-            this.radioButtonStopwatch.Text = "Stopwatch";
-            this.radioButtonStopwatch.UseVisualStyleBackColor = true;
-            this.radioButtonStopwatch.CheckedChanged += new System.EventHandler(this.radioButtonStopwatch_CheckedChanged);
+            this.buttonPresetFour.Location = new System.Drawing.Point(275, 38);
+            this.buttonPresetFour.Name = "buttonPresetFour";
+            this.buttonPresetFour.Size = new System.Drawing.Size(75, 23);
+            this.buttonPresetFour.TabIndex = 6;
+            this.buttonPresetFour.Text = "four";
+            this.buttonPresetFour.UseVisualStyleBackColor = true;
+            this.buttonPresetFour.Click += new System.EventHandler(this.buttonPresetFour_Click);
             // 
-            // Timer
+            // buttonPresetThree
+            // 
+            this.buttonPresetThree.Location = new System.Drawing.Point(193, 38);
+            this.buttonPresetThree.Name = "buttonPresetThree";
+            this.buttonPresetThree.Size = new System.Drawing.Size(75, 23);
+            this.buttonPresetThree.TabIndex = 5;
+            this.buttonPresetThree.Text = "three";
+            this.buttonPresetThree.UseVisualStyleBackColor = true;
+            this.buttonPresetThree.Click += new System.EventHandler(this.buttonPresetThree_Click);
+            // 
+            // buttonPresetTwo
+            // 
+            this.buttonPresetTwo.Location = new System.Drawing.Point(111, 38);
+            this.buttonPresetTwo.Name = "buttonPresetTwo";
+            this.buttonPresetTwo.Size = new System.Drawing.Size(75, 23);
+            this.buttonPresetTwo.TabIndex = 4;
+            this.buttonPresetTwo.Text = "two";
+            this.buttonPresetTwo.UseVisualStyleBackColor = true;
+            this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPresetTwo_Click);
+            // 
+            // buttonPresetOne
+            // 
+            this.buttonPresetOne.Location = new System.Drawing.Point(29, 38);
+            this.buttonPresetOne.Name = "buttonPresetOne";
+            this.buttonPresetOne.Size = new System.Drawing.Size(75, 23);
+            this.buttonPresetOne.TabIndex = 3;
+            this.buttonPresetOne.Text = "one";
+            this.buttonPresetOne.UseVisualStyleBackColor = true;
+            this.buttonPresetOne.Click += new System.EventHandler(this.buttonPresetOne_Click);
+            // 
+            // buttonSet
+            // 
+            this.buttonSet.Location = new System.Drawing.Point(234, 6);
+            this.buttonSet.Name = "buttonSet";
+            this.buttonSet.Size = new System.Drawing.Size(75, 23);
+            this.buttonSet.TabIndex = 2;
+            this.buttonSet.Text = "Se&t";
+            this.buttonSet.UseVisualStyleBackColor = true;
+            this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(152, 6);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
+            this.buttonReset.TabIndex = 1;
+            this.buttonReset.Text = "&Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // buttonStartPause
+            // 
+            this.buttonStartPause.Location = new System.Drawing.Point(70, 6);
+            this.buttonStartPause.Name = "buttonStartPause";
+            this.buttonStartPause.Size = new System.Drawing.Size(75, 23);
+            this.buttonStartPause.TabIndex = 0;
+            this.buttonStartPause.Text = "&Start";
+            this.buttonStartPause.UseVisualStyleBackColor = true;
+            this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,7 +191,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 173);
-            this.Name = "Timer";
+            this.Name = "MainForm";
             this.Text = "DC\'s Timer";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

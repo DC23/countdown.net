@@ -10,10 +10,11 @@ using System.Diagnostics;
 
 namespace CountdownTimer
 {
-    public partial class Timer : Form
+    public partial class MainForm : Form
     {
         Stopwatch timer = new Stopwatch();
         TimeSpan setTime = new TimeSpan();
+        Timer updateTick = new Timer();
         
         TimeSpan[] presets = new TimeSpan[4] 
         { 
@@ -23,7 +24,7 @@ namespace CountdownTimer
             new TimeSpan(0,10,0),
         };
 
-        public Timer()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -34,17 +35,10 @@ namespace CountdownTimer
 
             UpdateButtonStates();
 
-            Application.Idle += new EventHandler(Application_Idle);
+            updateTick.Tick += updateTick_Tick;
+            updateTick.Interval = 200;
         }
-
-        void Application_Idle(object sender, EventArgs e)
-        {
-            if (IsRunning && IsTimer)
-            {
-                labelTimer.Text = (setTime - timer.Elapsed).ToString();
-            }
-        }
-
+        
         void SetButtonText(Button button, TimeSpan timeSpan)
         {
             if (timeSpan.Hours > 0)
@@ -71,27 +65,52 @@ namespace CountdownTimer
             {
                 // pause
                 timer.Stop();
-                buttonStartPause.Text = "Start";
+                buttonStartPause.Text = "&Start";
+                updateTick.Enabled = false;
             }
             else
             {
                 // start
+                updateTick.Enabled = true;
                 timer.Start();
-                buttonStartPause.Text = "Stop";
+                buttonStartPause.Text = "&Pause";
             }
 
             UpdateButtonStates();
         }
 
+        private void UpdateTimeDisplay(TimeSpan time)
+        {
+            labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
+        }
+
         #region Event Handlers
+        void updateTick_Tick(object sender, EventArgs e)
+        {
+            if (IsRunning && IsTimer)
+            {
+                TimeSpan remaining = setTime - timer.Elapsed;
+                if (remaining.TotalMilliseconds > 0)
+                {
+                    // not done yet
+                    UpdateTimeDisplay(remaining);
+                }
+                else
+                {
+                    // time's up
+                    ToggleTimerState();
+                    UpdateTimeDisplay(TimeSpan.Zero);
+                    MessageBox.Show("Done!!");
+                }
+            }
+        }
+
         private void radioButtonStopwatch_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void radioButtonTimer_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void buttonPresetOne_Click(object sender, EventArgs e)
@@ -182,10 +201,12 @@ namespace CountdownTimer
                 {
                     setTime = value;
                     timer.Reset();
-                    this.labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", setTime.Hours, setTime.Minutes, setTime.Seconds);
+                    UpdateTimeDisplay(setTime);
                 }
             }
         }
+
+        
         #endregion
     }
 }

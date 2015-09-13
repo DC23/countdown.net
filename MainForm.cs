@@ -24,8 +24,8 @@ namespace CountdownTimer
         { 
             new TimeSpan(0,1,15),
             new TimeSpan(0,3,0),
-            new TimeSpan(0,5,0),
-            new TimeSpan(0,10,0),
+            new TimeSpan(0,15,0),
+            new TimeSpan(0,25,0),
         };
 
         public MainForm()

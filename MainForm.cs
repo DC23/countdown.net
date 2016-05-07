@@ -51,6 +51,7 @@ namespace CountdownTimer
             alwaysOnTopToolStripMenuItem.Checked = TopMost;
 
             oldBackColour = BackColor;
+            statusStrip1.BackColor = BackColor;
         }
 
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -289,11 +290,13 @@ namespace CountdownTimer
                 {
                     SetTime = PomodoroBreakTime;
                     BackColor = oldBackColour;
+                    statusStrip1.BackColor = oldBackColour;
                 }
                 else
                 {
                     SetTime = PomodoroTime;
                     BackColor = Color.Tomato;
+                    statusStrip1.BackColor = Color.Tomato;
                 }
             }
         }

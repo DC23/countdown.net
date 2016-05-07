@@ -20,10 +20,11 @@ namespace CountdownTimer
         Color colourNormal = Color.Black;
         Color colourNearlyThere = Color.Firebrick;
         bool pomodoroMode = false;
+        bool pomodoroBreak = false;
         Color oldBackColour;
-        
-        TimeSpan[] presets = new TimeSpan[4] 
-        { 
+
+        TimeSpan[] presets = new TimeSpan[4]
+        {
             new TimeSpan(0,1,15),
             new TimeSpan(0,3,0),
             new TimeSpan(0,15,0),
@@ -51,7 +52,7 @@ namespace CountdownTimer
 
             oldBackColour = BackColor;
         }
-        
+
         void SetButtonText(Button button, TimeSpan timeSpan)
         {
             if (timeSpan.Hours > 0)
@@ -62,14 +63,20 @@ namespace CountdownTimer
 
         void UpdateButtonStates()
         {
-            buttonPresetOne.Enabled = IsStopped;
-            buttonPresetTwo.Enabled = IsStopped;
-            buttonPresetThree.Enabled = IsStopped;
-            buttonPresetFour.Enabled = IsStopped;
-            buttonSet.Enabled = IsStopped;
+            buttonPresetOne.Enabled = IsStopped && !PomodoroMode;
+            buttonPresetTwo.Enabled = IsStopped && !PomodoroMode;
+            buttonPresetThree.Enabled = IsStopped && !PomodoroMode;
+            buttonPresetFour.Enabled = IsStopped && !PomodoroMode;
+            buttonSet.Enabled = IsStopped && !PomodoroMode;
             buttonReset.Enabled = IsStopped;
             radioButtonStopwatch.Enabled = false;// IsStopped;
             radioButtonTimer.Enabled = IsStopped;
+        }
+
+        void Stop()
+        {
+            if (IsRunning)
+                ToggleTimerState();
         }
 
         private void ToggleTimerState()
@@ -174,12 +181,12 @@ namespace CountdownTimer
         #endregion
 
         #region Properties
-        bool IsStopwatch 
-        { 
-            get 
+        bool IsStopwatch
+        {
+            get
             {
                 return this.radioButtonStopwatch.Checked;
-            } 
+            }
         }
 
         bool IsTimer
@@ -225,6 +232,9 @@ namespace CountdownTimer
             }
         }
 
+        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
+        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
+
         bool PomodoroMode
         {
             get
@@ -234,15 +244,39 @@ namespace CountdownTimer
             set
             {
                 pomodoroMode = value;
+                UpdateButtonStates();
 
                 if (pomodoroMode)
                 {
-                    BackColor = Color.Tomato;
                     ForeColor = Color.Black;
+                    PomodoroBreak = false;
+                    Stop();
                 }
                 else
                 {
                     BackColor = oldBackColour;
+                }
+            }
+        }
+
+        bool PomodoroBreak
+        {
+            get
+            {
+                return pomodoroBreak;
+            }
+            set
+            {
+                pomodoroBreak = value;
+                if (pomodoroBreak)
+                {
+                    SetTime = PomodoroBreakTime;
+                    BackColor = oldBackColour;
+                }
+                else
+                {
+                    SetTime = PomodoroTime;
+                    BackColor = Color.Tomato;
                 }
             }
         }

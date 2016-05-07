@@ -110,7 +110,8 @@ namespace CountdownTimer
                 buttonStartPause.Text = "&Start";
                 updateTick.Enabled = false;
 
-                if (PomodoroMode)
+                // special-case handling for when this method is called from the abort button
+                if (PomodoroMode && canceled)
                 {
                     // If on a break, cancel it.
                     if (PomodoroBreak)
@@ -121,8 +122,7 @@ namespace CountdownTimer
                     else
                     {
                         SetTime = PomodoroTime;
-                        if (canceled)
-                            AbortedPomodoroCount++;
+                        AbortedPomodoroCount++;
                     }
                 }
             }
@@ -167,7 +167,7 @@ namespace CountdownTimer
                     ToggleTimerState(false);
                     UpdateTimeDisplay(TimeSpan.Zero);
                     soundPlayer.PlayLooping();
-                    MessageBox.Show("Time's Up!!", "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(TimesUpMessage, "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     soundPlayer.Stop();
 
                     // If running in pomodoro mode, toggle between the pomodoro and the break
@@ -175,7 +175,6 @@ namespace CountdownTimer
                         if (!PomodoroBreak)
                             CompletedPomodoroCount++;
                         PomodoroBreak = !PomodoroBreak;
-
                 }
             }
 
@@ -225,14 +224,36 @@ namespace CountdownTimer
         private void buttonSet_Click(object sender, EventArgs e)
         {
             SetTimeForm stf = new SetTimeForm(SetTime);
+            // fix bug where the set window can be inaccessible if the main window is set to top-most
+            bool topMostSetting = TopMost;
+            TopMost = false;
             if (stf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 SetTime = stf.Time;
             }
+            TopMost = topMostSetting;
         }
         #endregion
 
         #region Properties
+        string TimesUpMessage
+        {
+            get
+            {
+                if (!PomodoroMode)
+                {
+                    return "Time's Up!!";
+                }
+                else
+                {
+                    if (PomodoroBreak)
+                        return "Break's Over";
+                    else
+                        return "Time for a break!";
+                }
+            }
+        }
+
         bool IsStopwatch
         {
             get
@@ -284,8 +305,8 @@ namespace CountdownTimer
             }
         }
 
-        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 00, 5);
-        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 0, 3);
+        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
+        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
 
         bool PomodoroMode
         {

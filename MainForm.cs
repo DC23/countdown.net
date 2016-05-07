@@ -19,6 +19,8 @@ namespace CountdownTimer
         SoundPlayer soundPlayer = new SoundPlayer();
         Color colourNormal = Color.Black;
         Color colourNearlyThere = Color.Firebrick;
+        bool pomodoroMode = false;
+        Color oldBackColour;
         
         TimeSpan[] presets = new TimeSpan[4] 
         { 
@@ -46,6 +48,8 @@ namespace CountdownTimer
             soundPlayer.Load();
 
             alwaysOnTopToolStripMenuItem.Checked = TopMost;
+
+            oldBackColour = BackColor;
         }
         
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -91,7 +95,7 @@ namespace CountdownTimer
         private void UpdateTimeDisplay(TimeSpan time)
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
-            if (IsRunning && time.TotalMinutes < 1)
+            if (!PomodoroMode && IsRunning && time.TotalMinutes < 1)
                 labelTimer.ForeColor = colourNearlyThere;
             else
                 labelTimer.ForeColor = colourNormal;
@@ -161,7 +165,7 @@ namespace CountdownTimer
 
         private void buttonSet_Click(object sender, EventArgs e)
         {
-            SetTimeForm stf = new SetTimeForm();
+            SetTimeForm stf = new SetTimeForm(SetTime);
             if (stf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 SetTime = stf.Time;
@@ -221,13 +225,40 @@ namespace CountdownTimer
             }
         }
 
-        
+        bool PomodoroMode
+        {
+            get
+            {
+                return pomodoroMode;
+            }
+            set
+            {
+                pomodoroMode = value;
+
+                if (pomodoroMode)
+                {
+                    BackColor = Color.Tomato;
+                    ForeColor = Color.Black;
+                }
+                else
+                {
+                    BackColor = oldBackColour;
+                }
+            }
+        }
+
         #endregion
 
         private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TopMost = !TopMost;
             alwaysOnTopToolStripMenuItem.Checked = TopMost;
+        }
+
+        private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PomodoroMode = !PomodoroMode;
+            pomodoroModeToolStripMenuItem.Checked = PomodoroMode;
         }
     }
 }

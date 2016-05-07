@@ -11,9 +11,12 @@ namespace CountdownTimer
 {
     public partial class SetTimeForm : Form
     {
-        public SetTimeForm()
+        public SetTimeForm(TimeSpan initialTime = new TimeSpan())
         {
             InitializeComponent();
+            numericUpDownHours.Value = initialTime.Hours;
+            numericUpDownMinutes.Value = initialTime.Minutes;
+            numericUpDownSeconds.Value = initialTime.Seconds;
         }
 
         public TimeSpan Time { get; private set; }

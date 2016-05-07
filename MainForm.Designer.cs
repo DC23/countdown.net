@@ -43,6 +43,7 @@
             this.buttonStartPause = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -121,7 +122,7 @@
             // 
             // buttonPresetFour
             // 
-            this.buttonPresetFour.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetFour.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPresetFour.FlatAppearance.BorderSize = 0;
             this.buttonPresetFour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetFour.Location = new System.Drawing.Point(275, 38);
@@ -134,7 +135,7 @@
             // 
             // buttonPresetThree
             // 
-            this.buttonPresetThree.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetThree.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPresetThree.FlatAppearance.BorderSize = 0;
             this.buttonPresetThree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetThree.Location = new System.Drawing.Point(193, 38);
@@ -147,7 +148,7 @@
             // 
             // buttonPresetTwo
             // 
-            this.buttonPresetTwo.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetTwo.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPresetTwo.FlatAppearance.BorderSize = 0;
             this.buttonPresetTwo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetTwo.Location = new System.Drawing.Point(111, 38);
@@ -160,7 +161,7 @@
             // 
             // buttonPresetOne
             // 
-            this.buttonPresetOne.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonPresetOne.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPresetOne.FlatAppearance.BorderSize = 0;
             this.buttonPresetOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPresetOne.Location = new System.Drawing.Point(29, 38);
@@ -173,7 +174,7 @@
             // 
             // buttonSet
             // 
-            this.buttonSet.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonSet.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSet.FlatAppearance.BorderSize = 0;
             this.buttonSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSet.Location = new System.Drawing.Point(234, 6);
@@ -186,7 +187,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonReset.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonReset.FlatAppearance.BorderSize = 0;
             this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReset.Location = new System.Drawing.Point(152, 6);
@@ -199,7 +200,7 @@
             // 
             // buttonStartPause
             // 
-            this.buttonStartPause.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonStartPause.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonStartPause.FlatAppearance.BorderSize = 0;
             this.buttonStartPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStartPause.Location = new System.Drawing.Point(70, 6);
@@ -213,22 +214,30 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alwaysOnTopToolStripMenuItem});
+            this.alwaysOnTopToolStripMenuItem,
+            this.pomodoroModeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 48);
             // 
             // alwaysOnTopToolStripMenuItem
             // 
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "&Always on top";
             this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
+            // 
+            // pomodoroModeToolStripMenuItem
+            // 
+            this.pomodoroModeToolStripMenuItem.Name = "pomodoroModeToolStripMenuItem";
+            this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
+            this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.CadetBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(384, 149);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
@@ -262,7 +271,7 @@
         private System.Windows.Forms.RadioButton radioButtonTimer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
-
+        private System.Windows.Forms.ToolStripMenuItem pomodoroModeToolStripMenuItem;
     }
 }
 

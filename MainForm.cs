@@ -83,17 +83,30 @@ namespace CountdownTimer
         {
             if (IsRunning)
             {
-                // pause
+                // pause/abort
                 timer.Stop();
                 buttonStartPause.Text = "&Start";
                 updateTick.Enabled = false;
+
+                if (PomodoroMode)
+                {
+                    // If on a break, cancel it.
+                    if (PomodoroBreak)
+                        PomodoroBreak = false;
+                    // If running a pomodoro, cancel it but do not enter a break
+                    else
+                        SetTime = PomodoroTime;
+                }
             }
             else
             {
                 // start
                 updateTick.Enabled = true;
                 timer.Start();
-                buttonStartPause.Text = "&Pause";
+                if (PomodoroMode)
+                    buttonStartPause.Text = "&Abort";
+                else
+                    buttonStartPause.Text = "&Pause";
             }
 
             UpdateButtonStates();
@@ -127,6 +140,10 @@ namespace CountdownTimer
                     soundPlayer.PlayLooping();
                     MessageBox.Show("Time's Up!!", "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     soundPlayer.Stop();
+
+                    // If running in pomodoro mode, toggle between the pomodoro and the break
+                    if (PomodoroMode)
+                        PomodoroBreak = !PomodoroBreak;
                 }
             }
         }
@@ -232,8 +249,8 @@ namespace CountdownTimer
             }
         }
 
-        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
-        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
+        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 00, 5);
+        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 0, 3);
 
         bool PomodoroMode
         {

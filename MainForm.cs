@@ -22,6 +22,7 @@ namespace CountdownTimer
         bool pomodoroMode = false;
         bool pomodoroBreak = false;
         Color oldBackColour;
+        DateTime start = DateTime.Now;
 
         TimeSpan[] presets = new TimeSpan[4]
         {
@@ -52,6 +53,8 @@ namespace CountdownTimer
 
             oldBackColour = BackColor;
             statusStrip1.BackColor = BackColor;
+
+            UpdateStatusText();
         }
 
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -74,13 +77,31 @@ namespace CountdownTimer
             radioButtonTimer.Enabled = IsStopped;
         }
 
+        void UpdateStatusText()
+        {
+            TimeSpan up = Uptime;
+            if (PomodoroMode)
+            {
+                toolStripStatusLabel1.Text = string.Format("Completed: {0}    Aborted: {1}",
+                    CompletedPomodoroCount, 
+                    AbortedPomodoroCount);
+
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = string.Format("Uptime: {0:D2}:{1:D2}",
+                    up.Hours,
+                    up.Minutes);
+            }
+        }
+
         void Stop()
         {
             if (IsRunning)
-                ToggleTimerState();
+                ToggleTimerState(false);
         }
 
-        private void ToggleTimerState()
+        private void ToggleTimerState(bool canceled)
         {
             if (IsRunning)
             {
@@ -93,10 +114,16 @@ namespace CountdownTimer
                 {
                     // If on a break, cancel it.
                     if (PomodoroBreak)
+                    {
                         PomodoroBreak = false;
+                    }
                     // If running a pomodoro, cancel it but do not enter a break
                     else
+                    {
                         SetTime = PomodoroTime;
+                        if (canceled)
+                            AbortedPomodoroCount++;
+                    }
                 }
             }
             else
@@ -110,6 +137,7 @@ namespace CountdownTimer
                     buttonStartPause.Text = "&Pause";
             }
 
+            UpdateStatusText();
             UpdateButtonStates();
         }
 
@@ -136,7 +164,7 @@ namespace CountdownTimer
                 else
                 {
                     // time's up
-                    ToggleTimerState();
+                    ToggleTimerState(false);
                     UpdateTimeDisplay(TimeSpan.Zero);
                     soundPlayer.PlayLooping();
                     MessageBox.Show("Time's Up!!", "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -144,9 +172,14 @@ namespace CountdownTimer
 
                     // If running in pomodoro mode, toggle between the pomodoro and the break
                     if (PomodoroMode)
+                        if (!PomodoroBreak)
+                            CompletedPomodoroCount++;
                         PomodoroBreak = !PomodoroBreak;
+
                 }
             }
+
+            UpdateStatusText();
         }
 
         private void radioButtonStopwatch_CheckedChanged(object sender, EventArgs e)
@@ -179,7 +212,8 @@ namespace CountdownTimer
 
         private void buttonStartPause_Click(object sender, EventArgs e)
         {
-            ToggleTimerState();
+            // if pomodoro mode, then pass true to the cancelled argument
+            ToggleTimerState(PomodoroMode);
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
@@ -300,6 +334,17 @@ namespace CountdownTimer
                 }
             }
         }
+
+        TimeSpan Uptime
+        {
+            get
+            {
+                return DateTime.Now - start;
+            }
+        }
+
+        int CompletedPomodoroCount { get; set; } = 0;
+        int AbortedPomodoroCount { get; set; } = 0;
 
         #endregion
 

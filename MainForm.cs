@@ -52,9 +52,11 @@ namespace CountdownTimer
             alwaysOnTopToolStripMenuItem.Checked = TopMost;
 
             oldBackColour = BackColor;
-            //statusStrip1.BackColor = BackColor;
+            statusStrip1.BackColor = BackColor;
 
             UpdateStatusText();
+
+            PomodoroMode = true;
         }
 
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -67,12 +69,31 @@ namespace CountdownTimer
 
         void UpdateButtonStates()
         {
-            buttonPresetOne.Enabled = IsStopped && !PomodoroMode;
-            buttonPresetTwo.Enabled = IsStopped && !PomodoroMode;
-            buttonPresetThree.Enabled = IsStopped && !PomodoroMode;
-            buttonPresetFour.Enabled = IsStopped && !PomodoroMode;
-            buttonSet.Enabled = IsStopped && !PomodoroMode;
-            buttonReset.Enabled = IsStopped;
+            if (PomodoroMode)
+            {
+                buttonPresetOne.Visible = false;
+                buttonPresetTwo.Visible = false;
+                buttonPresetThree.Visible = false;
+                buttonPresetFour.Visible = false;
+                buttonSet.Visible = false;
+                buttonReset.Visible = false;
+            }
+            else
+            {
+                buttonPresetOne.Visible = true;
+                buttonPresetTwo.Visible = true;
+                buttonPresetThree.Visible = true;
+                buttonPresetFour.Visible = true;
+                buttonSet.Visible = true;
+                buttonReset.Visible = true;
+                buttonPresetOne.Enabled = IsStopped;
+                buttonPresetTwo.Enabled = IsStopped;
+                buttonPresetThree.Enabled = IsStopped;
+                buttonPresetFour.Enabled = IsStopped;
+                buttonSet.Enabled = IsStopped;
+                buttonReset.Enabled = IsStopped;
+            }
+
             radioButtonStopwatch.Enabled = false;// IsStopped;
             radioButtonTimer.Enabled = IsStopped;
         }
@@ -318,6 +339,7 @@ namespace CountdownTimer
             {
                 pomodoroMode = value;
                 UpdateButtonStates();
+                pomodoroModeToolStripMenuItem.Checked = value;
 
                 if (pomodoroMode)
                 {
@@ -330,6 +352,8 @@ namespace CountdownTimer
                     BackColor = oldBackColour;
                     statusStrip1.BackColor = oldBackColour;
                 }
+
+                UpdateStatusText();
             }
         }
 

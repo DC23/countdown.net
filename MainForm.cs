@@ -52,7 +52,7 @@ namespace CountdownTimer
             alwaysOnTopToolStripMenuItem.Checked = TopMost;
 
             oldBackColour = BackColor;
-            statusStrip1.BackColor = BackColor;
+            //statusStrip1.BackColor = BackColor;
 
             UpdateStatusText();
         }
@@ -166,7 +166,7 @@ namespace CountdownTimer
                     // time's up
                     ToggleTimerState(false);
                     UpdateTimeDisplay(TimeSpan.Zero);
-                    soundPlayer.PlayLooping();
+                    soundPlayer.Play();
                     MessageBox.Show(TimesUpMessage, "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     soundPlayer.Stop();
 
@@ -328,6 +328,7 @@ namespace CountdownTimer
                 else
                 {
                     BackColor = oldBackColour;
+                    statusStrip1.BackColor = oldBackColour;
                 }
             }
         }

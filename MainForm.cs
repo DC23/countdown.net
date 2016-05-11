@@ -25,6 +25,7 @@ namespace CountdownTimer
         bool useAudioDing = true;
         Color oldBackColour;
         DateTime start = DateTime.Now;
+        string originalResetButtonText;
 
         TimeSpan[] presets = new TimeSpan[4]
         {
@@ -37,6 +38,8 @@ namespace CountdownTimer
         public MainForm()
         {
             InitializeComponent();
+
+            originalResetButtonText = buttonReset.Text;
 
             SetButtonText(buttonPresetOne, presets[0]);
             SetButtonText(buttonPresetTwo, presets[1]);
@@ -80,7 +83,7 @@ namespace CountdownTimer
                 buttonPresetThree.Visible = false;
                 buttonPresetFour.Visible = false;
                 buttonSet.Visible = false;
-                buttonReset.Visible = false;
+                buttonReset.Visible = PomodoroBreak;
             }
             else
             {
@@ -256,6 +259,10 @@ namespace CountdownTimer
         {
             timer.Reset();
             SetTime = SetTime; // set the current set time back into itself. Hacky way to refresh the display
+
+            // skip the break and change state back to the next pomodoro
+            if (PomodoroMode && PomodoroBreak)
+                PomodoroBreak = !PomodoroBreak;
         }
 
         private void buttonSet_Click(object sender, EventArgs e)
@@ -342,8 +349,13 @@ namespace CountdownTimer
             }
         }
 
+#if (DEBUG)
+        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 4);
+        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 0, 2);
+#else
         TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
         TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
+#endif
 
         bool PomodoroMode
         {
@@ -387,13 +399,18 @@ namespace CountdownTimer
                     SetTime = PomodoroBreakTime;
                     BackColor = oldBackColour;
                     statusStrip1.BackColor = oldBackColour;
+                    originalResetButtonText = buttonReset.Text;
+                    buttonReset.Text = "&Skip";
                 }
                 else
                 {
                     SetTime = PomodoroTime;
                     BackColor = Color.Tomato;
                     statusStrip1.BackColor = Color.Tomato;
+                    buttonReset.Text = originalResetButtonText;
                 }
+
+                UpdateButtonStates();
             }
         }
 
@@ -434,7 +451,7 @@ namespace CountdownTimer
         int CompletedPomodoroCount { get; set; } = 0;
         int AbortedPomodoroCount { get; set; } = 0;
 
-        #endregion
+#endregion
 
         private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
         {

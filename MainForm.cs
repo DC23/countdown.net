@@ -21,6 +21,8 @@ namespace CountdownTimer
         Color colourNearlyThere = Color.Firebrick;
         bool pomodoroMode = false;
         bool pomodoroBreak = false;
+        bool useModalDing = false;
+        bool useAudioDing = true;
         Color oldBackColour;
         DateTime start = DateTime.Now;
 
@@ -57,6 +59,8 @@ namespace CountdownTimer
             UpdateStatusText();
 
             PomodoroMode = true;
+            UseAudioDing = useAudioDing;
+            UseModalDing = useModalDing;
         }
 
         void SetButtonText(Button button, TimeSpan timeSpan)
@@ -187,15 +191,23 @@ namespace CountdownTimer
                     // time's up
                     ToggleTimerState(false);
                     UpdateTimeDisplay(TimeSpan.Zero);
-                    soundPlayer.Play();
-                    MessageBox.Show(TimesUpMessage, "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    soundPlayer.Stop();
+
+                    if (UseAudioDing)
+                        soundPlayer.Play();
+
+                    if (UseModalDing)
+                    {
+                        MessageBox.Show(TimesUpMessage, "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
 
                     // If running in pomodoro mode, toggle between the pomodoro and the break
                     if (PomodoroMode)
+                    {
                         if (!PomodoroBreak)
                             CompletedPomodoroCount++;
+
                         PomodoroBreak = !PomodoroBreak;
+                    }
                 }
             }
 
@@ -381,6 +393,32 @@ namespace CountdownTimer
             }
         }
 
+        bool UseModalDing
+        {
+            get
+            {
+                return useModalDing;
+            }
+            set
+            {
+                useModalDing = value;
+                popupDingToolStripMenuItem.Checked = value;
+            }
+        }
+
+        bool UseAudioDing
+        {
+            get
+            {
+                return useAudioDing;
+            }
+            set
+            {
+                useAudioDing = value;
+                audioDingToolStripMenuItem.Checked = value;
+            }
+        }
+
         TimeSpan Uptime
         {
             get
@@ -403,7 +441,16 @@ namespace CountdownTimer
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PomodoroMode = !PomodoroMode;
-            pomodoroModeToolStripMenuItem.Checked = PomodoroMode;
+        }
+
+        private void popupDingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseModalDing = !UseModalDing;
+        }
+
+        private void audioDingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseAudioDing = !UseAudioDing;
         }
     }
 }

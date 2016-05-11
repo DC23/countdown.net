@@ -47,6 +47,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.audioDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -238,9 +240,11 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alwaysOnTopToolStripMenuItem,
-            this.pomodoroModeToolStripMenuItem});
+            this.pomodoroModeToolStripMenuItem,
+            this.popupDingToolStripMenuItem,
+            this.audioDingToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 114);
             // 
             // alwaysOnTopToolStripMenuItem
             // 
@@ -255,6 +259,20 @@
             this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
             this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
+            // 
+            // popupDingToolStripMenuItem
+            // 
+            this.popupDingToolStripMenuItem.Name = "popupDingToolStripMenuItem";
+            this.popupDingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.popupDingToolStripMenuItem.Text = "Popup &Ding";
+            this.popupDingToolStripMenuItem.Click += new System.EventHandler(this.popupDingToolStripMenuItem_Click);
+            // 
+            // audioDingToolStripMenuItem
+            // 
+            this.audioDingToolStripMenuItem.Name = "audioDingToolStripMenuItem";
+            this.audioDingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.audioDingToolStripMenuItem.Text = "&Audio Ding";
+            this.audioDingToolStripMenuItem.Click += new System.EventHandler(this.audioDingToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -300,6 +318,8 @@
         private System.Windows.Forms.ToolStripMenuItem pomodoroModeToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem popupDingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem audioDingToolStripMenuItem;
     }
 }
 

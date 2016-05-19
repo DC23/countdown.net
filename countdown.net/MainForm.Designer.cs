@@ -244,7 +244,7 @@
             this.popupDingToolStripMenuItem,
             this.audioDingToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 92);
             // 
             // alwaysOnTopToolStripMenuItem
             // 
@@ -286,7 +286,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 195);
             this.Name = "MainForm";
-            this.Text = "DC\'s Timer";
+            this.Text = "countdown.net";
             this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

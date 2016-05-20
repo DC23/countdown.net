@@ -22,7 +22,7 @@ namespace CountdownTimer
         bool pomodoroMode = false;
         bool pomodoroBreak = false;
         bool useModalDing = false;
-        bool useAudioDing = true;
+        bool useAudioDing = false;
         Color oldBackColour;
         DateTime start = DateTime.Now;
         string originalResetButtonText;

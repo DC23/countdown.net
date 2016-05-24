@@ -33,12 +33,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonPreset8 = new System.Windows.Forms.Button();
+            this.buttonPreset7 = new System.Windows.Forms.Button();
+            this.buttonPreset6 = new System.Windows.Forms.Button();
+            this.buttonPreset5 = new System.Windows.Forms.Button();
             this.radioButtonStopwatch = new System.Windows.Forms.RadioButton();
             this.radioButtonTimer = new System.Windows.Forms.RadioButton();
-            this.buttonPresetFour = new System.Windows.Forms.Button();
-            this.buttonPresetThree = new System.Windows.Forms.Button();
-            this.buttonPresetTwo = new System.Windows.Forms.Button();
-            this.buttonPresetOne = new System.Windows.Forms.Button();
+            this.buttonPreset4 = new System.Windows.Forms.Button();
+            this.buttonPreset3 = new System.Windows.Forms.Button();
+            this.buttonPreset2 = new System.Windows.Forms.Button();
+            this.buttonPreset1 = new System.Windows.Forms.Button();
             this.buttonSet = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
@@ -69,7 +73,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.65101F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.34899F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 156);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 200);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -78,34 +84,93 @@
             this.labelTimer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelTimer.Font = new System.Drawing.Font("Consolas", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimer.Location = new System.Drawing.Point(3, 0);
+            this.labelTimer.MaximumSize = new System.Drawing.Size(378, 74);
+            this.labelTimer.MinimumSize = new System.Drawing.Size(378, 74);
             this.labelTimer.Name = "labelTimer";
-            this.labelTimer.Size = new System.Drawing.Size(378, 64);
+            this.labelTimer.Size = new System.Drawing.Size(378, 74);
             this.labelTimer.TabIndex = 2;
             this.labelTimer.Text = "00:00:00";
             this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonPreset8);
+            this.panel1.Controls.Add(this.buttonPreset7);
+            this.panel1.Controls.Add(this.buttonPreset6);
+            this.panel1.Controls.Add(this.buttonPreset5);
             this.panel1.Controls.Add(this.radioButtonStopwatch);
             this.panel1.Controls.Add(this.radioButtonTimer);
-            this.panel1.Controls.Add(this.buttonPresetFour);
-            this.panel1.Controls.Add(this.buttonPresetThree);
-            this.panel1.Controls.Add(this.buttonPresetTwo);
-            this.panel1.Controls.Add(this.buttonPresetOne);
+            this.panel1.Controls.Add(this.buttonPreset4);
+            this.panel1.Controls.Add(this.buttonPreset3);
+            this.panel1.Controls.Add(this.buttonPreset2);
+            this.panel1.Controls.Add(this.buttonPreset1);
             this.panel1.Controls.Add(this.buttonSet);
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 67);
+            this.panel1.Location = new System.Drawing.Point(3, 69);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 65);
+            this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
+            this.panel1.Size = new System.Drawing.Size(378, 107);
             this.panel1.TabIndex = 3;
+            // 
+            // buttonPreset8
+            // 
+            this.buttonPreset8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset8.FlatAppearance.BorderSize = 0;
+            this.buttonPreset8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset8.Location = new System.Drawing.Point(275, 67);
+            this.buttonPreset8.Name = "buttonPreset8";
+            this.buttonPreset8.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset8.TabIndex = 12;
+            this.buttonPreset8.Text = "four";
+            this.buttonPreset8.UseVisualStyleBackColor = false;
+            this.buttonPreset8.Click += new System.EventHandler(this.buttonPreset_Click);
+            // 
+            // buttonPreset7
+            // 
+            this.buttonPreset7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset7.FlatAppearance.BorderSize = 0;
+            this.buttonPreset7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset7.Location = new System.Drawing.Point(193, 67);
+            this.buttonPreset7.Name = "buttonPreset7";
+            this.buttonPreset7.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset7.TabIndex = 11;
+            this.buttonPreset7.Text = "three";
+            this.buttonPreset7.UseVisualStyleBackColor = false;
+            this.buttonPreset7.Click += new System.EventHandler(this.buttonPreset_Click);
+            // 
+            // buttonPreset6
+            // 
+            this.buttonPreset6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset6.FlatAppearance.BorderSize = 0;
+            this.buttonPreset6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset6.Location = new System.Drawing.Point(111, 67);
+            this.buttonPreset6.Name = "buttonPreset6";
+            this.buttonPreset6.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset6.TabIndex = 10;
+            this.buttonPreset6.Text = "two";
+            this.buttonPreset6.UseVisualStyleBackColor = false;
+            this.buttonPreset6.Click += new System.EventHandler(this.buttonPreset_Click);
+            // 
+            // buttonPreset5
+            // 
+            this.buttonPreset5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset5.FlatAppearance.BorderSize = 0;
+            this.buttonPreset5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset5.Location = new System.Drawing.Point(29, 67);
+            this.buttonPreset5.Name = "buttonPreset5";
+            this.buttonPreset5.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset5.TabIndex = 9;
+            this.buttonPreset5.Text = "one";
+            this.buttonPreset5.UseVisualStyleBackColor = false;
+            this.buttonPreset5.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // radioButtonStopwatch
             // 
             this.radioButtonStopwatch.AutoSize = true;
             this.radioButtonStopwatch.Enabled = false;
-            this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 77);
+            this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 115);
             this.radioButtonStopwatch.Name = "radioButtonStopwatch";
             this.radioButtonStopwatch.Size = new System.Drawing.Size(76, 17);
             this.radioButtonStopwatch.TabIndex = 8;
@@ -118,7 +183,7 @@
             // 
             this.radioButtonTimer.AutoSize = true;
             this.radioButtonTimer.Checked = true;
-            this.radioButtonTimer.Location = new System.Drawing.Point(29, 77);
+            this.radioButtonTimer.Location = new System.Drawing.Point(29, 115);
             this.radioButtonTimer.Name = "radioButtonTimer";
             this.radioButtonTimer.Size = new System.Drawing.Size(51, 17);
             this.radioButtonTimer.TabIndex = 7;
@@ -128,57 +193,57 @@
             this.radioButtonTimer.Visible = false;
             this.radioButtonTimer.CheckedChanged += new System.EventHandler(this.radioButtonTimer_CheckedChanged);
             // 
-            // buttonPresetFour
+            // buttonPreset4
             // 
-            this.buttonPresetFour.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonPresetFour.FlatAppearance.BorderSize = 0;
-            this.buttonPresetFour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPresetFour.Location = new System.Drawing.Point(275, 38);
-            this.buttonPresetFour.Name = "buttonPresetFour";
-            this.buttonPresetFour.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetFour.TabIndex = 6;
-            this.buttonPresetFour.Text = "four";
-            this.buttonPresetFour.UseVisualStyleBackColor = false;
-            this.buttonPresetFour.Click += new System.EventHandler(this.buttonPreset_Click);
+            this.buttonPreset4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset4.FlatAppearance.BorderSize = 0;
+            this.buttonPreset4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset4.Location = new System.Drawing.Point(275, 38);
+            this.buttonPreset4.Name = "buttonPreset4";
+            this.buttonPreset4.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset4.TabIndex = 6;
+            this.buttonPreset4.Text = "four";
+            this.buttonPreset4.UseVisualStyleBackColor = false;
+            this.buttonPreset4.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
-            // buttonPresetThree
+            // buttonPreset3
             // 
-            this.buttonPresetThree.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonPresetThree.FlatAppearance.BorderSize = 0;
-            this.buttonPresetThree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPresetThree.Location = new System.Drawing.Point(193, 38);
-            this.buttonPresetThree.Name = "buttonPresetThree";
-            this.buttonPresetThree.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetThree.TabIndex = 5;
-            this.buttonPresetThree.Text = "three";
-            this.buttonPresetThree.UseVisualStyleBackColor = false;
-            this.buttonPresetThree.Click += new System.EventHandler(this.buttonPreset_Click);
+            this.buttonPreset3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset3.FlatAppearance.BorderSize = 0;
+            this.buttonPreset3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset3.Location = new System.Drawing.Point(193, 38);
+            this.buttonPreset3.Name = "buttonPreset3";
+            this.buttonPreset3.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset3.TabIndex = 5;
+            this.buttonPreset3.Text = "three";
+            this.buttonPreset3.UseVisualStyleBackColor = false;
+            this.buttonPreset3.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
-            // buttonPresetTwo
+            // buttonPreset2
             // 
-            this.buttonPresetTwo.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonPresetTwo.FlatAppearance.BorderSize = 0;
-            this.buttonPresetTwo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPresetTwo.Location = new System.Drawing.Point(111, 38);
-            this.buttonPresetTwo.Name = "buttonPresetTwo";
-            this.buttonPresetTwo.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetTwo.TabIndex = 4;
-            this.buttonPresetTwo.Text = "two";
-            this.buttonPresetTwo.UseVisualStyleBackColor = false;
-            this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPreset_Click);
+            this.buttonPreset2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset2.FlatAppearance.BorderSize = 0;
+            this.buttonPreset2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset2.Location = new System.Drawing.Point(111, 38);
+            this.buttonPreset2.Name = "buttonPreset2";
+            this.buttonPreset2.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset2.TabIndex = 4;
+            this.buttonPreset2.Text = "two";
+            this.buttonPreset2.UseVisualStyleBackColor = false;
+            this.buttonPreset2.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
-            // buttonPresetOne
+            // buttonPreset1
             // 
-            this.buttonPresetOne.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonPresetOne.FlatAppearance.BorderSize = 0;
-            this.buttonPresetOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPresetOne.Location = new System.Drawing.Point(29, 38);
-            this.buttonPresetOne.Name = "buttonPresetOne";
-            this.buttonPresetOne.Size = new System.Drawing.Size(75, 23);
-            this.buttonPresetOne.TabIndex = 3;
-            this.buttonPresetOne.Text = "one";
-            this.buttonPresetOne.UseVisualStyleBackColor = false;
-            this.buttonPresetOne.Click += new System.EventHandler(this.buttonPreset_Click);
+            this.buttonPreset1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPreset1.FlatAppearance.BorderSize = 0;
+            this.buttonPreset1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPreset1.Location = new System.Drawing.Point(29, 38);
+            this.buttonPreset1.Name = "buttonPreset1";
+            this.buttonPreset1.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreset1.TabIndex = 3;
+            this.buttonPreset1.Text = "one";
+            this.buttonPreset1.UseVisualStyleBackColor = false;
+            this.buttonPreset1.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // buttonSet
             // 
@@ -224,7 +289,7 @@
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 135);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 179);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(384, 21);
             this.statusStrip1.SizingGrip = false;
@@ -279,7 +344,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(384, 156);
+            this.ClientSize = new System.Drawing.Size(384, 200);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -306,10 +371,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonStartPause;
-        private System.Windows.Forms.Button buttonPresetFour;
-        private System.Windows.Forms.Button buttonPresetThree;
-        private System.Windows.Forms.Button buttonPresetTwo;
-        private System.Windows.Forms.Button buttonPresetOne;
+        private System.Windows.Forms.Button buttonPreset4;
+        private System.Windows.Forms.Button buttonPreset3;
+        private System.Windows.Forms.Button buttonPreset2;
+        private System.Windows.Forms.Button buttonPreset1;
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.RadioButton radioButtonStopwatch;
         private System.Windows.Forms.RadioButton radioButtonTimer;
@@ -320,6 +385,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem popupDingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem audioDingToolStripMenuItem;
+        private System.Windows.Forms.Button buttonPreset8;
+        private System.Windows.Forms.Button buttonPreset7;
+        private System.Windows.Forms.Button buttonPreset6;
+        private System.Windows.Forms.Button buttonPreset5;
     }
 }
 

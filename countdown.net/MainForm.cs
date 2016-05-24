@@ -34,6 +34,10 @@ namespace CountdownTimer
             new TimeSpan(0,2,0),
             new TimeSpan(0,5,0),
             new TimeSpan(0,10,0),
+            new TimeSpan(0,15,0),
+            new TimeSpan(0,20,0),
+            new TimeSpan(0,25,0),
+            new TimeSpan(0,30,0),
         };
 
         public MainForm()
@@ -42,15 +46,17 @@ namespace CountdownTimer
 
             originalResetButtonText = buttonReset.Text;
 
-            presetButtons.Add(buttonPresetOne);
-            presetButtons.Add(buttonPresetTwo);
-            presetButtons.Add(buttonPresetThree);
-            presetButtons.Add(buttonPresetFour);
+            presetButtons.Add(buttonPreset1);
+            presetButtons.Add(buttonPreset2);
+            presetButtons.Add(buttonPreset3);
+            presetButtons.Add(buttonPreset4);
+            presetButtons.Add(buttonPreset5);
+            presetButtons.Add(buttonPreset6);
+            presetButtons.Add(buttonPreset7);
+            presetButtons.Add(buttonPreset8);
 
-            SetPresetButtonTime(buttonPresetOne, presets[0]);
-            SetPresetButtonTime(buttonPresetTwo, presets[1]);
-            SetPresetButtonTime(buttonPresetThree, presets[2]);
-            SetPresetButtonTime(buttonPresetFour, presets[3]);
+            for (int i = 0; i < presets.Length; i++)
+                SetPresetButtonTime(presetButtons[i], presets[i]);
 
             UpdateButtonStates();
 

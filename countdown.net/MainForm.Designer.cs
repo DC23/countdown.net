@@ -139,7 +139,7 @@
             this.buttonPresetFour.TabIndex = 6;
             this.buttonPresetFour.Text = "four";
             this.buttonPresetFour.UseVisualStyleBackColor = false;
-            this.buttonPresetFour.Click += new System.EventHandler(this.buttonPresetFour_Click);
+            this.buttonPresetFour.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // buttonPresetThree
             // 
@@ -152,7 +152,7 @@
             this.buttonPresetThree.TabIndex = 5;
             this.buttonPresetThree.Text = "three";
             this.buttonPresetThree.UseVisualStyleBackColor = false;
-            this.buttonPresetThree.Click += new System.EventHandler(this.buttonPresetThree_Click);
+            this.buttonPresetThree.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // buttonPresetTwo
             // 
@@ -165,7 +165,7 @@
             this.buttonPresetTwo.TabIndex = 4;
             this.buttonPresetTwo.Text = "two";
             this.buttonPresetTwo.UseVisualStyleBackColor = false;
-            this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPresetTwo_Click);
+            this.buttonPresetTwo.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // buttonPresetOne
             // 
@@ -178,7 +178,7 @@
             this.buttonPresetOne.TabIndex = 3;
             this.buttonPresetOne.Text = "one";
             this.buttonPresetOne.UseVisualStyleBackColor = false;
-            this.buttonPresetOne.Click += new System.EventHandler(this.buttonPresetOne_Click);
+            this.buttonPresetOne.Click += new System.EventHandler(this.buttonPreset_Click);
             // 
             // buttonSet
             // 

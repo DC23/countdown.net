@@ -26,13 +26,14 @@ namespace CountdownTimer
         Color oldBackColour;
         DateTime start = DateTime.Now;
         string originalResetButtonText;
+        List<Button> presetButtons = new List<Button>();
 
-        TimeSpan[] presets = new TimeSpan[4]
+        TimeSpan[] presets = new TimeSpan[]
         {
-            new TimeSpan(0,1,15),
+            new TimeSpan(0,1,05),
+            new TimeSpan(0,2,0),
             new TimeSpan(0,5,0),
-            new TimeSpan(0,15,0),
-            new TimeSpan(0,30,0),
+            new TimeSpan(0,10,0),
         };
 
         public MainForm()
@@ -41,10 +42,15 @@ namespace CountdownTimer
 
             originalResetButtonText = buttonReset.Text;
 
-            SetButtonText(buttonPresetOne, presets[0]);
-            SetButtonText(buttonPresetTwo, presets[1]);
-            SetButtonText(buttonPresetThree, presets[2]);
-            SetButtonText(buttonPresetFour, presets[3]);
+            presetButtons.Add(buttonPresetOne);
+            presetButtons.Add(buttonPresetTwo);
+            presetButtons.Add(buttonPresetThree);
+            presetButtons.Add(buttonPresetFour);
+
+            SetPresetButtonTime(buttonPresetOne, presets[0]);
+            SetPresetButtonTime(buttonPresetTwo, presets[1]);
+            SetPresetButtonTime(buttonPresetThree, presets[2]);
+            SetPresetButtonTime(buttonPresetFour, presets[3]);
 
             UpdateButtonStates();
 
@@ -66,38 +72,37 @@ namespace CountdownTimer
             UseModalDing = useModalDing;
         }
 
-        void SetButtonText(Button button, TimeSpan timeSpan)
+        void SetPresetButtonTime(Button button, TimeSpan timeSpan)
         {
             if (timeSpan.Hours > 0)
                 button.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
             else
                 button.Text = String.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+
+            button.Tag = timeSpan;
         }
 
         void UpdateButtonStates()
         {
             if (PomodoroMode)
             {
-                buttonPresetOne.Visible = false;
-                buttonPresetTwo.Visible = false;
-                buttonPresetThree.Visible = false;
-                buttonPresetFour.Visible = false;
+                foreach (var preset in presetButtons)
+                    preset.Visible = false;
+
                 buttonSet.Visible = false;
                 buttonReset.Visible = PomodoroBreak;
             }
             else
             {
-                buttonPresetOne.Visible = true;
-                buttonPresetTwo.Visible = true;
-                buttonPresetThree.Visible = true;
-                buttonPresetFour.Visible = true;
+                foreach (var preset in presetButtons)
+                {
+                    preset.Visible = true;
+                    preset.Enabled = IsStopped;
+                }
+
                 buttonSet.Visible = true;
-                buttonReset.Visible = true;
-                buttonPresetOne.Enabled = IsStopped;
-                buttonPresetTwo.Enabled = IsStopped;
-                buttonPresetThree.Enabled = IsStopped;
-                buttonPresetFour.Enabled = IsStopped;
                 buttonSet.Enabled = IsStopped;
+                buttonReset.Visible = true;
                 buttonReset.Enabled = IsStopped;
             }
 
@@ -113,7 +118,6 @@ namespace CountdownTimer
                 toolStripStatusLabel1.Text = string.Format("Completed: {0}    Aborted: {1}",
                     CompletedPomodoroCount, 
                     AbortedPomodoroCount);
-
             }
             else
             {
@@ -229,24 +233,10 @@ namespace CountdownTimer
         {
         }
 
-        private void buttonPresetOne_Click(object sender, EventArgs e)
+        private void buttonPreset_Click(object sender, EventArgs e)
         {
-            SetTime = presets[0];
-        }
-
-        private void buttonPresetTwo_Click(object sender, EventArgs e)
-        {
-            SetTime = presets[1];
-        }
-
-        private void buttonPresetThree_Click(object sender, EventArgs e)
-        {
-            SetTime = presets[2];
-        }
-
-        private void buttonPresetFour_Click(object sender, EventArgs e)
-        {
-            SetTime = presets[3];
+            Debug.Assert(sender is Button); 
+            SetTime = (TimeSpan)((Button)sender).Tag;
         }
 
         private void buttonStartPause_Click(object sender, EventArgs e)
@@ -272,9 +262,8 @@ namespace CountdownTimer
             bool topMostSetting = TopMost;
             TopMost = false;
             if (stf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
                 SetTime = stf.Time;
-            }
+
             TopMost = topMostSetting;
         }
         #endregion

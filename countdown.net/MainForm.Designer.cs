@@ -94,6 +94,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.buttonPreset8);
             this.panel1.Controls.Add(this.buttonPreset7);
             this.panel1.Controls.Add(this.buttonPreset6);
@@ -108,10 +109,11 @@
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 69);
+            this.panel1.Location = new System.Drawing.Point(3, 79);
+            this.panel1.MinimumSize = new System.Drawing.Size(0, 105);
             this.panel1.Name = "panel1";
-            this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
-            this.panel1.Size = new System.Drawing.Size(378, 107);
+            this.tableLayoutPanel1.SetRowSpan(this.panel1, 2);
+            this.panel1.Size = new System.Drawing.Size(378, 105);
             this.panel1.TabIndex = 3;
             // 
             // buttonPreset8
@@ -347,10 +349,12 @@
             this.ClientSize = new System.Drawing.Size(384, 200);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 195);
             this.Name = "MainForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "countdown.net";
             this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);

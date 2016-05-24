@@ -354,6 +354,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 195);
             this.Name = "MainForm";
+            this.Opacity = 0.85D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "countdown.net";
             this.TopMost = true;

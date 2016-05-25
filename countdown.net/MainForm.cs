@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CountdownTimer
@@ -184,7 +185,52 @@ namespace CountdownTimer
                 labelTimer.ForeColor = colourNormal;
         }
 
+        #region DragMove implementation for borderless mode
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void MainForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        #endregion
+
         #region Event Handlers
+        private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopMost = !TopMost;
+            alwaysOnTopToolStripMenuItem.Checked = TopMost;
+        }
+
+        private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PomodoroMode = !PomodoroMode;
+        }
+
+        private void popupDingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseModalDing = !UseModalDing;
+        }
+
+        private void audioDingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseAudioDing = !UseAudioDing;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         void updateTick_Tick(object sender, EventArgs e)
         {
             if (IsRunning && IsTimer)
@@ -443,32 +489,6 @@ namespace CountdownTimer
         int CompletedPomodoroCount { get; set; } = 0;
         int AbortedPomodoroCount { get; set; } = 0;
 
-#endregion
-
-        private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TopMost = !TopMost;
-            alwaysOnTopToolStripMenuItem.Checked = TopMost;
-        }
-
-        private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PomodoroMode = !PomodoroMode;
-        }
-
-        private void popupDingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UseModalDing = !UseModalDing;
-        }
-
-        private void audioDingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UseAudioDing = !UseAudioDing;
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        #endregion
     }
 }

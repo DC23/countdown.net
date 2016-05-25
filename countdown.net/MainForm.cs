@@ -490,5 +490,12 @@ namespace CountdownTimer
         int AbortedPomodoroCount { get; set; } = 0;
 
         #endregion
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var properties = new PropertiesForm();
+            properties.SelectedObject = this;
+            properties.Show();
+        }
     }
 }

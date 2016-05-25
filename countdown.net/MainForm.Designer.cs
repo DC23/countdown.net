@@ -53,6 +53,8 @@
             this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popupDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -309,9 +311,11 @@
             this.alwaysOnTopToolStripMenuItem,
             this.pomodoroModeToolStripMenuItem,
             this.popupDingToolStripMenuItem,
-            this.audioDingToolStripMenuItem});
+            this.audioDingToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 120);
             // 
             // alwaysOnTopToolStripMenuItem
             // 
@@ -341,11 +345,24 @@
             this.audioDingToolStripMenuItem.Text = "&Audio Ding";
             this.audioDingToolStripMenuItem.Click += new System.EventHandler(this.audioDingToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitToolStripMenuItem.Text = "&Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(384, 200);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
@@ -394,6 +411,8 @@
         private System.Windows.Forms.Button buttonPreset7;
         private System.Windows.Forms.Button buttonPreset6;
         private System.Windows.Forms.Button buttonPreset5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

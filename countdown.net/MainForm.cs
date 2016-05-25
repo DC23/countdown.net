@@ -271,6 +271,7 @@ namespace CountdownTimer
         #endregion
 
         #region Properties
+
         string TimesUpMessage
         {
             get
@@ -463,6 +464,11 @@ namespace CountdownTimer
         private void audioDingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseAudioDing = !UseAudioDing;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

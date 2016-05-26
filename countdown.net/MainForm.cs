@@ -14,20 +14,12 @@ namespace CountdownTimer
         TimeSpan setTime = new TimeSpan();
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
-        Color colourNormal = Color.Black;
-        Color colourNearlyThere = Color.Firebrick;
-        bool pomodoroMode = false;
         bool pomodoroBreak = false;
-        bool useModalDing = false;
-        bool useAudioDing = false;
         Color oldBackColour;
         DateTime start = DateTime.Now;
         string originalResetButtonText;
         List<Button> presetButtons = new List<Button>();
-
-        TimeSpan[] presets = new TimeSpan[]
-        {
-        };
+        UserProperties userProperties;
 
         public MainForm()
         {
@@ -35,6 +27,30 @@ namespace CountdownTimer
 
             originalResetButtonText = buttonReset.Text;
 
+            // user properties with default values
+            userProperties = new UserProperties
+            {
+                PomodoroMode = false,
+
+                PopupDing = false,
+                AudioDing = true,
+
+                TimerColor = BackColor,
+                NormalFontColor = Color.Black,
+                NearlyThereFontColor = Color.Firebrick,
+                PomodoroColor = Color.Tomato,
+                PomodoroBreakColor = Color.SteelBlue,
+
+                Border = FormBorderStyle,
+                Opacity = Opacity,
+                AlwaysOnTop = TopMost,
+
+                TimerFont = this.labelTimer.Font,
+            };
+
+            userProperties.PropertyChanged += UserProperties_PropertyChanged;
+
+            // preset buttons
             presetButtons.Add(buttonPreset1);
             presetButtons.Add(buttonPreset2);
             presetButtons.Add(buttonPreset3);
@@ -44,27 +60,22 @@ namespace CountdownTimer
             presetButtons.Add(buttonPreset7);
             presetButtons.Add(buttonPreset8);
 
-            for (int i = 0; i < presets.Length; i++)
-                SetPresetButtonTime(presetButtons[i], presets[i]);
+            for (int i = 0; i < userProperties.Presets.Count; i++)
+                SetPresetButtonTime(presetButtons[i], userProperties.Presets[i]);
 
             UpdateButtonStates();
 
+            // other setup
             updateTick.Tick += updateTick_Tick;
             updateTick.Interval = 200;
 
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
 
-            alwaysOnTopToolStripMenuItem.Checked = TopMost;
-
             oldBackColour = BackColor;
             statusStrip1.BackColor = BackColor;
 
             UpdateStatusText();
-
-            PomodoroMode = false;
-            UseAudioDing = useAudioDing;
-            UseModalDing = useModalDing;
         }
 
         void SetPresetButtonTime(Button button, TimeSpan timeSpan)
@@ -111,7 +122,7 @@ namespace CountdownTimer
             if (PomodoroMode)
             {
                 toolStripStatusLabel1.Text = string.Format("Completed: {0}    Aborted: {1}",
-                    CompletedPomodoroCount, 
+                    CompletedPomodoroCount,
                     AbortedPomodoroCount);
             }
             else
@@ -172,9 +183,9 @@ namespace CountdownTimer
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
             if (!PomodoroMode && IsRunning && time.TotalMinutes < 1)
-                labelTimer.ForeColor = colourNearlyThere;
+                labelTimer.ForeColor = userProperties.NearlyThereFontColor;
             else
-                labelTimer.ForeColor = colourNormal;
+                labelTimer.ForeColor = userProperties.NormalFontColor;
         }
 
         #region DragMove implementation for borderless mode
@@ -197,25 +208,39 @@ namespace CountdownTimer
         #endregion
 
         #region Event Handlers
-        private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UserProperties_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            TopMost = !TopMost;
-            alwaysOnTopToolStripMenuItem.Checked = TopMost;
+            switch (e.PropertyName)
+            {
+                case "PomodoroMode":
+                    SetPomodoroMode(userProperties.PomodoroMode);
+                    break;
+
+                case "Opacity":
+                    Opacity = userProperties.Opacity;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var properties = new UserPropertiesForm();
+            properties.SelectedObject = userProperties;
+            properties.Show();
         }
 
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PomodoroMode = !PomodoroMode;
+            userProperties.PomodoroMode = !userProperties.PomodoroMode;
         }
 
-        private void popupDingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            UseModalDing = !UseModalDing;
-        }
-
-        private void audioDingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UseAudioDing = !UseAudioDing;
+            pomodoroModeToolStripMenuItem.Checked = userProperties.PomodoroMode;
+            alwaysOnTopToolStripMenuItem.Checked = userProperties.AlwaysOnTop;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -239,10 +264,10 @@ namespace CountdownTimer
                     ToggleTimerState(false);
                     UpdateTimeDisplay(TimeSpan.Zero);
 
-                    if (UseAudioDing)
+                    if (userProperties.AudioDing)
                         soundPlayer.Play();
 
-                    if (UseModalDing)
+                    if (userProperties.PopupDing)
                     {
                         // preserve, clear, and restore the TopMost setting, otherwise the modal dialog can be blocked by the top most main window.
                         bool currentTopMost = TopMost;
@@ -275,7 +300,7 @@ namespace CountdownTimer
 
         private void buttonPreset_Click(object sender, EventArgs e)
         {
-            Debug.Assert(sender is Button); 
+            Debug.Assert(sender is Button);
             SetTime = (TimeSpan)((Button)sender).Tag;
         }
 
@@ -330,34 +355,27 @@ namespace CountdownTimer
 
         bool IsStopwatch
         {
-            get
-            {
-                return this.radioButtonStopwatch.Checked;
-            }
+            get { return this.radioButtonStopwatch.Checked; }
         }
 
         bool IsTimer
         {
-            get
-            {
-                return this.radioButtonTimer.Checked;
-            }
+            get { return this.radioButtonTimer.Checked; }
         }
 
         bool IsRunning
         {
-            get
-            {
-                return timer.IsRunning;
-            }
+            get { return timer.IsRunning; }
         }
 
         bool IsStopped
         {
-            get
-            {
-                return !IsRunning;
-            }
+            get { return !IsRunning; }
+        }
+
+        bool PomodoroMode
+        {
+            get { return userProperties.PomodoroMode; }
         }
 
         TimeSpan SetTime
@@ -387,32 +405,23 @@ namespace CountdownTimer
         TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
 #endif
 
-        bool PomodoroMode
+        void SetPomodoroMode(bool on)
         {
-            get
-            {
-                return pomodoroMode;
-            }
-            set
-            {
-                pomodoroMode = value;
-                UpdateButtonStates();
-                pomodoroModeToolStripMenuItem.Checked = value;
+            UpdateButtonStates();
 
-                if (pomodoroMode)
-                {
-                    ForeColor = Color.Black;
-                    PomodoroBreak = false;
-                    Stop();
-                }
-                else
-                {
-                    BackColor = oldBackColour;
-                    statusStrip1.BackColor = oldBackColour;
-                }
-
-                UpdateStatusText();
+            if (on)
+            {
+                ForeColor = userProperties.NormalFontColor;
+                PomodoroBreak = false;
+                Stop();
             }
+            else
+            {
+                BackColor = oldBackColour;
+                statusStrip1.BackColor = oldBackColour;
+            }
+
+            UpdateStatusText();
         }
 
         bool PomodoroBreak
@@ -444,32 +453,6 @@ namespace CountdownTimer
             }
         }
 
-        bool UseModalDing
-        {
-            get
-            {
-                return useModalDing;
-            }
-            set
-            {
-                useModalDing = value;
-                popupDingToolStripMenuItem.Checked = value;
-            }
-        }
-
-        bool UseAudioDing
-        {
-            get
-            {
-                return useAudioDing;
-            }
-            set
-            {
-                useAudioDing = value;
-                audioDingToolStripMenuItem.Checked = value;
-            }
-        }
-
         TimeSpan Uptime
         {
             get
@@ -483,11 +466,5 @@ namespace CountdownTimer
 
         #endregion
 
-        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var properties = new UserPropertiesForm();
-            properties.SelectedObject = this;
-            properties.Show();
-        }
     }
 }

@@ -50,13 +50,11 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.popupDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.audioDingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -315,42 +313,19 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alwaysOnTopToolStripMenuItem,
             this.pomodoroModeToolStripMenuItem,
-            this.popupDingToolStripMenuItem,
-            this.audioDingToolStripMenuItem,
             this.toolStripSeparator2,
             this.propertiesToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 148);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 126);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // alwaysOnTopToolStripMenuItem
             // 
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
             this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "&Always on top";
-            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
-            // 
-            // pomodoroModeToolStripMenuItem
-            // 
-            this.pomodoroModeToolStripMenuItem.Name = "pomodoroModeToolStripMenuItem";
-            this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
-            this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
-            // 
-            // popupDingToolStripMenuItem
-            // 
-            this.popupDingToolStripMenuItem.Name = "popupDingToolStripMenuItem";
-            this.popupDingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.popupDingToolStripMenuItem.Text = "Popup &Ding";
-            this.popupDingToolStripMenuItem.Click += new System.EventHandler(this.popupDingToolStripMenuItem_Click);
-            // 
-            // audioDingToolStripMenuItem
-            // 
-            this.audioDingToolStripMenuItem.Name = "audioDingToolStripMenuItem";
-            this.audioDingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.audioDingToolStripMenuItem.Text = "&Audio Ding";
-            this.audioDingToolStripMenuItem.Click += new System.EventHandler(this.audioDingToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -375,6 +350,13 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // pomodoroModeToolStripMenuItem
+            // 
+            this.pomodoroModeToolStripMenuItem.Name = "pomodoroModeToolStripMenuItem";
+            this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
+            this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -422,11 +404,8 @@
         private System.Windows.Forms.RadioButton radioButtonTimer;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pomodoroModeToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem popupDingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem audioDingToolStripMenuItem;
         private System.Windows.Forms.Button buttonPreset8;
         private System.Windows.Forms.Button buttonPreset7;
         private System.Windows.Forms.Button buttonPreset6;
@@ -435,6 +414,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pomodoroModeToolStripMenuItem;
     }
 }
 

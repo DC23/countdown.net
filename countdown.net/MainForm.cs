@@ -241,6 +241,10 @@ namespace CountdownTimer
                     FormBorderStyle = userProperties.Border;
                     break;
 
+                case "TopMost":
+                    TopMost = userProperties.TopMost;
+                    break;
+
                 default:
                     break;
             }
@@ -261,7 +265,6 @@ namespace CountdownTimer
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             pomodoroModeToolStripMenuItem.Checked = userProperties.PomodoroMode;
-            alwaysOnTopToolStripMenuItem.Checked = userProperties.TopMost;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

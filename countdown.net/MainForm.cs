@@ -227,6 +227,10 @@ namespace CountdownTimer
                         SetFormColor(userProperties.TimerColor);
                     break;
 
+                case "TimerFont":
+                    labelTimer.Font = userProperties.TimerFont;
+                    break;
+
                 case "PomodoroColor":
                     if (PomodoroMode && !pomodoroBreak)
                         SetFormColor(userProperties.PomodoroColor);

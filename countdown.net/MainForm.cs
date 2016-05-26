@@ -27,14 +27,6 @@ namespace CountdownTimer
 
         TimeSpan[] presets = new TimeSpan[]
         {
-            new TimeSpan(0,1,05),
-            new TimeSpan(0,2,0),
-            new TimeSpan(0,5,0),
-            new TimeSpan(0,10,0),
-            new TimeSpan(0,15,0),
-            new TimeSpan(0,20,0),
-            new TimeSpan(0,25,0),
-            new TimeSpan(0,30,0),
         };
 
         public MainForm()

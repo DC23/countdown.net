@@ -43,7 +43,7 @@ namespace CountdownTimer
 
                 Border = FormBorderStyle,
                 Opacity = Opacity,
-                AlwaysOnTop = TopMost,
+                TopMost = TopMost,
 
                 TimerFont = this.labelTimer.Font,
             };
@@ -240,7 +240,7 @@ namespace CountdownTimer
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             pomodoroModeToolStripMenuItem.Checked = userProperties.PomodoroMode;
-            alwaysOnTopToolStripMenuItem.Checked = userProperties.AlwaysOnTop;
+            alwaysOnTopToolStripMenuItem.Checked = userProperties.TopMost;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

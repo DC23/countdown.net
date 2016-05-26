@@ -50,11 +50,11 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pomodoroModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -318,7 +318,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 126);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 104);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // alwaysOnTopToolStripMenuItem
@@ -326,6 +326,13 @@
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
             this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "&Always on top";
+            // 
+            // pomodoroModeToolStripMenuItem
+            // 
+            this.pomodoroModeToolStripMenuItem.Name = "pomodoroModeToolStripMenuItem";
+            this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
+            this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -350,13 +357,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // pomodoroModeToolStripMenuItem
-            // 
-            this.pomodoroModeToolStripMenuItem.Name = "pomodoroModeToolStripMenuItem";
-            this.pomodoroModeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.pomodoroModeToolStripMenuItem.Text = "&Pomodoro Mode";
-            this.pomodoroModeToolStripMenuItem.Click += new System.EventHandler(this.pomodoroModeToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -12,22 +12,52 @@ namespace CountdownTimer
     class UserProperties : INotifyPropertyChanged
     {
         [CategoryAttribute("Appearance")]
-        public Color TimerColor { get; set; }
+        public Color TimerColor
+        {
+            get { return timerColor; }
+            set { SetProperty(ref timerColor, value); }
+        }
+        Color timerColor = Color.SteelBlue;
 
         [CategoryAttribute("Appearance")]
-        public Color NormalFontColor { get; set; }
+        public Color NormalFontColor
+        {
+            get { return normalFontColor; }
+            set { SetProperty(ref normalFontColor, value); }
+        }
+        Color normalFontColor = Color.Black;
 
         [CategoryAttribute("Appearance")]
-        public Color NearlyThereFontColor { get; set; }
+        public Color NearlyThereFontColor
+        {
+            get { return nearlyThereFontColor; }
+            set { SetProperty(ref nearlyThereFontColor, value); }
+        }
+        Color nearlyThereFontColor = Color.Firebrick;
 
         [CategoryAttribute("Appearance")]
-        public Color PomodoroColor { get; set; }
+        public Color PomodoroColor
+        {
+            get { return pomodoroColor; }
+            set { SetProperty(ref pomodoroColor, value); }
+        }
+        Color pomodoroColor = Color.Tomato;
 
         [CategoryAttribute("Appearance")]
-        public Color PomodoroBreakColor { get; set; }
+        public Color PomodoroBreakColor
+        {
+            get { return pomodoroBreakColor; }
+            set { SetProperty(ref pomodoroBreakColor, value); }
+        }
+        Color pomodoroBreakColor = Color.LightSteelBlue;
 
         [CategoryAttribute("Appearance")]
-        public FormBorderStyle Border { get; set; }
+        public FormBorderStyle Border
+        {
+            get { return border; }
+            set { SetProperty(ref border, value); }
+        }
+        FormBorderStyle border = FormBorderStyle.None;
 
         [CategoryAttribute("Appearance")]
         public double Opacity
@@ -38,7 +68,12 @@ namespace CountdownTimer
         double opacity = 1;
 
         [CategoryAttribute("Appearance")]
-        public Font TimerFont { get; set; }
+        public Font TimerFont
+        {
+            get { return timerFont; }
+            set { SetProperty(ref timerFont, value); }
+        }
+        Font timerFont = new Font("Monospace", 48);
 
         [CategoryAttribute("Behaviour")]
         public bool PomodoroMode
@@ -49,13 +84,28 @@ namespace CountdownTimer
         private bool pomodoroMode = false;
 
         [CategoryAttribute("Behaviour")]
-        public bool PopupDing { get; set; }
+        public bool PopupDing
+        {
+            get { return popupDing; }
+            set { SetProperty(ref popupDing, value); }
+        }
+        bool popupDing = false;
 
         [CategoryAttribute("Behaviour")]
-        public bool AudioDing { get; set; }
+        public bool AudioDing
+        {
+            get { return audioDing; }
+            set { SetProperty(ref audioDing, value); }
+        }
+        bool audioDing = false;
 
         [CategoryAttribute("Behaviour")]
-        public bool AlwaysOnTop { get; set; }
+        public bool TopMost
+        {
+            get { return topmost; }
+            set { SetProperty(ref topmost, value); }
+        }
+        bool topmost = false;
 
         List<TimeSpan> presets = new List<TimeSpan>
         {

@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CountdownTimer
 {
-    public partial class PropertiesForm : Form
+    public partial class UserPropertiesForm : Form
     {
-        public PropertiesForm()
+        public UserPropertiesForm()
         {
             InitializeComponent();
         }

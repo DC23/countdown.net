@@ -493,7 +493,7 @@ namespace CountdownTimer
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var properties = new PropertiesForm();
+            var properties = new UserPropertiesForm();
             properties.SelectedObject = this;
             properties.Show();
         }

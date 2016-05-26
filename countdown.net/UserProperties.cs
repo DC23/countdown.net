@@ -99,7 +99,7 @@ namespace CountdownTimer
         }
         bool topmost = false;
 
-        List<TimeSpan> presets = new List<TimeSpan>
+        public TimeSpan[] Presets =
         {
             new TimeSpan(00,01,05),
             new TimeSpan(00,02,00),
@@ -111,12 +111,61 @@ namespace CountdownTimer
             new TimeSpan(00,30,00),
         };
 
-        public List<TimeSpan> Presets
+        // Yes, I could have used code generation from a TT file here, but I am tired and there are only 8 presets...
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset0
         {
-            get
-            {
-                return presets;
-            }
+            get { return Presets[0]; }
+            set { SetProperty(ref Presets[0], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset1
+        {
+            get { return Presets[1]; }
+            set { SetProperty(ref Presets[1], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset2
+        {
+            get { return Presets[2]; }
+            set { SetProperty(ref Presets[2], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset3
+        {
+            get { return Presets[3]; }
+            set { SetProperty(ref Presets[3], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset4
+        {
+            get { return Presets[4]; }
+            set { SetProperty(ref Presets[4], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset5
+        {
+            get { return Presets[5]; }
+            set { SetProperty(ref Presets[5], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset6
+        {
+            get { return Presets[6]; }
+            set { SetProperty(ref Presets[6], value, "Preset"); }
+        }
+
+        [CategoryAttribute("Preset Times")]
+        public TimeSpan Preset7
+        {
+            get { return Presets[7]; }
+            set { SetProperty(ref Presets[7], value, "Preset"); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

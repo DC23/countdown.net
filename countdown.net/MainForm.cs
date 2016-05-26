@@ -58,10 +58,7 @@ namespace CountdownTimer
             presetButtons.Add(buttonPreset7);
             presetButtons.Add(buttonPreset8);
 
-            for (int i = 0; i < userProperties.Presets.Count; i++)
-                SetPresetButtonTime(presetButtons[i], userProperties.Presets[i]);
-
-            UpdateButtonStates();
+            UpdatePresets();
 
             // other setup
             updateTick.Tick += updateTick_Tick;
@@ -72,6 +69,14 @@ namespace CountdownTimer
 
             SetFormColor(userProperties.TimerColor);
             UpdateStatusText();
+        }
+
+        private void UpdatePresets()
+        {
+            for (int i = 0; i < userProperties.Presets.Length; i++)
+                SetPresetButtonTime(presetButtons[i], userProperties.Presets[i]);
+
+            UpdateButtonStates();
         }
 
         void SetPresetButtonTime(Button button, TimeSpan timeSpan)
@@ -247,6 +252,10 @@ namespace CountdownTimer
 
                 case "TopMost":
                     TopMost = userProperties.TopMost;
+                    break;
+
+                case "Preset":
+                    UpdatePresets();
                     break;
 
                 default:

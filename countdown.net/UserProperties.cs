@@ -20,20 +20,12 @@ namespace CountdownTimer
         Color timerColor = Color.SteelBlue;
 
         [CategoryAttribute("Appearance")]
-        public Color NormalFontColor
+        public Color FontColor
         {
-            get { return normalFontColor; }
-            set { SetProperty(ref normalFontColor, value); }
+            get { return fontColor; }
+            set { SetProperty(ref fontColor, value); }
         }
-        Color normalFontColor = Color.Black;
-
-        [CategoryAttribute("Appearance")]
-        public Color NearlyThereFontColor
-        {
-            get { return nearlyThereFontColor; }
-            set { SetProperty(ref nearlyThereFontColor, value); }
-        }
-        Color nearlyThereFontColor = Color.Firebrick;
+        Color fontColor = Color.Black;
 
         [CategoryAttribute("Appearance")]
         public Color PomodoroColor

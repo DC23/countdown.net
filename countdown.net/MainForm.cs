@@ -35,8 +35,7 @@ namespace CountdownTimer
                 AudioDing = true,
 
                 TimerColor = BackColor,
-                NormalFontColor = Color.Black,
-                NearlyThereFontColor = Color.Firebrick,
+                FontColor = Color.Black,
                 PomodoroColor = Color.Tomato,
                 PomodoroBreakColor = Color.SteelBlue,
 
@@ -179,10 +178,6 @@ namespace CountdownTimer
         private void UpdateTimeDisplay(TimeSpan time)
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
-            if (!PomodoroMode && IsRunning && time.TotalMinutes < 1)
-                labelTimer.ForeColor = userProperties.NearlyThereFontColor;
-            else
-                labelTimer.ForeColor = userProperties.NormalFontColor;
         }
 
         private void SetFormColor(Color color)
@@ -219,8 +214,8 @@ namespace CountdownTimer
                     SetPomodoroMode(userProperties.PomodoroMode);
                     break;
 
-                case "NormalFontColor":
-                    labelTimer.ForeColor = userProperties.NormalFontColor;
+                case "FontColor":
+                    labelTimer.ForeColor = userProperties.FontColor;
                     break;
 
                 case "Opacity":
@@ -437,7 +432,7 @@ namespace CountdownTimer
 
             if (on)
             {
-                ForeColor = userProperties.NormalFontColor;
+                SetFormColor(userProperties.PomodoroColor);
                 PomodoroBreak = false;
                 Stop();
             }

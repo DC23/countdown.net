@@ -15,7 +15,6 @@ namespace CountdownTimer
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
         bool pomodoroBreak = false;
-        Color oldBackColour;
         DateTime start = DateTime.Now;
         string originalResetButtonText;
         List<Button> presetButtons = new List<Button>();
@@ -72,9 +71,7 @@ namespace CountdownTimer
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
 
-            oldBackColour = BackColor;
-            statusStrip1.BackColor = BackColor;
-
+            SetFormColor(userProperties.TimerColor);
             UpdateStatusText();
         }
 
@@ -188,6 +185,12 @@ namespace CountdownTimer
                 labelTimer.ForeColor = userProperties.NormalFontColor;
         }
 
+        private void SetFormColor(Color color)
+        {
+            BackColor = color;
+            statusStrip1.BackColor = color;
+        }
+
         #region DragMove implementation for borderless mode
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -216,8 +219,31 @@ namespace CountdownTimer
                     SetPomodoroMode(userProperties.PomodoroMode);
                     break;
 
+                case "NormalFontColor":
+                    labelTimer.ForeColor = userProperties.NormalFontColor;
+                    break;
+
                 case "Opacity":
                     Opacity = userProperties.Opacity;
+                    break;
+
+                case "TimerColor":
+                    if (!PomodoroMode)
+                        SetFormColor(userProperties.TimerColor);
+                    break;
+
+                case "PomodoroColor":
+                    if (PomodoroMode && !pomodoroBreak)
+                        SetFormColor(userProperties.PomodoroColor);
+                    break;
+
+                case "PomodoroBreakColor":
+                    if (PomodoroMode && pomodoroBreak)
+                        SetFormColor(userProperties.PomodoroBreakColor);
+                    break;
+
+                case "Border":
+                    FormBorderStyle = userProperties.Border;
                     break;
 
                 default:
@@ -417,8 +443,7 @@ namespace CountdownTimer
             }
             else
             {
-                BackColor = oldBackColour;
-                statusStrip1.BackColor = oldBackColour;
+                SetFormColor(userProperties.TimerColor);
             }
 
             UpdateStatusText();
@@ -436,16 +461,14 @@ namespace CountdownTimer
                 if (pomodoroBreak)
                 {
                     SetTime = PomodoroBreakTime;
-                    BackColor = oldBackColour;
-                    statusStrip1.BackColor = oldBackColour;
+                    SetFormColor(userProperties.PomodoroBreakColor);
                     originalResetButtonText = buttonReset.Text;
                     buttonReset.Text = "&Skip";
                 }
                 else
                 {
                     SetTime = PomodoroTime;
-                    BackColor = Color.Tomato;
-                    statusStrip1.BackColor = Color.Tomato;
+                    SetFormColor(userProperties.PomodoroColor);
                     buttonReset.Text = originalResetButtonText;
                 }
 

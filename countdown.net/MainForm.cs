@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace CountdownTimer
@@ -220,6 +223,11 @@ namespace CountdownTimer
         #endregion
 
         #region Event Handlers
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            userProperties.Save();
+        }
+
         private void UserProperties_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -508,6 +516,5 @@ namespace CountdownTimer
         int AbortedPomodoroCount { get; set; } = 0;
 
         #endregion
-
     }
 }

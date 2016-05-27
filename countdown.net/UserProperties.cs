@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace CountdownTimer
 {
-    class UserProperties : INotifyPropertyChanged
+    [Serializable]
+    public class UserProperties : INotifyPropertyChanged
     {
         [CategoryAttribute("Appearance")]
         public Color TimerColor
@@ -181,6 +186,23 @@ namespace CountdownTimer
                     handler(this, new PropertyChangedEventArgs(name));
                 }
             }
+        }
+
+        public void Save(string filename = "countdown.net.userproperties.xml")
+        {
+            // TODO: This assumes that we have permission to write to the current directory. OK for testing, but needs something more portable.
+            XmlSerializer serializer = new XmlSerializer(GetType());
+            StreamWriter writer = new StreamWriter(filename);
+            serializer.Serialize(writer, this);
+
+            //IFormatter formatter = new BinaryFormatter();
+            //Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            //formatter.Serialize(stream, this);
+        }
+
+        public static UserProperties Load(string filename, UserProperties defaults = null)
+        {
+            return null;
         }
 
     }

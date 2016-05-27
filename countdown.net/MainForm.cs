@@ -200,14 +200,23 @@ namespace CountdownTimer
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+		public static bool IsLinux
+		{
+		    get
+		    {
+		        int p = (int) Environment.OSVersion.Platform;
+		        return (p == 4) || (p == 6) || (p == 128);
+		    }
+		}
+
         private void MainForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
+		{
+			if (!IsLinux && e.Button == MouseButtons.Left)
+			{
+				ReleaseCapture();
+				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+			}
+		}
         #endregion
 
         #region Event Handlers

@@ -284,7 +284,10 @@ namespace CountdownTimer
         {
             var properties = new UserPropertiesForm();
             properties.SelectedObject = userProperties;
-            properties.Show();
+            bool currentTopMost = TopMost;
+            TopMost = false;
+            var result = properties.ShowDialog();
+            TopMost = currentTopMost;
         }
 
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)

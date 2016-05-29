@@ -70,6 +70,7 @@ namespace CountdownTimer
             get { return timerFont; }
             set { SetProperty(ref timerFont, value); }
         }
+        [NonSerialized]
         Font timerFont = new Font("Monospace", 48);
 
         [CategoryAttribute("Behaviour")]
@@ -191,9 +192,9 @@ namespace CountdownTimer
         public void Save(string filename = "countdown.net.userproperties.xml")
         {
             // TODO: This assumes that we have permission to write to the current directory. OK for testing, but needs something more portable.
-            XmlSerializer serializer = new XmlSerializer(GetType());
-            StreamWriter writer = new StreamWriter(filename);
-            serializer.Serialize(writer, this);
+            //XmlSerializer serializer = new XmlSerializer(GetType());
+            //StreamWriter writer = new StreamWriter(filename);
+            //serializer.Serialize(writer, this);
 
             //IFormatter formatter = new BinaryFormatter();
             //Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);

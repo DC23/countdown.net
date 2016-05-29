@@ -49,8 +49,6 @@ namespace CountdownTimer
                 TimerFont = this.labelTimer.Font,
             };
 
-            userProperties.PropertyChanged += UserProperties_PropertyChanged;
-
             // preset buttons
             presetButtons.Add(buttonPreset1);
             presetButtons.Add(buttonPreset2);

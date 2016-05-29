@@ -201,23 +201,23 @@ namespace CountdownTimer
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-		public static bool IsLinux
-		{
-		    get
-		    {
-		        int p = (int) Environment.OSVersion.Platform;
-		        return (p == 4) || (p == 6) || (p == 128);
-		    }
-		}
+        public static bool IsLinux
+        {
+            get
+            {
+                int p = (int)Environment.OSVersion.Platform;
+                return (p == 4) || (p == 6) || (p == 128);
+            }
+        }
 
         private void MainForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if (!IsLinux && e.Button == MouseButtons.Left)
-			{
-				ReleaseCapture();
-				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-			}
-		}
+        {
+            if (!IsLinux && e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
         #endregion
 
         #region Event Handlers
@@ -226,66 +226,45 @@ namespace CountdownTimer
             userProperties.Save();
         }
 
-        private void UserProperties_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void RefreshProperties()
         {
-            switch (e.PropertyName)
+            SetPomodoroMode(userProperties.PomodoroMode);
+            labelTimer.ForeColor = userProperties.FontColor;
+            labelTimer.Font = userProperties.TimerFont;
+            Opacity = userProperties.Opacity;
+
+            if (PomodoroMode)
             {
-                case "PomodoroMode":
-                    SetPomodoroMode(userProperties.PomodoroMode);
-                    break;
-
-                case "FontColor":
-                    labelTimer.ForeColor = userProperties.FontColor;
-                    break;
-
-                case "Opacity":
-                    Opacity = userProperties.Opacity;
-                    break;
-
-                case "TimerColor":
-                    if (!PomodoroMode)
-                        SetFormColor(userProperties.TimerColor);
-                    break;
-
-                case "TimerFont":
-                    labelTimer.Font = userProperties.TimerFont;
-                    break;
-
-                case "PomodoroColor":
-                    if (PomodoroMode && !pomodoroBreak)
-                        SetFormColor(userProperties.PomodoroColor);
-                    break;
-
-                case "PomodoroBreakColor":
-                    if (PomodoroMode && pomodoroBreak)
-                        SetFormColor(userProperties.PomodoroBreakColor);
-                    break;
-
-                case "Border":
-                    FormBorderStyle = userProperties.Border;
-                    break;
-
-                case "TopMost":
-                    TopMost = userProperties.TopMost;
-                    break;
-
-                case "Preset":
-                    UpdatePresets();
-                    break;
-
-                default:
-                    break;
+                if (pomodoroBreak)
+                    SetFormColor(userProperties.PomodoroBreakColor);
+                else
+                    SetFormColor(userProperties.PomodoroColor);
             }
+            else
+            {
+                SetFormColor(userProperties.TimerColor);
+            }
+
+            FormBorderStyle = userProperties.Border;
+            TopMost = userProperties.TopMost;
+            UpdatePresets();
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var properties = new UserPropertiesForm();
-            properties.SelectedObject = userProperties;
+            var tempProperties = (UserProperties)userProperties.Clone();
+            properties.SelectedObject = tempProperties;
             bool currentTopMost = TopMost;
             TopMost = false;
             var result = properties.ShowDialog();
             TopMost = currentTopMost;
+
+            if (result == DialogResult.OK)
+            {
+                userProperties = tempProperties;
+                RefreshProperties();
+            }
         }
 
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)

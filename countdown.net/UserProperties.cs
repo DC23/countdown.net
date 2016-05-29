@@ -14,8 +14,28 @@ using System.Xml.Serialization;
 namespace CountdownTimer
 {
     [Serializable]
-    public class UserProperties
+    public sealed class UserProperties : ICloneable
     {
+        public UserProperties()
+        {
+        }
+
+        private UserProperties(UserProperties that)
+        {
+            TimerColor = that.TimerColor;
+            FontColor = that.FontColor;
+            PomodoroColor = that.PomodoroColor;
+            PomodoroBreakColor = that.PomodoroBreakColor;
+            Border = that.Border;
+            Opacity = that.Opacity;
+            TimerFont = (Font)that.TimerFont.Clone();
+            PomodoroMode = that.PomodoroMode;
+            PopupDing = that.PopupDing;
+            AudioDing = that.AudioDing;
+            TopMost = that.TopMost;
+            Presets = (TimeSpan[])that.Presets.Clone();
+        }
+
         [CategoryAttribute("Appearance")]
         public Color TimerColor { get; set; } = Color.SteelBlue;
 
@@ -128,6 +148,11 @@ namespace CountdownTimer
         public static UserProperties Load(string filename, UserProperties defaults = null)
         {
             return null;
+        }
+
+        public object Clone()
+        {
+            return new UserProperties(this);
         }
     }
 }

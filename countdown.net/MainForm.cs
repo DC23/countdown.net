@@ -118,6 +118,30 @@ namespace CountdownTimer
             radioButtonTimer.Enabled = IsStopped;
         }
 
+        private void UpdateProperties()
+        {
+            PomodoroMode = userProperties.PomodoroMode;
+            labelTimer.ForeColor = userProperties.FontColor;
+            labelTimer.Font = userProperties.TimerFont;
+            Opacity = userProperties.Opacity;
+
+            if (PomodoroMode)
+            {
+                if (pomodoroBreak)
+                    SetFormColor(userProperties.PomodoroBreakColor);
+                else
+                    SetFormColor(userProperties.PomodoroColor);
+            }
+            else
+            {
+                SetFormColor(userProperties.TimerColor);
+            }
+
+            FormBorderStyle = userProperties.Border;
+            TopMost = userProperties.TopMost;
+            UpdatePresets();
+        }
+
         void UpdateStatusText()
         {
             TimeSpan up = Uptime;
@@ -226,29 +250,6 @@ namespace CountdownTimer
             userProperties.Save();
         }
 
-        private void RefreshProperties()
-        {
-            SetPomodoroMode(userProperties.PomodoroMode);
-            labelTimer.ForeColor = userProperties.FontColor;
-            labelTimer.Font = userProperties.TimerFont;
-            Opacity = userProperties.Opacity;
-
-            if (PomodoroMode)
-            {
-                if (pomodoroBreak)
-                    SetFormColor(userProperties.PomodoroBreakColor);
-                else
-                    SetFormColor(userProperties.PomodoroColor);
-            }
-            else
-            {
-                SetFormColor(userProperties.TimerColor);
-            }
-
-            FormBorderStyle = userProperties.Border;
-            TopMost = userProperties.TopMost;
-            UpdatePresets();
-        }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -263,13 +264,13 @@ namespace CountdownTimer
             if (result == DialogResult.OK)
             {
                 userProperties = tempProperties;
-                RefreshProperties();
+                UpdateProperties();
             }
         }
 
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userProperties.PomodoroMode = !userProperties.PomodoroMode;
+            PomodoroMode = !PomodoroMode;
         }
 
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -410,6 +411,24 @@ namespace CountdownTimer
         bool PomodoroMode
         {
             get { return userProperties.PomodoroMode; }
+            set
+            {
+                userProperties.PomodoroMode = value;
+                UpdateButtonStates();
+
+                if (value)
+                {
+                    SetFormColor(userProperties.PomodoroColor);
+                    PomodoroBreak = false;
+                    Stop();
+                }
+                else
+                {
+                    SetFormColor(userProperties.TimerColor);
+                }
+
+                UpdateStatusText();
+            }
         }
 
         TimeSpan SetTime
@@ -439,23 +458,6 @@ namespace CountdownTimer
         TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
 #endif
 
-        void SetPomodoroMode(bool on)
-        {
-            UpdateButtonStates();
-
-            if (on)
-            {
-                SetFormColor(userProperties.PomodoroColor);
-                PomodoroBreak = false;
-                Stop();
-            }
-            else
-            {
-                SetFormColor(userProperties.TimerColor);
-            }
-
-            UpdateStatusText();
-        }
 
         bool PomodoroBreak
         {

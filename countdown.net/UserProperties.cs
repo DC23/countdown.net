@@ -103,6 +103,16 @@ namespace CountdownTimer
         [CategoryAttribute("Behaviour")]
         public bool TopMost { get; set; } = false;
 
+#if (DEBUG)
+        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 1);
+        public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 0, 1);
+        public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 0, 2);
+#else
+        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
+        public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 5, 0);
+        public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 15, 0);
+#endif
+
         public TimeSpan[] Presets =
         {
             new TimeSpan(00,01,05),

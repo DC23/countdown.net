@@ -429,13 +429,14 @@ namespace CountdownTimer
             }
         }
 
-#if (DEBUG)
-        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 4);
-        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 0, 2);
-#else
-        TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
-        TimeSpan PomodoroBreakTime { get; set; } = new TimeSpan(0, 5, 0);
-#endif
+        TimeSpan PomodoroTime { get { return userProperties.PomodoroTime; } }
+        TimeSpan PomodoroBreakTime
+        {
+            get
+            {
+                return (CompletedPomodoroCount % 4 == 0) ? userProperties.PomodoroLongBreakTime : userProperties.PomodoroShortBreakTime;
+            }
+        }
 
         bool PomodoroBreak
         {
@@ -476,7 +477,8 @@ namespace CountdownTimer
         {
             get
             {
-                return userProperties; }
+                return userProperties;
+            }
             set
             {
                 userProperties = value;

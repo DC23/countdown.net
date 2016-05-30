@@ -49,7 +49,7 @@ namespace CountdownTimer
         public Color PomodoroBreakColor { get; set; } = Color.SteelBlue;
 
         [CategoryAttribute("Appearance")]
-        public FormBorderStyle Border { get; set; } = FormBorderStyle.None;
+        public FormBorderStyle Border { get; set; } = FormBorderStyle.Sizable;
 
         [CategoryAttribute("Appearance")]
         public double Opacity { get; set; } = 1.0;
@@ -145,9 +145,12 @@ namespace CountdownTimer
             formatter.Serialize(stream, this);
         }
 
-        public static UserProperties Load(string filename, UserProperties defaults = null)
+        public static UserProperties Load(string filename = "countdown.net.userproperties.bin", UserProperties defaults = null)
         {
-            return null;
+            // TODO: try to load
+
+            //If failure, return defaults
+            return defaults == null ? new UserProperties() : defaults;
         }
 
         public object Clone()

@@ -36,6 +36,40 @@ namespace CountdownTimer
             Presets = (TimeSpan[])that.Presets.Clone();
         }
 
+        public void Save(string filename = "countdown.net.userproperties.bin")
+        {
+            IFormatter formatter = new BinaryFormatter();
+            using (Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                formatter.Serialize(stream, this);
+            }
+        }
+
+        public static UserProperties Load(string filename = "countdown.net.userproperties.bin", UserProperties defaults = null)
+        {
+            UserProperties userProperties = null;
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    userProperties = (UserProperties)formatter.Deserialize(stream);
+                }
+            }
+            catch (Exception)
+            {
+                //If failure, return defaults
+                userProperties = defaults == null ? new UserProperties() : defaults;
+            }
+
+            return userProperties;
+        }
+
+        public object Clone()
+        {
+            return new UserProperties(this);
+        }
+
         [CategoryAttribute("Appearance")]
         public Color TimerColor { get; set; } = Color.SteelBlue;
 
@@ -136,26 +170,6 @@ namespace CountdownTimer
         {
             get { return Presets[7]; }
             set { Presets[7] = value; }
-        }
-
-        public void Save(string filename = "countdown.net.userproperties.bin")
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream, this);
-        }
-
-        public static UserProperties Load(string filename = "countdown.net.userproperties.bin", UserProperties defaults = null)
-        {
-            // TODO: try to load
-
-            //If failure, return defaults
-            return defaults == null ? new UserProperties() : defaults;
-        }
-
-        public object Clone()
-        {
-            return new UserProperties(this);
         }
     }
 }

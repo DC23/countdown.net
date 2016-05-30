@@ -16,12 +16,34 @@ namespace CountdownTimer
     [Serializable]
     public sealed class UserProperties : ICloneable
     {
+        public class VersionMismatchException : Exception
+        {
+            public VersionMismatchException()
+            {
+            }
+
+            public VersionMismatchException(string message)
+                : base(message)
+            {
+            }
+
+            public VersionMismatchException(string message, Exception inner)
+                : base(message, inner)
+            {
+            }
+        }
+
+        private const int version = 3;
+        public int Version { get; private set; }
+
         public UserProperties()
         {
+            Version = version;
         }
 
         private UserProperties(UserProperties that)
         {
+            Version = that.Version;
             TimerColor = that.TimerColor;
             FontColor = that.FontColor;
             PomodoroColor = that.PomodoroColor;
@@ -53,7 +75,11 @@ namespace CountdownTimer
                 IFormatter formatter = new BinaryFormatter();
                 using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    userProperties = (UserProperties)formatter.Deserialize(stream);
+                    UserProperties temp = (UserProperties)formatter.Deserialize(stream);
+                    if (temp.Version != UserProperties.version)
+                        throw new VersionMismatchException();
+
+                    userProperties = temp;
                 }
             }
             catch (Exception)

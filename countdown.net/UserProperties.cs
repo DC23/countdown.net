@@ -34,6 +34,8 @@ namespace CountdownTimer
         }
 
         private const int version = 3;
+
+        [CategoryAttribute("Properties Version")]
         public int Version { get; private set; }
 
         public UserProperties()
@@ -130,12 +132,18 @@ namespace CountdownTimer
         public bool TopMost { get; set; } = false;
 
 #if (DEBUG)
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 1);
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 0, 1);
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 0, 2);
 #else
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 5, 0);
+        [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 15, 0);
 #endif
 

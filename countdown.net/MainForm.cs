@@ -286,7 +286,7 @@ namespace CountdownTimer
                         // preserve, clear, and restore the TopMost setting, otherwise the modal dialog can be blocked by the top most main window.
                         bool currentTopMost = TopMost;
                         TopMost = false;
-                        MessageBox.Show(TimesUpMessage, "Ding!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        new TimesUp().ShowDialog();
                         TopMost = currentTopMost;
                     }
 

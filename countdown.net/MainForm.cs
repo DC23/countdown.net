@@ -244,7 +244,7 @@ namespace CountdownTimer
             TopMost = currentTopMost;
 
             if (result == DialogResult.OK)
-                UserProperties = tempProperties;
+                UserProperties = (UserProperties)properties.SelectedObject;
         }
 
         private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)

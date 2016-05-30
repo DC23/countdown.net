@@ -21,5 +21,10 @@ namespace CountdownTimer
             get { return propertyGrid1.SelectedObject; }
             set { propertyGrid1.SelectedObject = value; }
         }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            SelectedObject = new UserProperties();
+        }
     }
 }

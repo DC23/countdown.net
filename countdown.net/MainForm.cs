@@ -48,7 +48,6 @@ namespace CountdownTimer
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
 
-            SetFormColor(UserProperties.TimerColor);
             UpdateStatusText();
         }
 

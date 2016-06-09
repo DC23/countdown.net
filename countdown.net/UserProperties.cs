@@ -50,6 +50,9 @@ namespace CountdownTimer
             FontColor = that.FontColor;
             PomodoroColor = that.PomodoroColor;
             PomodoroBreakColor = that.PomodoroBreakColor;
+            PomodoroTime = that.PomodoroTime;
+            PomodoroLongBreakTime = that.PomodoroLongBreakTime;
+            PomodoroShortBreakTime = that.PomodoroShortBreakTime;
             Border = that.Border;
             Opacity = that.Opacity;
             TimerFont = (Font)that.TimerFont.Clone();

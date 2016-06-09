@@ -400,8 +400,7 @@ namespace CountdownTimer
                 {
                     SetFormColor(UserProperties.PomodoroColor);
 
-                    // If we are switching into pomodoro mode, reset the state
-                    if (!UserProperties.PomodoroMode)
+                    if (!IsRunning)
                     {
                         Reset();
                         PomodoroBreak = false;

@@ -133,7 +133,7 @@ namespace CountdownTimer
 
 #if (DEBUG)
         [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 1);
+        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 2);
         [CategoryAttribute("Behaviour")]
         public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 0, 1);
         [CategoryAttribute("Behaviour")]

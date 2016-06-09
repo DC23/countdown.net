@@ -142,6 +142,16 @@ namespace CountdownTimer
             }
         }
 
+        private void Reset()
+        {
+            timer.Reset();
+            SetTime = SetTime; // set the current set time back into itself. Hacky way to refresh the display
+
+            // skip the break and change state back to the next pomodoro
+            if (PomodoroMode && PomodoroBreak)
+                PomodoroBreak = !PomodoroBreak;
+        }
+
         void Stop()
         {
             if (IsRunning)
@@ -326,12 +336,7 @@ namespace CountdownTimer
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            timer.Reset();
-            SetTime = SetTime; // set the current set time back into itself. Hacky way to refresh the display
-
-            // skip the break and change state back to the next pomodoro
-            if (PomodoroMode && PomodoroBreak)
-                PomodoroBreak = !PomodoroBreak;
+            Reset();
         }
 
         private void buttonSet_Click(object sender, EventArgs e)
@@ -392,20 +397,24 @@ namespace CountdownTimer
             get { return UserProperties.PomodoroMode; }
             set
             {
-                UserProperties.PomodoroMode = value;
-                UpdateButtonStates();
-
                 if (value)
                 {
                     SetFormColor(UserProperties.PomodoroColor);
-                    PomodoroBreak = false;
-                    Stop();
+
+                    // If we are switching into pomodoro mode, reset the state
+                    if (!UserProperties.PomodoroMode)
+                    {
+                        Reset();
+                        PomodoroBreak = false;
+                    }
                 }
                 else
                 {
                     SetFormColor(UserProperties.TimerColor);
                 }
 
+                UserProperties.PomodoroMode = value;
+                UpdateButtonStates();
                 UpdateStatusText();
             }
         }
@@ -419,8 +428,8 @@ namespace CountdownTimer
 
             set
             {
-                // Only allow sets when stopped in timer mode
-                if (IsStopped && IsTimer)
+                // Only allow sets when stopped 
+                if (IsStopped)
                 {
                     setTime = value;
                     timer.Reset();

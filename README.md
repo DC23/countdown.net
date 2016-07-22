@@ -21,6 +21,9 @@ You can reset to the default options with the `Reset` button on the options form
 Pomodoro Mode implements a basic Pomodoro timer, with configurable pomodoro and break times (both long and short breaks).
 The ratio of long to short breaks is currently hard-coded but this may change in a future release.
 
+# Development
+Compilation is straightforward in both Visual Studio and MonoDevelop. Just use a recent version and the solution file.
+
 # Future Plans
 The current app started as a personal project for personal use. Thus the current code is a dogs breakfast of special-case logic.
 Additionally, the GUI is quite inflexible. The high-level roadmap for changes includes:

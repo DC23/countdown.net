@@ -83,9 +83,6 @@ namespace CountdownTimer
             buttonSet.Enabled = IsStopped;
             buttonReset.Visible = true;
             buttonReset.Enabled = IsStopped;
-
-            radioButtonStopwatch.Enabled = false;// IsStopped;
-            radioButtonTimer.Enabled = IsStopped;
         }
 
         private void UpdateProperties()
@@ -102,7 +99,7 @@ namespace CountdownTimer
         void UpdateStatusText()
         {
             TimeSpan up = Uptime;
-            toolStripStatusLabel1.Text = string.Format("Uptime: {0:D2}:{1:D2}",
+            uptimeLabel.Text = string.Format("Uptime: {0:D2}:{1:D2}",
                 up.Hours,
                 up.Minutes);
         }
@@ -147,7 +144,6 @@ namespace CountdownTimer
         private void SetFormColor(Color color)
         {
             BackColor = color;
-            statusStrip1.BackColor = color;
         }
 
         #region DragMove implementation for borderless mode
@@ -209,7 +205,7 @@ namespace CountdownTimer
 
         void updateTick_Tick(object sender, EventArgs e)
         {
-            if (IsRunning && IsTimer)
+            if (IsRunning)
             {
                 TimeSpan remaining = setTime - timer.Elapsed;
                 if (remaining.TotalMilliseconds > 0)
@@ -285,16 +281,6 @@ namespace CountdownTimer
             {
                 return "Time's Up!!";
             }
-        }
-
-        bool IsStopwatch
-        {
-            get { return this.radioButtonStopwatch.Checked; }
-        }
-
-        bool IsTimer
-        {
-            get { return this.radioButtonTimer.Checked; }
         }
 
         bool IsRunning

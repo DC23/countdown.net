@@ -37,8 +37,6 @@
             this.buttonPreset7 = new System.Windows.Forms.Button();
             this.buttonPreset6 = new System.Windows.Forms.Button();
             this.buttonPreset5 = new System.Windows.Forms.Button();
-            this.radioButtonStopwatch = new System.Windows.Forms.RadioButton();
-            this.radioButtonTimer = new System.Windows.Forms.RadioButton();
             this.buttonPreset4 = new System.Windows.Forms.Button();
             this.buttonPreset3 = new System.Windows.Forms.Button();
             this.buttonPreset2 = new System.Windows.Forms.Button();
@@ -46,35 +44,43 @@
             this.buttonSet = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.currentPracticeItem = new System.Windows.Forms.RichTextBox();
+            this.practiceSessionGrid = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uptimeLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.uptimeLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelTimer, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.currentPracticeItem, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.practiceSessionGrid, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.65101F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.34899F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 200);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1051, 657);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -99,8 +105,6 @@
             this.panel1.Controls.Add(this.buttonPreset7);
             this.panel1.Controls.Add(this.buttonPreset6);
             this.panel1.Controls.Add(this.buttonPreset5);
-            this.panel1.Controls.Add(this.radioButtonStopwatch);
-            this.panel1.Controls.Add(this.radioButtonTimer);
             this.panel1.Controls.Add(this.buttonPreset4);
             this.panel1.Controls.Add(this.buttonPreset3);
             this.panel1.Controls.Add(this.buttonPreset2);
@@ -109,11 +113,10 @@
             this.panel1.Controls.Add(this.buttonReset);
             this.panel1.Controls.Add(this.buttonStartPause);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 79);
+            this.panel1.Location = new System.Drawing.Point(3, 77);
             this.panel1.MinimumSize = new System.Drawing.Size(0, 105);
             this.panel1.Name = "panel1";
-            this.tableLayoutPanel1.SetRowSpan(this.panel1, 2);
-            this.panel1.Size = new System.Drawing.Size(394, 105);
+            this.panel1.Size = new System.Drawing.Size(378, 105);
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
@@ -168,33 +171,6 @@
             this.buttonPreset5.Text = "one";
             this.buttonPreset5.UseVisualStyleBackColor = false;
             this.buttonPreset5.Click += new System.EventHandler(this.buttonPreset_Click);
-            // 
-            // radioButtonStopwatch
-            // 
-            this.radioButtonStopwatch.AutoSize = true;
-            this.radioButtonStopwatch.Enabled = false;
-            this.radioButtonStopwatch.Location = new System.Drawing.Point(94, 115);
-            this.radioButtonStopwatch.Name = "radioButtonStopwatch";
-            this.radioButtonStopwatch.Size = new System.Drawing.Size(76, 17);
-            this.radioButtonStopwatch.TabIndex = 8;
-            this.radioButtonStopwatch.Text = "Stopwatch";
-            this.radioButtonStopwatch.UseVisualStyleBackColor = true;
-            this.radioButtonStopwatch.Visible = false;
-            this.radioButtonStopwatch.CheckedChanged += new System.EventHandler(this.radioButtonStopwatch_CheckedChanged);
-            // 
-            // radioButtonTimer
-            // 
-            this.radioButtonTimer.AutoSize = true;
-            this.radioButtonTimer.Checked = true;
-            this.radioButtonTimer.Location = new System.Drawing.Point(29, 115);
-            this.radioButtonTimer.Name = "radioButtonTimer";
-            this.radioButtonTimer.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonTimer.TabIndex = 7;
-            this.radioButtonTimer.TabStop = true;
-            this.radioButtonTimer.Text = "Timer";
-            this.radioButtonTimer.UseVisualStyleBackColor = true;
-            this.radioButtonTimer.Visible = false;
-            this.radioButtonTimer.CheckedChanged += new System.EventHandler(this.radioButtonTimer_CheckedChanged);
             // 
             // buttonPreset4
             // 
@@ -287,40 +263,22 @@
             this.buttonStartPause.UseVisualStyleBackColor = false;
             this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 179);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(400, 21);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 16);
-            // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.propertiesToolStripMenuItem.Text = "P&roperties";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -331,8 +289,83 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 54);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // currentPracticeItem
+            // 
+            this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
+            this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPracticeItem.Location = new System.Drawing.Point(0, 185);
+            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
+            this.currentPracticeItem.Name = "currentPracticeItem";
+            this.currentPracticeItem.ReadOnly = true;
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 428);
+            this.currentPracticeItem.TabIndex = 4;
+            this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
+            // 
+            // practiceSessionGrid
+            // 
+            this.practiceSessionGrid.AllowUserToAddRows = false;
+            this.practiceSessionGrid.AllowUserToDeleteRows = false;
+            this.practiceSessionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.practiceSessionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.practiceSessionGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.category,
+            this.tempo,
+            this.notes,
+            this.time});
+            this.practiceSessionGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.practiceSessionGrid.Location = new System.Drawing.Point(387, 3);
+            this.practiceSessionGrid.MultiSelect = false;
+            this.practiceSessionGrid.Name = "practiceSessionGrid";
+            this.practiceSessionGrid.ReadOnly = true;
+            this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 4);
+            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 651);
+            this.practiceSessionGrid.TabIndex = 5;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // category
+            // 
+            this.category.HeaderText = "Category";
+            this.category.Name = "category";
+            this.category.ReadOnly = true;
+            // 
+            // tempo
+            // 
+            this.tempo.HeaderText = "Tempo";
+            this.tempo.Name = "tempo";
+            this.tempo.ReadOnly = true;
+            // 
+            // notes
+            // 
+            this.notes.HeaderText = "Notes";
+            this.notes.Name = "notes";
+            this.notes.ReadOnly = true;
+            // 
+            // time
+            // 
+            this.time.HeaderText = "Time";
+            this.time.Name = "time";
+            this.time.ReadOnly = true;
+            // 
+            // uptimeLabel
+            // 
+            this.uptimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uptimeLabel.AutoSize = true;
+            this.uptimeLabel.Location = new System.Drawing.Point(3, 644);
+            this.uptimeLabel.Name = "uptimeLabel";
+            this.uptimeLabel.Size = new System.Drawing.Size(35, 13);
+            this.uptimeLabel.TabIndex = 13;
+            this.uptimeLabel.Text = "label1";
             // 
             // MainForm
             // 
@@ -340,7 +373,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(400, 200);
+            this.ClientSize = new System.Drawing.Size(1051, 657);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -357,10 +390,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -377,10 +408,6 @@
         private System.Windows.Forms.Button buttonPreset2;
         private System.Windows.Forms.Button buttonPreset1;
         private System.Windows.Forms.Button buttonSet;
-        private System.Windows.Forms.RadioButton radioButtonStopwatch;
-        private System.Windows.Forms.RadioButton radioButtonTimer;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button buttonPreset8;
         private System.Windows.Forms.Button buttonPreset7;
         private System.Windows.Forms.Button buttonPreset6;
@@ -389,6 +416,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.RichTextBox currentPracticeItem;
+        private System.Windows.Forms.DataGridView practiceSessionGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tempo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn time;
+        private System.Windows.Forms.Label uptimeLabel;
     }
 }
 

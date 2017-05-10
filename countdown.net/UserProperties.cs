@@ -48,15 +48,9 @@ namespace CountdownTimer
             Version = that.Version;
             TimerColor = that.TimerColor;
             FontColor = that.FontColor;
-            PomodoroColor = that.PomodoroColor;
-            PomodoroBreakColor = that.PomodoroBreakColor;
-            PomodoroTime = that.PomodoroTime;
-            PomodoroLongBreakTime = that.PomodoroLongBreakTime;
-            PomodoroShortBreakTime = that.PomodoroShortBreakTime;
             Border = that.Border;
             Opacity = that.Opacity;
             TimerFont = (Font)that.TimerFont.Clone();
-            PomodoroMode = that.PomodoroMode;
             PopupDing = that.PopupDing;
             AudioDing = that.AudioDing;
             TopMost = that.TopMost;
@@ -108,12 +102,6 @@ namespace CountdownTimer
         public Color FontColor { get; set; } = Color.Black;
 
         [CategoryAttribute("Appearance")]
-        public Color PomodoroColor { get; set; } = Color.Tomato;
-
-        [CategoryAttribute("Appearance")]
-        public Color PomodoroBreakColor { get; set; } = Color.SteelBlue;
-
-        [CategoryAttribute("Appearance")]
         public FormBorderStyle Border { get; set; } = FormBorderStyle.Sizable;
 
         [CategoryAttribute("Appearance")]
@@ -123,9 +111,6 @@ namespace CountdownTimer
         public Font TimerFont { get; set; } = new Font("Monospace", 48);
 
         [CategoryAttribute("Behaviour")]
-        public bool PomodoroMode { get; set; } = false;
-
-        [CategoryAttribute("Behaviour")]
         public bool PopupDing { get; set; } = false;
 
         [CategoryAttribute("Behaviour")]
@@ -133,22 +118,6 @@ namespace CountdownTimer
 
         [CategoryAttribute("Behaviour")]
         public bool TopMost { get; set; } = false;
-
-#if (DEBUG)
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 0, 2);
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 0, 1);
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 0, 2);
-#else
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroTime { get; set; } = new TimeSpan(0, 25, 0);
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroShortBreakTime { get; set; } = new TimeSpan(0, 5, 0);
-        [CategoryAttribute("Behaviour")]
-        public TimeSpan PomodoroLongBreakTime { get; set; } = new TimeSpan(0, 15, 0);
-#endif
 
         public TimeSpan[] Presets =
         {

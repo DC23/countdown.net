@@ -17,7 +17,6 @@ namespace CountdownTimer
         TimeSpan setTime = new TimeSpan();
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
-        bool pomodoroBreak = false;
         DateTime start = DateTime.Now;
         string originalResetButtonText;
         List<Button> presetButtons = new List<Button>();
@@ -74,27 +73,16 @@ namespace CountdownTimer
 
         void UpdateButtonStates()
         {
-            if (PomodoroMode)
+            foreach (var preset in presetButtons)
             {
-                foreach (var preset in presetButtons)
-                    preset.Visible = false;
-
-                buttonSet.Visible = false;
-                buttonReset.Visible = PomodoroBreak;
+                preset.Visible = true;
+                preset.Enabled = IsStopped;
             }
-            else
-            {
-                foreach (var preset in presetButtons)
-                {
-                    preset.Visible = true;
-                    preset.Enabled = IsStopped;
-                }
 
-                buttonSet.Visible = true;
-                buttonSet.Enabled = IsStopped;
-                buttonReset.Visible = true;
-                buttonReset.Enabled = IsStopped;
-            }
+            buttonSet.Visible = true;
+            buttonSet.Enabled = IsStopped;
+            buttonReset.Visible = true;
+            buttonReset.Enabled = IsStopped;
 
             radioButtonStopwatch.Enabled = false;// IsStopped;
             radioButtonTimer.Enabled = IsStopped;
@@ -102,23 +90,10 @@ namespace CountdownTimer
 
         private void UpdateProperties()
         {
-            PomodoroMode = UserProperties.PomodoroMode;
             labelTimer.ForeColor = UserProperties.FontColor;
             labelTimer.Font = UserProperties.TimerFont;
             Opacity = UserProperties.Opacity;
-
-            if (PomodoroMode)
-            {
-                if (pomodoroBreak)
-                    SetFormColor(UserProperties.PomodoroBreakColor);
-                else
-                    SetFormColor(UserProperties.PomodoroColor);
-            }
-            else
-            {
-                SetFormColor(UserProperties.TimerColor);
-            }
-
+            SetFormColor(UserProperties.TimerColor);
             FormBorderStyle = UserProperties.Border;
             TopMost = UserProperties.TopMost;
             UpdatePresets();
@@ -127,28 +102,15 @@ namespace CountdownTimer
         void UpdateStatusText()
         {
             TimeSpan up = Uptime;
-            if (PomodoroMode)
-            {
-                toolStripStatusLabel1.Text = string.Format("Completed: {0}    Aborted: {1}",
-                    CompletedPomodoroCount,
-                    AbortedPomodoroCount);
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = string.Format("Uptime: {0:D2}:{1:D2}",
-                    up.Hours,
-                    up.Minutes);
-            }
+            toolStripStatusLabel1.Text = string.Format("Uptime: {0:D2}:{1:D2}",
+                up.Hours,
+                up.Minutes);
         }
 
         private void Reset()
         {
             timer.Reset();
             SetTime = SetTime; // set the current set time back into itself. Hacky way to refresh the display
-
-            // skip the break and change state back to the next pomodoro
-            if (PomodoroMode && PomodoroBreak)
-                PomodoroBreak = !PomodoroBreak;
         }
 
         void Stop()
@@ -165,32 +127,12 @@ namespace CountdownTimer
                 timer.Stop();
                 buttonStartPause.Text = "&Start";
                 updateTick.Enabled = false;
-
-                // special-case handling for when this method is called from the abort button
-                if (PomodoroMode && canceled)
-                {
-                    // If on a break, cancel it.
-                    if (PomodoroBreak)
-                    {
-                        PomodoroBreak = false;
-                    }
-                    // If running a pomodoro, cancel it but do not enter a break
-                    else
-                    {
-                        SetTime = PomodoroTime;
-                        AbortedPomodoroCount++;
-                    }
-                }
             }
             else
             {
                 // start
                 updateTick.Enabled = true;
                 timer.Start();
-                if (PomodoroMode)
-                    buttonStartPause.Text = "&Abort";
-                else
-                    buttonStartPause.Text = "&Pause";
             }
 
             UpdateStatusText();
@@ -256,14 +198,8 @@ namespace CountdownTimer
                 UserProperties = (UserProperties)properties.SelectedObject;
         }
 
-        private void pomodoroModeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PomodoroMode = !PomodoroMode;
-        }
-
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            pomodoroModeToolStripMenuItem.Checked = UserProperties.PomodoroMode;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,15 +234,6 @@ namespace CountdownTimer
                         new TimesUp().ShowDialog();
                         TopMost = currentTopMost;
                     }
-
-                    // If running in pomodoro mode, toggle between the pomodoro and the break
-                    if (PomodoroMode)
-                    {
-                        if (!PomodoroBreak)
-                            CompletedPomodoroCount++;
-
-                        PomodoroBreak = !PomodoroBreak;
-                    }
                 }
             }
 
@@ -329,8 +256,7 @@ namespace CountdownTimer
 
         private void buttonStartPause_Click(object sender, EventArgs e)
         {
-            // if pomodoro mode, then pass true to the cancelled argument
-            ToggleTimerState(PomodoroMode);
+            ToggleTimerState(false);
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
@@ -357,17 +283,7 @@ namespace CountdownTimer
         {
             get
             {
-                if (!PomodoroMode)
-                {
-                    return "Time's Up!!";
-                }
-                else
-                {
-                    if (PomodoroBreak)
-                        return "Break's Over";
-                    else
-                        return "Time for a break!";
-                }
+                return "Time's Up!!";
             }
         }
 
@@ -391,32 +307,6 @@ namespace CountdownTimer
             get { return !IsRunning; }
         }
 
-        bool PomodoroMode
-        {
-            get { return UserProperties.PomodoroMode; }
-            set
-            {
-                if (value)
-                {
-                    SetFormColor(UserProperties.PomodoroColor);
-
-                    if (!IsRunning)
-                    {
-                        Reset();
-                        PomodoroBreak = false;
-                    }
-                }
-                else
-                {
-                    SetFormColor(UserProperties.TimerColor);
-                }
-
-                UserProperties.PomodoroMode = value;
-                UpdateButtonStates();
-                UpdateStatusText();
-            }
-        }
-
         TimeSpan SetTime
         {
             get
@@ -433,42 +323,6 @@ namespace CountdownTimer
                     timer.Reset();
                     UpdateTimeDisplay(setTime);
                 }
-            }
-        }
-
-        TimeSpan PomodoroTime { get { return userProperties.PomodoroTime; } }
-        TimeSpan PomodoroBreakTime
-        {
-            get
-            {
-                return (CompletedPomodoroCount % 4 == 0) ? userProperties.PomodoroLongBreakTime : userProperties.PomodoroShortBreakTime;
-            }
-        }
-
-        bool PomodoroBreak
-        {
-            get
-            {
-                return pomodoroBreak;
-            }
-            set
-            {
-                pomodoroBreak = value;
-                if (pomodoroBreak)
-                {
-                    SetTime = PomodoroBreakTime;
-                    SetFormColor(UserProperties.PomodoroBreakColor);
-                    originalResetButtonText = buttonReset.Text;
-                    buttonReset.Text = "&Skip";
-                }
-                else
-                {
-                    SetTime = PomodoroTime;
-                    SetFormColor(UserProperties.PomodoroColor);
-                    buttonReset.Text = originalResetButtonText;
-                }
-
-                UpdateButtonStates();
             }
         }
 
@@ -492,9 +346,6 @@ namespace CountdownTimer
                 UpdateProperties();
             }
         }
-
-        int CompletedPomodoroCount { get; set; } = 0;
-        int AbortedPomodoroCount { get; set; } = 0;
 
         #endregion
     }

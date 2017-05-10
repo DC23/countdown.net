@@ -94,6 +94,8 @@
             this.uptimeLabel.Size = new System.Drawing.Size(35, 13);
             this.uptimeLabel.TabIndex = 13;
             this.uptimeLabel.Text = "label1";
+			this.uptimeLabel.Font = new System.Drawing.Font("Arial", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
             // labelTimer
             // 

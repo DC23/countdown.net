@@ -179,12 +179,15 @@ namespace CountdownTimer
 
         private void buttonDownMinute_Click(object sender, EventArgs e)
         {
-
+			var newTime = SetTime.Subtract(new TimeSpan (0, 1, 0));
+			if (newTime >= TimeSpan.Zero)
+				SetTime = newTime;
         }
 
         private void buttonUpMinute_Click(object sender, EventArgs e)
         {
-
+			var ts = new TimeSpan (0, 1, 0);
+			SetTime = SetTime.Add (ts);
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,14 +244,6 @@ namespace CountdownTimer
             }
 
             UpdateStatusText();
-        }
-
-        private void radioButtonStopwatch_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void radioButtonTimer_CheckedChanged(object sender, EventArgs e)
-        {
         }
 
         private void buttonPreset_Click(object sender, EventArgs e)

@@ -31,8 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.uptimeLabel = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonUpMinute = new System.Windows.Forms.Button();
+            this.buttonDownMinute = new System.Windows.Forms.Button();
             this.buttonPreset8 = new System.Windows.Forms.Button();
             this.buttonPreset7 = new System.Windows.Forms.Button();
             this.buttonPreset6 = new System.Windows.Forms.Button();
@@ -44,10 +47,6 @@
             this.buttonSet = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
-            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.currentPracticeItem = new System.Windows.Forms.RichTextBox();
             this.practiceSessionGrid = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,11 +54,14 @@
             this.tempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uptimeLabel = new System.Windows.Forms.Label();
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -83,6 +85,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1051, 657);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // uptimeLabel
+            // 
+            this.uptimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uptimeLabel.AutoSize = true;
+            this.uptimeLabel.Location = new System.Drawing.Point(3, 644);
+            this.uptimeLabel.Name = "uptimeLabel";
+            this.uptimeLabel.Size = new System.Drawing.Size(35, 13);
+            this.uptimeLabel.TabIndex = 13;
+            this.uptimeLabel.Text = "label1";
+            // 
             // labelTimer
             // 
             this.labelTimer.AutoSize = true;
@@ -101,6 +113,8 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.buttonUpMinute);
+            this.panel1.Controls.Add(this.buttonDownMinute);
             this.panel1.Controls.Add(this.buttonPreset8);
             this.panel1.Controls.Add(this.buttonPreset7);
             this.panel1.Controls.Add(this.buttonPreset6);
@@ -116,16 +130,42 @@
             this.panel1.Location = new System.Drawing.Point(3, 77);
             this.panel1.MinimumSize = new System.Drawing.Size(0, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 105);
+            this.panel1.Size = new System.Drawing.Size(378, 118);
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            // 
+            // buttonUpMinute
+            // 
+            this.buttonUpMinute.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonUpMinute.FlatAppearance.BorderSize = 0;
+            this.buttonUpMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpMinute.Location = new System.Drawing.Point(193, 34);
+            this.buttonUpMinute.Name = "buttonUpMinute";
+            this.buttonUpMinute.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpMinute.TabIndex = 14;
+            this.buttonUpMinute.Text = "Minute +";
+            this.buttonUpMinute.UseVisualStyleBackColor = false;
+            this.buttonUpMinute.Click += new System.EventHandler(this.buttonUpMinute_Click);
+            // 
+            // buttonDownMinute
+            // 
+            this.buttonDownMinute.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonDownMinute.FlatAppearance.BorderSize = 0;
+            this.buttonDownMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDownMinute.Location = new System.Drawing.Point(111, 34);
+            this.buttonDownMinute.Name = "buttonDownMinute";
+            this.buttonDownMinute.Size = new System.Drawing.Size(75, 23);
+            this.buttonDownMinute.TabIndex = 13;
+            this.buttonDownMinute.Text = "Minute -";
+            this.buttonDownMinute.UseVisualStyleBackColor = false;
+            this.buttonDownMinute.Click += new System.EventHandler(this.buttonDownMinute_Click);
             // 
             // buttonPreset8
             // 
             this.buttonPreset8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset8.FlatAppearance.BorderSize = 0;
             this.buttonPreset8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset8.Location = new System.Drawing.Point(275, 67);
+            this.buttonPreset8.Location = new System.Drawing.Point(275, 92);
             this.buttonPreset8.Name = "buttonPreset8";
             this.buttonPreset8.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset8.TabIndex = 12;
@@ -138,7 +178,7 @@
             this.buttonPreset7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset7.FlatAppearance.BorderSize = 0;
             this.buttonPreset7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset7.Location = new System.Drawing.Point(193, 67);
+            this.buttonPreset7.Location = new System.Drawing.Point(193, 92);
             this.buttonPreset7.Name = "buttonPreset7";
             this.buttonPreset7.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset7.TabIndex = 11;
@@ -151,7 +191,7 @@
             this.buttonPreset6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset6.FlatAppearance.BorderSize = 0;
             this.buttonPreset6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset6.Location = new System.Drawing.Point(111, 67);
+            this.buttonPreset6.Location = new System.Drawing.Point(111, 92);
             this.buttonPreset6.Name = "buttonPreset6";
             this.buttonPreset6.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset6.TabIndex = 10;
@@ -164,7 +204,7 @@
             this.buttonPreset5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset5.FlatAppearance.BorderSize = 0;
             this.buttonPreset5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset5.Location = new System.Drawing.Point(29, 67);
+            this.buttonPreset5.Location = new System.Drawing.Point(29, 92);
             this.buttonPreset5.Name = "buttonPreset5";
             this.buttonPreset5.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset5.TabIndex = 9;
@@ -177,7 +217,7 @@
             this.buttonPreset4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset4.FlatAppearance.BorderSize = 0;
             this.buttonPreset4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset4.Location = new System.Drawing.Point(275, 38);
+            this.buttonPreset4.Location = new System.Drawing.Point(275, 63);
             this.buttonPreset4.Name = "buttonPreset4";
             this.buttonPreset4.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset4.TabIndex = 6;
@@ -190,7 +230,7 @@
             this.buttonPreset3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset3.FlatAppearance.BorderSize = 0;
             this.buttonPreset3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset3.Location = new System.Drawing.Point(193, 38);
+            this.buttonPreset3.Location = new System.Drawing.Point(193, 63);
             this.buttonPreset3.Name = "buttonPreset3";
             this.buttonPreset3.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset3.TabIndex = 5;
@@ -203,7 +243,7 @@
             this.buttonPreset2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset2.FlatAppearance.BorderSize = 0;
             this.buttonPreset2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset2.Location = new System.Drawing.Point(111, 38);
+            this.buttonPreset2.Location = new System.Drawing.Point(111, 63);
             this.buttonPreset2.Name = "buttonPreset2";
             this.buttonPreset2.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset2.TabIndex = 4;
@@ -216,7 +256,7 @@
             this.buttonPreset1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset1.FlatAppearance.BorderSize = 0;
             this.buttonPreset1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset1.Location = new System.Drawing.Point(29, 38);
+            this.buttonPreset1.Location = new System.Drawing.Point(29, 63);
             this.buttonPreset1.Name = "buttonPreset1";
             this.buttonPreset1.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset1.TabIndex = 3;
@@ -263,46 +303,17 @@
             this.buttonStartPause.UseVisualStyleBackColor = false;
             this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
-            // propertiesToolStripMenuItem
-            // 
-            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.propertiesToolStripMenuItem.Text = "P&roperties";
-            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.exitToolStripMenuItem.Text = "&Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.propertiesToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 54);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
             // currentPracticeItem
             // 
             this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
             this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentPracticeItem.Location = new System.Drawing.Point(0, 185);
+            this.currentPracticeItem.Location = new System.Drawing.Point(0, 198);
             this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 428);
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 439);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
             // 
@@ -357,15 +368,34 @@
             this.time.Name = "time";
             this.time.ReadOnly = true;
             // 
-            // uptimeLabel
+            // propertiesToolStripMenuItem
             // 
-            this.uptimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.uptimeLabel.AutoSize = true;
-            this.uptimeLabel.Location = new System.Drawing.Point(3, 644);
-            this.uptimeLabel.Name = "uptimeLabel";
-            this.uptimeLabel.Size = new System.Drawing.Size(35, 13);
-            this.uptimeLabel.TabIndex = 13;
-            this.uptimeLabel.Text = "label1";
+            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.propertiesToolStripMenuItem.Text = "P&roperties";
+            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.exitToolStripMenuItem.Text = "&Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.propertiesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 54);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // MainForm
             // 
@@ -390,8 +420,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -424,6 +454,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn notes;
         private System.Windows.Forms.DataGridViewTextBoxColumn time;
         private System.Windows.Forms.Label uptimeLabel;
+        private System.Windows.Forms.Button buttonUpMinute;
+        private System.Windows.Forms.Button buttonDownMinute;
     }
 }
 

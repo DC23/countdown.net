@@ -75,14 +75,13 @@ namespace CountdownTimer
         {
             foreach (var preset in presetButtons)
             {
-                preset.Visible = true;
                 preset.Enabled = IsStopped;
             }
 
-            buttonSet.Visible = true;
             buttonSet.Enabled = IsStopped;
-            buttonReset.Visible = true;
             buttonReset.Enabled = IsStopped;
+            buttonDownMinute.Enabled = IsStopped;
+            buttonUpMinute.Enabled = IsStopped;
         }
 
         private void UpdateProperties()
@@ -178,6 +177,16 @@ namespace CountdownTimer
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             UserProperties.Save();
+        }
+
+        private void buttonDownMinute_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonUpMinute_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)

@@ -18,15 +18,12 @@ namespace CountdownTimer
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
         DateTime start = DateTime.Now;
-        string originalResetButtonText;
         List<Button> presetButtons = new List<Button>();
         UserProperties userProperties = null;
 
         public MainForm()
         {
             InitializeComponent();
-
-            originalResetButtonText = buttonReset.Text;
 
             // preset buttons
             presetButtons.Add(buttonPreset1);
@@ -129,6 +126,7 @@ namespace CountdownTimer
                 // start
                 updateTick.Enabled = true;
                 timer.Start();
+                buttonStartPause.Text = "&Pause";
             }
 
             UpdateStatusText();
@@ -311,7 +309,7 @@ namespace CountdownTimer
 
             set
             {
-                // Only allow sets when stopped 
+                // Only allow sets when stopped
                 if (IsStopped)
                 {
                     setTime = value;

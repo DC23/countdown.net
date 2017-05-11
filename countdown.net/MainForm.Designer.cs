@@ -33,8 +33,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonUpMinute = new System.Windows.Forms.Button();
-            this.buttonDownMinute = new System.Windows.Forms.Button();
+            this.buttonIncMinute = new System.Windows.Forms.Button();
+            this.buttonDecMinute = new System.Windows.Forms.Button();
             this.buttonPreset8 = new System.Windows.Forms.Button();
             this.buttonPreset7 = new System.Windows.Forms.Button();
             this.buttonPreset6 = new System.Windows.Forms.Button();
@@ -61,6 +61,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.buttonInc10Secs = new System.Windows.Forms.Button();
+            this.buttonDec10Secs = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -110,8 +112,10 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.buttonUpMinute);
-            this.panel1.Controls.Add(this.buttonDownMinute);
+            this.panel1.Controls.Add(this.buttonInc10Secs);
+            this.panel1.Controls.Add(this.buttonDec10Secs);
+            this.panel1.Controls.Add(this.buttonIncMinute);
+            this.panel1.Controls.Add(this.buttonDecMinute);
             this.panel1.Controls.Add(this.buttonPreset8);
             this.panel1.Controls.Add(this.buttonPreset7);
             this.panel1.Controls.Add(this.buttonPreset6);
@@ -131,31 +135,31 @@
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
-            // buttonUpMinute
+            // buttonIncMinute
             // 
-            this.buttonUpMinute.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonUpMinute.FlatAppearance.BorderSize = 0;
-            this.buttonUpMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUpMinute.Location = new System.Drawing.Point(193, 34);
-            this.buttonUpMinute.Name = "buttonUpMinute";
-            this.buttonUpMinute.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpMinute.TabIndex = 14;
-            this.buttonUpMinute.Text = "Minute +";
-            this.buttonUpMinute.UseVisualStyleBackColor = false;
-            this.buttonUpMinute.Click += new System.EventHandler(this.buttonUpMinute_Click);
+            this.buttonIncMinute.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonIncMinute.FlatAppearance.BorderSize = 0;
+            this.buttonIncMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonIncMinute.Location = new System.Drawing.Point(275, 35);
+            this.buttonIncMinute.Name = "buttonIncMinute";
+            this.buttonIncMinute.Size = new System.Drawing.Size(75, 23);
+            this.buttonIncMinute.TabIndex = 14;
+            this.buttonIncMinute.Text = "+1 min";
+            this.buttonIncMinute.UseVisualStyleBackColor = false;
+            this.buttonIncMinute.Click += new System.EventHandler(this.buttonIncMinute_Click);
             // 
-            // buttonDownMinute
+            // buttonDecMinute
             // 
-            this.buttonDownMinute.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonDownMinute.FlatAppearance.BorderSize = 0;
-            this.buttonDownMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDownMinute.Location = new System.Drawing.Point(111, 34);
-            this.buttonDownMinute.Name = "buttonDownMinute";
-            this.buttonDownMinute.Size = new System.Drawing.Size(75, 23);
-            this.buttonDownMinute.TabIndex = 13;
-            this.buttonDownMinute.Text = "Minute -";
-            this.buttonDownMinute.UseVisualStyleBackColor = false;
-            this.buttonDownMinute.Click += new System.EventHandler(this.buttonDownMinute_Click);
+            this.buttonDecMinute.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonDecMinute.FlatAppearance.BorderSize = 0;
+            this.buttonDecMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDecMinute.Location = new System.Drawing.Point(193, 35);
+            this.buttonDecMinute.Name = "buttonDecMinute";
+            this.buttonDecMinute.Size = new System.Drawing.Size(75, 23);
+            this.buttonDecMinute.TabIndex = 13;
+            this.buttonDecMinute.Text = "-1 min";
+            this.buttonDecMinute.UseVisualStyleBackColor = false;
+            this.buttonDecMinute.Click += new System.EventHandler(this.buttonDecMinute_Click);
             // 
             // buttonPreset8
             // 
@@ -201,7 +205,7 @@
             this.buttonPreset5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset5.FlatAppearance.BorderSize = 0;
             this.buttonPreset5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset5.Location = new System.Drawing.Point(29, 92);
+            this.buttonPreset5.Location = new System.Drawing.Point(30, 92);
             this.buttonPreset5.Name = "buttonPreset5";
             this.buttonPreset5.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset5.TabIndex = 9;
@@ -253,7 +257,7 @@
             this.buttonPreset1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonPreset1.FlatAppearance.BorderSize = 0;
             this.buttonPreset1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreset1.Location = new System.Drawing.Point(29, 63);
+            this.buttonPreset1.Location = new System.Drawing.Point(30, 63);
             this.buttonPreset1.Name = "buttonPreset1";
             this.buttonPreset1.Size = new System.Drawing.Size(75, 23);
             this.buttonPreset1.TabIndex = 3;
@@ -390,22 +394,28 @@
             // 
             // buttonLoadSession
             // 
+            this.buttonLoadSession.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonLoadSession.FlatAppearance.BorderSize = 0;
+            this.buttonLoadSession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLoadSession.Location = new System.Drawing.Point(85, 3);
             this.buttonLoadSession.Name = "buttonLoadSession";
             this.buttonLoadSession.Size = new System.Drawing.Size(75, 23);
             this.buttonLoadSession.TabIndex = 1;
             this.buttonLoadSession.Text = "&Load";
-            this.buttonLoadSession.UseVisualStyleBackColor = true;
+            this.buttonLoadSession.UseVisualStyleBackColor = false;
             this.buttonLoadSession.Click += new System.EventHandler(this.buttonLoadSession_Click);
             // 
             // buttonGenerateSession
             // 
+            this.buttonGenerateSession.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonGenerateSession.FlatAppearance.BorderSize = 0;
+            this.buttonGenerateSession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGenerateSession.Location = new System.Drawing.Point(3, 3);
             this.buttonGenerateSession.Name = "buttonGenerateSession";
             this.buttonGenerateSession.Size = new System.Drawing.Size(75, 23);
             this.buttonGenerateSession.TabIndex = 0;
             this.buttonGenerateSession.Text = "&Generate";
-            this.buttonGenerateSession.UseVisualStyleBackColor = true;
+            this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
             // 
             // propertiesToolStripMenuItem
@@ -436,6 +446,32 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(128, 54);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // buttonInc10Secs
+            // 
+            this.buttonInc10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonInc10Secs.FlatAppearance.BorderSize = 0;
+            this.buttonInc10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInc10Secs.Location = new System.Drawing.Point(111, 35);
+            this.buttonInc10Secs.Name = "buttonInc10Secs";
+            this.buttonInc10Secs.Size = new System.Drawing.Size(75, 23);
+            this.buttonInc10Secs.TabIndex = 16;
+            this.buttonInc10Secs.Text = "+10 sec";
+            this.buttonInc10Secs.UseVisualStyleBackColor = false;
+            this.buttonInc10Secs.Click += new System.EventHandler(this.buttonInc10Secs_Click);
+            // 
+            // buttonDec10Secs
+            // 
+            this.buttonDec10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonDec10Secs.FlatAppearance.BorderSize = 0;
+            this.buttonDec10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDec10Secs.Location = new System.Drawing.Point(30, 35);
+            this.buttonDec10Secs.Name = "buttonDec10Secs";
+            this.buttonDec10Secs.Size = new System.Drawing.Size(75, 23);
+            this.buttonDec10Secs.TabIndex = 15;
+            this.buttonDec10Secs.Text = "-10 sec";
+            this.buttonDec10Secs.UseVisualStyleBackColor = false;
+            this.buttonDec10Secs.Click += new System.EventHandler(this.buttonDec10Secs_Click);
             // 
             // MainForm
             // 
@@ -493,11 +529,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn notes;
         private System.Windows.Forms.DataGridViewTextBoxColumn time;
         private System.Windows.Forms.Label uptimeLabel;
-        private System.Windows.Forms.Button buttonUpMinute;
-        private System.Windows.Forms.Button buttonDownMinute;
+        private System.Windows.Forms.Button buttonIncMinute;
+        private System.Windows.Forms.Button buttonDecMinute;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonLoadSession;
         private System.Windows.Forms.Button buttonGenerateSession;
+        private System.Windows.Forms.Button buttonInc10Secs;
+        private System.Windows.Forms.Button buttonDec10Secs;
     }
 }
 

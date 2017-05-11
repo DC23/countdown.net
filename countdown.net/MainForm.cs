@@ -142,6 +142,13 @@ namespace CountdownTimer
             BackColor = color;
         }
 
+        private void AdjustTime(TimeSpan interval)
+        {
+            var newTime = SetTime.Add(interval);
+            if (newTime >= TimeSpan.Zero)
+                SetTime = newTime;
+        }
+
         #region DragMove implementation for borderless mode
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -175,18 +182,35 @@ namespace CountdownTimer
         {
             UserProperties.Save();
         }
-
-        private void buttonDownMinute_Click(object sender, EventArgs e)
+            
+        private void buttonGenerateSession_Click(object sender, EventArgs e)
         {
-            var newTime = SetTime.Subtract(new TimeSpan (0, 1, 0));
-            if (newTime >= TimeSpan.Zero)
-                SetTime = newTime;
+
         }
 
-        private void buttonUpMinute_Click(object sender, EventArgs e)
+        private void buttonLoadSession_Click(object sender, EventArgs e)
         {
-            var ts = new TimeSpan (0, 1, 0);
-            SetTime = SetTime.Add (ts);
+
+        }
+
+        private void buttonDec10Secs_Click(object sender, EventArgs e)
+        {
+            AdjustTime(new TimeSpan(0, 0, -10));
+        }
+
+        private void buttonInc10Secs_Click(object sender, EventArgs e)
+        {
+            AdjustTime(new TimeSpan(0, 0, 10));
+        }
+
+        private void buttonDecMinute_Click(object sender, EventArgs e)
+        {
+            AdjustTime(new TimeSpan(0, -1, 0));
+        }
+
+        private void buttonIncMinute_Click(object sender, EventArgs e)
+        {
+            AdjustTime(new TimeSpan(0, 1, 0));
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -348,14 +372,6 @@ namespace CountdownTimer
 
         #endregion
 
-        private void buttonGenerateSession_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonLoadSession_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

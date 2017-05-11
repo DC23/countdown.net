@@ -78,8 +78,6 @@ namespace CountdownTimer
 
             buttonSet.Enabled = IsStopped;
             buttonReset.Enabled = IsStopped;
-            //buttonDownMinute.Enabled = IsStopped;
-            //buttonUpMinute.Enabled = IsStopped;
         }
 
         private void UpdateProperties()
@@ -110,17 +108,17 @@ namespace CountdownTimer
         void Stop()
         {
             if (IsRunning)
-                ToggleTimerState(false);
+                ToggleTimerState();
         }
 
-        private void ToggleTimerState(bool canceled)
+        private void ToggleTimerState()
         {
             if (IsRunning)
             {
                 // pause/abort
                 timer.Stop();
                 buttonStartPause.Text = "&Start";
-                updateTick.Enabled = false;
+                //updateTick.Enabled = false;
             }
             else
             {
@@ -214,6 +212,7 @@ namespace CountdownTimer
             Application.Exit();
         }
 
+        int resetNextNTicks = 0;
         void updateTick_Tick(object sender, EventArgs e)
         {
             if (IsRunning)
@@ -227,7 +226,7 @@ namespace CountdownTimer
                 else
                 {
                     // time's up
-                    ToggleTimerState(false);
+                    ToggleTimerState();
                     UpdateTimeDisplay(TimeSpan.Zero);
 
                     if (UserProperties.AudioDing)
@@ -241,7 +240,17 @@ namespace CountdownTimer
                         new TimesUp().ShowDialog();
                         TopMost = currentTopMost;
                     }
+
+                    Reset();
+                    if (UserProperties.AutoRestart)
+                        resetNextNTicks = 2;
                 }
+            }
+            else if (resetNextNTicks > 0)
+            {
+                resetNextNTicks--;
+                if (resetNextNTicks == 0)
+                    ToggleTimerState();
             }
 
             UpdateStatusText();
@@ -255,7 +264,7 @@ namespace CountdownTimer
 
         private void buttonStartPause_Click(object sender, EventArgs e)
         {
-            ToggleTimerState(false);
+            ToggleTimerState();
         }
 
         private void buttonReset_Click(object sender, EventArgs e)

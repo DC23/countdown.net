@@ -54,6 +54,7 @@ namespace CountdownTimer
             PopupDing = that.PopupDing;
             AudioDing = that.AudioDing;
             TopMost = that.TopMost;
+            AutoRestart = that.AutoRestart;
             Presets = (TimeSpan[])that.Presets.Clone();
         }
 
@@ -83,7 +84,7 @@ namespace CountdownTimer
             }
             catch (Exception)
             {
-                //If failure, return defaults
+                // If failure, return defaults
                 userProperties = defaults == null ? new UserProperties() : defaults;
             }
 
@@ -118,6 +119,9 @@ namespace CountdownTimer
 
         [CategoryAttribute("Behaviour")]
         public bool TopMost { get; set; } = false;
+
+        [CategoryAttribute("Behaviour")]
+        public bool AutoRestart { get; set; } = false;
 
         public TimeSpan[] Presets =
         {

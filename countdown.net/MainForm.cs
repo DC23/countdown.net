@@ -338,5 +338,15 @@ namespace CountdownTimer
         }
 
         #endregion
+
+        private void buttonGenerateSession_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonLoadSession_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

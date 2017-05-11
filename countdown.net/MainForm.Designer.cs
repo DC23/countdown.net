@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.uptimeLabel = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonUpMinute = new System.Windows.Forms.Button();
@@ -47,13 +46,17 @@
             this.buttonSet = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
-            this.currentPracticeItem = new System.Windows.Forms.RichTextBox();
             this.practiceSessionGrid = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentPracticeItem = new System.Windows.Forms.RichTextBox();
+            this.uptimeLabel = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonLoadSession = new System.Windows.Forms.Button();
+            this.buttonGenerateSession = new System.Windows.Forms.Button();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,11 +64,14 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
+            this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -74,29 +80,17 @@
             this.tableLayoutPanel1.Controls.Add(this.practiceSessionGrid, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.currentPracticeItem, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.uptimeLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1051, 657);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // uptimeLabel
-            // 
-            this.uptimeLabel.AutoSize = true;
-            this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uptimeLabel.Location = new System.Drawing.Point(0, 622);
-            this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.uptimeLabel.Name = "uptimeLabel";
-            this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
-            this.uptimeLabel.TabIndex = 13;
-            this.uptimeLabel.Text = "Uptime: 1:23";
-            this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelTimer
             // 
@@ -306,20 +300,6 @@
             this.buttonStartPause.UseVisualStyleBackColor = false;
             this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
-            // currentPracticeItem
-            // 
-            this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
-            this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentPracticeItem.Location = new System.Drawing.Point(0, 198);
-            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
-            this.currentPracticeItem.Name = "currentPracticeItem";
-            this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 424);
-            this.currentPracticeItem.TabIndex = 4;
-            this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
-            // 
             // practiceSessionGrid
             // 
             this.practiceSessionGrid.AllowUserToAddRows = false;
@@ -337,8 +317,8 @@
             this.practiceSessionGrid.MultiSelect = false;
             this.practiceSessionGrid.Name = "practiceSessionGrid";
             this.practiceSessionGrid.ReadOnly = true;
-            this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 4);
-            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 651);
+            this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
+            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 616);
             this.practiceSessionGrid.TabIndex = 5;
             // 
             // name
@@ -370,6 +350,63 @@
             this.time.HeaderText = "Time";
             this.time.Name = "time";
             this.time.ReadOnly = true;
+            // 
+            // currentPracticeItem
+            // 
+            this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
+            this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPracticeItem.Location = new System.Drawing.Point(0, 198);
+            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
+            this.currentPracticeItem.Name = "currentPracticeItem";
+            this.currentPracticeItem.ReadOnly = true;
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 424);
+            this.currentPracticeItem.TabIndex = 4;
+            this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
+            // 
+            // uptimeLabel
+            // 
+            this.uptimeLabel.AutoSize = true;
+            this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uptimeLabel.Location = new System.Drawing.Point(0, 622);
+            this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.uptimeLabel.Name = "uptimeLabel";
+            this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
+            this.uptimeLabel.TabIndex = 13;
+            this.uptimeLabel.Text = "Uptime: 1:23";
+            this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.buttonLoadSession);
+            this.panel2.Controls.Add(this.buttonGenerateSession);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(387, 625);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(661, 29);
+            this.panel2.TabIndex = 14;
+            // 
+            // buttonLoadSession
+            // 
+            this.buttonLoadSession.Location = new System.Drawing.Point(85, 3);
+            this.buttonLoadSession.Name = "buttonLoadSession";
+            this.buttonLoadSession.Size = new System.Drawing.Size(75, 23);
+            this.buttonLoadSession.TabIndex = 1;
+            this.buttonLoadSession.Text = "&Load";
+            this.buttonLoadSession.UseVisualStyleBackColor = true;
+            this.buttonLoadSession.Click += new System.EventHandler(this.buttonLoadSession_Click);
+            // 
+            // buttonGenerateSession
+            // 
+            this.buttonGenerateSession.Location = new System.Drawing.Point(3, 3);
+            this.buttonGenerateSession.Name = "buttonGenerateSession";
+            this.buttonGenerateSession.Size = new System.Drawing.Size(75, 23);
+            this.buttonGenerateSession.TabIndex = 0;
+            this.buttonGenerateSession.Text = "&Generate";
+            this.buttonGenerateSession.UseVisualStyleBackColor = true;
+            this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
             // 
             // propertiesToolStripMenuItem
             // 
@@ -409,23 +446,22 @@
             this.ClientSize = new System.Drawing.Size(1051, 657);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 195);
+            this.MinimumSize = new System.Drawing.Size(400, 240);
             this.Name = "MainForm";
             this.Opacity = 0.9D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "countdown.net";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -459,6 +495,9 @@
         private System.Windows.Forms.Label uptimeLabel;
         private System.Windows.Forms.Button buttonUpMinute;
         private System.Windows.Forms.Button buttonDownMinute;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonLoadSession;
+        private System.Windows.Forms.Button buttonGenerateSession;
     }
 }
 

@@ -15,6 +15,7 @@ namespace CountdownTimer
     {
         Stopwatch timer = new Stopwatch();
         TimeSpan setTime = new TimeSpan();
+        TimeSpan originalSetTime = new TimeSpan();
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
         DateTime start = DateTime.Now;
@@ -77,8 +78,8 @@ namespace CountdownTimer
 
             buttonSet.Enabled = IsStopped;
             buttonReset.Enabled = IsStopped;
-            buttonDownMinute.Enabled = IsStopped;
-            buttonUpMinute.Enabled = IsStopped;
+            //buttonDownMinute.Enabled = IsStopped;
+            //buttonUpMinute.Enabled = IsStopped;
         }
 
         private void UpdateProperties()
@@ -103,7 +104,7 @@ namespace CountdownTimer
         private void Reset()
         {
             timer.Reset();
-            SetTime = SetTime; // set the current set time back into itself. Hacky way to refresh the display
+            SetTime = originalSetTime; // set the current set time back into itself. Hacky way to refresh the display
         }
 
         void Stop()
@@ -179,15 +180,15 @@ namespace CountdownTimer
 
         private void buttonDownMinute_Click(object sender, EventArgs e)
         {
-			var newTime = SetTime.Subtract(new TimeSpan (0, 1, 0));
-			if (newTime >= TimeSpan.Zero)
-				SetTime = newTime;
+            var newTime = SetTime.Subtract(new TimeSpan (0, 1, 0));
+            if (newTime >= TimeSpan.Zero)
+                SetTime = newTime;
         }
 
         private void buttonUpMinute_Click(object sender, EventArgs e)
         {
-			var ts = new TimeSpan (0, 1, 0);
-			SetTime = SetTime.Add (ts);
+            var ts = new TimeSpan (0, 1, 0);
+            SetTime = SetTime.Add (ts);
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -304,10 +305,11 @@ namespace CountdownTimer
 
             set
             {
-                // Only allow sets when stopped
+                setTime = value;
+
                 if (IsStopped)
                 {
-                    setTime = value;
+                    originalSetTime = value;
                     timer.Reset();
                     UpdateTimeDisplay(setTime);
                 }

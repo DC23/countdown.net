@@ -396,7 +396,7 @@
             this.currentPracticeItem.ReadOnly = true;
             this.currentPracticeItem.Size = new System.Drawing.Size(384, 424);
             this.currentPracticeItem.TabIndex = 4;
-            this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
+            this.currentPracticeItem.Text = resources.GetString("currentPracticeItem.Text");
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
             // contextMenuStrip1
@@ -491,7 +491,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 240);
             this.Name = "MainForm";
             this.Opacity = 0.9D;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "countdown.net";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);

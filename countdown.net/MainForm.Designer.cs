@@ -69,11 +69,11 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.uptimeLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelTimer, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.currentPracticeItem, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.practiceSessionGrid, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.currentPracticeItem, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.uptimeLabel, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -81,21 +81,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1051, 657);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // uptimeLabel
             // 
-            this.uptimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.uptimeLabel.AutoSize = true;
-            this.uptimeLabel.Location = new System.Drawing.Point(3, 644);
+            this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uptimeLabel.Location = new System.Drawing.Point(0, 622);
+            this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.uptimeLabel.Name = "uptimeLabel";
-            this.uptimeLabel.Size = new System.Drawing.Size(35, 13);
+            this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
             this.uptimeLabel.TabIndex = 13;
-            this.uptimeLabel.Text = "label1";
-			this.uptimeLabel.Font = new System.Drawing.Font("Arial", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.uptimeLabel.Text = "Uptime: 1:23";
+            this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelTimer
             // 
@@ -315,7 +316,7 @@
             this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 439);
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 424);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = "Aaron Shearer #27\n60 - 120 bpm\nWatch my left hand on the third bar";
             // 

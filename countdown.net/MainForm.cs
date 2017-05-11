@@ -140,6 +140,7 @@ namespace CountdownTimer
         private void SetFormColor(Color color)
         {
             BackColor = color;
+            currentPracticeItem.BackColor = color;
         }
 
         private void AdjustTime(TimeSpan interval)
@@ -225,10 +226,6 @@ namespace CountdownTimer
 
             if (result == DialogResult.OK)
                 UserProperties = (UserProperties)properties.SelectedObject;
-        }
-
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

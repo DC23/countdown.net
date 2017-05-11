@@ -33,6 +33,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonInc10Secs = new System.Windows.Forms.Button();
+            this.buttonDec10Secs = new System.Windows.Forms.Button();
             this.buttonIncMinute = new System.Windows.Forms.Button();
             this.buttonDecMinute = new System.Windows.Forms.Button();
             this.buttonPreset8 = new System.Windows.Forms.Button();
@@ -61,8 +63,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.buttonInc10Secs = new System.Windows.Forms.Button();
-            this.buttonDec10Secs = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -134,6 +134,32 @@
             this.panel1.Size = new System.Drawing.Size(378, 118);
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            // 
+            // buttonInc10Secs
+            // 
+            this.buttonInc10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonInc10Secs.FlatAppearance.BorderSize = 0;
+            this.buttonInc10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInc10Secs.Location = new System.Drawing.Point(111, 35);
+            this.buttonInc10Secs.Name = "buttonInc10Secs";
+            this.buttonInc10Secs.Size = new System.Drawing.Size(75, 23);
+            this.buttonInc10Secs.TabIndex = 16;
+            this.buttonInc10Secs.Text = "+10 sec";
+            this.buttonInc10Secs.UseVisualStyleBackColor = false;
+            this.buttonInc10Secs.Click += new System.EventHandler(this.buttonInc10Secs_Click);
+            // 
+            // buttonDec10Secs
+            // 
+            this.buttonDec10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonDec10Secs.FlatAppearance.BorderSize = 0;
+            this.buttonDec10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDec10Secs.Location = new System.Drawing.Point(30, 35);
+            this.buttonDec10Secs.Name = "buttonDec10Secs";
+            this.buttonDec10Secs.Size = new System.Drawing.Size(75, 23);
+            this.buttonDec10Secs.TabIndex = 15;
+            this.buttonDec10Secs.Text = "-10 sec";
+            this.buttonDec10Secs.UseVisualStyleBackColor = false;
+            this.buttonDec10Secs.Click += new System.EventHandler(this.buttonDec10Secs_Click);
             // 
             // buttonIncMinute
             // 
@@ -359,6 +385,8 @@
             // 
             this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
             this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.currentPracticeItem.ContextMenuStrip = this.contextMenuStrip1;
+            this.currentPracticeItem.Cursor = System.Windows.Forms.Cursors.Default;
             this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentPracticeItem.Location = new System.Drawing.Point(0, 198);
@@ -445,33 +473,6 @@
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(128, 54);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // buttonInc10Secs
-            // 
-            this.buttonInc10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonInc10Secs.FlatAppearance.BorderSize = 0;
-            this.buttonInc10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInc10Secs.Location = new System.Drawing.Point(111, 35);
-            this.buttonInc10Secs.Name = "buttonInc10Secs";
-            this.buttonInc10Secs.Size = new System.Drawing.Size(75, 23);
-            this.buttonInc10Secs.TabIndex = 16;
-            this.buttonInc10Secs.Text = "+10 sec";
-            this.buttonInc10Secs.UseVisualStyleBackColor = false;
-            this.buttonInc10Secs.Click += new System.EventHandler(this.buttonInc10Secs_Click);
-            // 
-            // buttonDec10Secs
-            // 
-            this.buttonDec10Secs.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonDec10Secs.FlatAppearance.BorderSize = 0;
-            this.buttonDec10Secs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDec10Secs.Location = new System.Drawing.Point(30, 35);
-            this.buttonDec10Secs.Name = "buttonDec10Secs";
-            this.buttonDec10Secs.Size = new System.Drawing.Size(75, 23);
-            this.buttonDec10Secs.TabIndex = 15;
-            this.buttonDec10Secs.Text = "-10 sec";
-            this.buttonDec10Secs.UseVisualStyleBackColor = false;
-            this.buttonDec10Secs.Click += new System.EventHandler(this.buttonDec10Secs_Click);
             // 
             // MainForm
             // 

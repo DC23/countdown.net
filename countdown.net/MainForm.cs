@@ -1,8 +1,10 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
@@ -191,7 +193,18 @@ namespace CountdownTimer
 
         private void buttonLoadSession_Click(object sender, EventArgs e)
         {
-
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Comma-separated Value Files|*.csv";
+            dlg.Title = "Select a CSV timer session file";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                var stream = dlg.OpenFile();
+                if (stream != null)
+                {
+                    var csv = new CsvReader(new StreamReader(stream));
+                    var sessionItems = csv.GetRecords<SessionItem>().ToList();
+                }
+            }
         }
 
         private void buttonDec10Secs_Click(object sender, EventArgs e)

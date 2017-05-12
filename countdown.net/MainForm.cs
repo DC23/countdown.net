@@ -288,15 +288,10 @@ namespace CountdownTimer
                             // select next row
                             practiceSessionGrid.Rows[nextRowIndex].Selected = true;
                             practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
-
-                            // set timer to the selection
-                            int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
-                            SetTime = new TimeSpan(0, minutes, 0);
                         }
                         else
                         {
                             // Out of rows. Stop timing
-                            SetTime = originalSetTime;
                             Stop();
                             resetNextNTicks = 0;  // hacky side-effect method to prevent restarting the timer if AutoLoop is true
                             practiceSessionGrid.Rows[0].Selected = true;
@@ -409,19 +404,6 @@ namespace CountdownTimer
 
 
         #endregion
-
-        private void buttonStartSequence_Click(object sender, EventArgs e)
-        {
-            if (!IsRunning && practiceSessionGrid.Rows.Count > 0)
-            {
-                // select first row
-                practiceSessionGrid.Rows[0].Selected = true;
-                practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
-
-                // Start the timer
-                ToggleTimerState();
-            }
-        }
 
         private void practiceSessionGrid_SelectionChanged(object sender, EventArgs e)
         {

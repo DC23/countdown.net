@@ -126,7 +126,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 77);
             this.panel1.MinimumSize = new System.Drawing.Size(0, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 118);
+            this.panel1.Size = new System.Drawing.Size(394, 118);
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
@@ -333,13 +333,13 @@
             this.practiceSessionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.practiceSessionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.practiceSessionGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.practiceSessionGrid.Location = new System.Drawing.Point(387, 3);
+            this.practiceSessionGrid.Location = new System.Drawing.Point(403, 3);
             this.practiceSessionGrid.MultiSelect = false;
             this.practiceSessionGrid.Name = "practiceSessionGrid";
             this.practiceSessionGrid.ReadOnly = true;
             this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
             this.practiceSessionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.practiceSessionGrid.Size = new System.Drawing.Size(679, 538);
+            this.practiceSessionGrid.Size = new System.Drawing.Size(663, 538);
             this.practiceSessionGrid.TabIndex = 5;
             this.practiceSessionGrid.SelectionChanged += new System.EventHandler(this.practiceSessionGrid_SelectionChanged);
             // 
@@ -351,11 +351,11 @@
             this.currentPracticeItem.Cursor = System.Windows.Forms.Cursors.Default;
             this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentPracticeItem.Location = new System.Drawing.Point(0, 198);
-            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
+            this.currentPracticeItem.Location = new System.Drawing.Point(8, 206);
+            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(8);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 346);
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 330);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = resources.GetString("currentPracticeItem.Text");
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
@@ -396,7 +396,7 @@
             this.uptimeLabel.Location = new System.Drawing.Point(0, 544);
             this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0);
             this.uptimeLabel.Name = "uptimeLabel";
-            this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
+            this.uptimeLabel.Size = new System.Drawing.Size(400, 35);
             this.uptimeLabel.TabIndex = 13;
             this.uptimeLabel.Text = "Uptime: 1:23";
             this.uptimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -407,9 +407,9 @@
             this.panel2.Controls.Add(this.buttonLoadSession);
             this.panel2.Controls.Add(this.buttonGenerateSession);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(387, 547);
+            this.panel2.Location = new System.Drawing.Point(403, 547);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(679, 29);
+            this.panel2.Size = new System.Drawing.Size(663, 29);
             this.panel2.TabIndex = 14;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 

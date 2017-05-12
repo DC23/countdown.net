@@ -350,14 +350,13 @@ namespace CountdownTimer
             if (practiceSessionGrid.SelectedRows.Count > 0)
             {
                 // update the info box
-                currentPracticeItem.Text = string.Empty;
-                foreach (DataGridViewCell cell in practiceSessionGrid.SelectedRows[0].Cells)
-                {
-                    currentPracticeItem.Text += cell.Value.ToString() + Environment.NewLine;
-                }
+                currentPracticeItem.Text = Environment.NewLine;
+                currentPracticeItem.Text += practiceSessionGrid.SelectedCells[0].Value.ToString() + Environment.NewLine + Environment.NewLine;
+                currentPracticeItem.Text += "Tempo: " + practiceSessionGrid.SelectedCells[2].Value.ToString() + Environment.NewLine + Environment.NewLine;
+                currentPracticeItem.Text += "Notes: " + practiceSessionGrid.SelectedCells[3].Value.ToString();
 
                 // set timer to the selected row
-                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
                 SetTime = new TimeSpan(0, minutes, 0);
             }
         }

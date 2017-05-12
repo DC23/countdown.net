@@ -8,10 +8,10 @@ namespace CountdownTimer
 {
     class SessionItem
     {
-        public string name { get; set; }
-        public string category { get; set; }
-        public string tempo { get; set; }
-        public string notes { get; set; }
-        public int time { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Tempo { get; set; }
+        public string Notes { get; set; }
+        public int Duration { get; set; }
     }
 }

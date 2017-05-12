@@ -203,6 +203,7 @@ namespace CountdownTimer
                 {
                     var csv = new CsvReader(new StreamReader(stream));
                     var sessionItems = csv.GetRecords<SessionItem>().ToList();
+                    practiceSessionGrid.DataSource = sessionItems;
                 }
             }
         }

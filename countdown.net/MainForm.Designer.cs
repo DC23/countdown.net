@@ -49,11 +49,6 @@
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonStartPause = new System.Windows.Forms.Button();
             this.practiceSessionGrid = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currentPracticeItem = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -336,12 +331,6 @@
             this.practiceSessionGrid.AllowUserToDeleteRows = false;
             this.practiceSessionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.practiceSessionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.practiceSessionGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.name,
-            this.category,
-            this.tempo,
-            this.notes,
-            this.time});
             this.practiceSessionGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.practiceSessionGrid.Location = new System.Drawing.Point(387, 3);
             this.practiceSessionGrid.MultiSelect = false;
@@ -350,37 +339,6 @@
             this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
             this.practiceSessionGrid.Size = new System.Drawing.Size(661, 616);
             this.practiceSessionGrid.TabIndex = 5;
-            this.practiceSessionGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // category
-            // 
-            this.category.HeaderText = "Category";
-            this.category.Name = "category";
-            this.category.ReadOnly = true;
-            // 
-            // tempo
-            // 
-            this.tempo.HeaderText = "Tempo";
-            this.tempo.Name = "tempo";
-            this.tempo.ReadOnly = true;
-            // 
-            // notes
-            // 
-            this.notes.HeaderText = "Notes";
-            this.notes.Name = "notes";
-            this.notes.ReadOnly = true;
-            // 
-            // time
-            // 
-            this.time.HeaderText = "Time";
-            this.time.Name = "time";
-            this.time.ReadOnly = true;
             // 
             // currentPracticeItem
             // 
@@ -528,11 +486,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.RichTextBox currentPracticeItem;
         private System.Windows.Forms.DataGridView practiceSessionGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tempo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn notes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn time;
         private System.Windows.Forms.Label uptimeLabel;
         private System.Windows.Forms.Button buttonIncMinute;
         private System.Windows.Forms.Button buttonDecMinute;

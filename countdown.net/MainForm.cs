@@ -7,8 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace CountdownTimer
@@ -104,7 +102,32 @@ namespace CountdownTimer
         private void Reset()
         {
             timer.Reset();
-            SetTime = originalSetTime; // set the current set time back into itself. Hacky way to refresh the display
+            int numRows = practiceSessionGrid.Rows.Count;
+            if (numRows > 0)
+            {
+                int nextRowIndex = practiceSessionGrid.SelectedRows[0].Index + 1;
+                if (nextRowIndex < numRows)
+                {
+                    // select next row
+                    practiceSessionGrid.Rows[nextRowIndex].Selected = true;
+                    practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                    // set timer time to first element
+                    int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                    SetTime = new TimeSpan(0, minutes, 0);
+                }
+                else
+                {
+                    // Out of rows. Stop timing
+                    SetTime = originalSetTime;
+                    Stop();
+                    resetNextNTicks = 0;  // hacky side-effect method to prevent restarting the timer if AutoLoop is true
+                }
+            }
+            else
+            {
+                SetTime = originalSetTime; // set the current set time back into itself. Hacky way to refresh the display
+            }
         }
 
         void Stop()
@@ -204,6 +227,8 @@ namespace CountdownTimer
                     var csv = new CsvReader(new StreamReader(stream));
                     var sessionItems = csv.GetRecords<SessionItem>().ToList();
                     practiceSessionGrid.DataSource = sessionItems;
+                    practiceSessionGrid.Rows[0].Selected = true;
+                    practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
                 }
             }
         }
@@ -276,9 +301,10 @@ namespace CountdownTimer
                         TopMost = currentTopMost;
                     }
 
-                    Reset();
                     if (UserProperties.AutoRestart)
                         resetNextNTicks = 2;
+
+                    Reset();
                 }
             }
             else if (resetNextNTicks > 0)
@@ -381,8 +407,36 @@ namespace CountdownTimer
             }
         }
 
+
         #endregion
 
-       
+        private void buttonStartSequence_Click(object sender, EventArgs e)
+        {
+            if (!IsRunning && practiceSessionGrid.Rows.Count > 0)
+            {
+                // select first row
+                practiceSessionGrid.Rows[0].Selected = true;
+                practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                // set timer time to first element
+                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                SetTime = new TimeSpan(0, minutes, 0);
+
+                // Start the timer
+                ToggleTimerState();
+            }
+        }
+
+        private void practiceSessionGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (practiceSessionGrid.SelectedRows.Count > 0)
+            {
+                currentPracticeItem.Text = string.Empty;
+                foreach (DataGridViewCell cell in practiceSessionGrid.SelectedRows[0].Cells)
+                {
+                    currentPracticeItem.Text += cell.Value.ToString() + Environment.NewLine;
+                }
+            }
+        }
     }
 }

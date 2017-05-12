@@ -58,6 +58,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonLoadSession = new System.Windows.Forms.Button();
             this.buttonGenerateSession = new System.Windows.Forms.Button();
+            this.buttonStartSequence = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -337,8 +338,10 @@
             this.practiceSessionGrid.Name = "practiceSessionGrid";
             this.practiceSessionGrid.ReadOnly = true;
             this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
+            this.practiceSessionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.practiceSessionGrid.Size = new System.Drawing.Size(661, 616);
             this.practiceSessionGrid.TabIndex = 5;
+            this.practiceSessionGrid.SelectionChanged += new System.EventHandler(this.practiceSessionGrid_SelectionChanged);
             // 
             // currentPracticeItem
             // 
@@ -401,6 +404,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonStartSequence);
             this.panel2.Controls.Add(this.buttonLoadSession);
             this.panel2.Controls.Add(this.buttonGenerateSession);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -435,6 +439,19 @@
             this.buttonGenerateSession.Text = "&Generate";
             this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
+            // 
+            // buttonStartSequence
+            // 
+            this.buttonStartSequence.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonStartSequence.FlatAppearance.BorderSize = 0;
+            this.buttonStartSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonStartSequence.Location = new System.Drawing.Point(194, 3);
+            this.buttonStartSequence.Name = "buttonStartSequence";
+            this.buttonStartSequence.Size = new System.Drawing.Size(95, 23);
+            this.buttonStartSequence.TabIndex = 2;
+            this.buttonStartSequence.Text = "Start Se&quence";
+            this.buttonStartSequence.UseVisualStyleBackColor = false;
+            this.buttonStartSequence.Click += new System.EventHandler(this.buttonStartSequence_Click);
             // 
             // MainForm
             // 
@@ -494,6 +511,7 @@
         private System.Windows.Forms.Button buttonGenerateSession;
         private System.Windows.Forms.Button buttonInc10Secs;
         private System.Windows.Forms.Button buttonDec10Secs;
+        private System.Windows.Forms.Button buttonStartSequence;
     }
 }
 

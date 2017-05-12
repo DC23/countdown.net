@@ -345,7 +345,7 @@
             // 
             // currentPracticeItem
             // 
-            this.currentPracticeItem.BackColor = System.Drawing.Color.SteelBlue;
+            this.currentPracticeItem.BackColor = System.Drawing.Color.LightSteelBlue;
             this.currentPracticeItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.currentPracticeItem.ContextMenuStrip = this.contextMenuStrip1;
             this.currentPracticeItem.Cursor = System.Windows.Forms.Cursors.Default;
@@ -443,7 +443,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1069, 579);
             this.ContextMenuStrip = this.contextMenuStrip1;

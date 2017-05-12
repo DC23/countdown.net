@@ -33,7 +33,7 @@ namespace CountdownTimer
             }
         }
 
-        private const int version = 3;
+        private const int version = 4;
 
         [CategoryAttribute("Properties Version")]
         public int Version { get; private set; }
@@ -56,6 +56,7 @@ namespace CountdownTimer
             TopMost = that.TopMost;
             AutoRestart = that.AutoRestart;
             Presets = (TimeSpan[])that.Presets.Clone();
+            SequenceItemBuffer = that.SequenceItemBuffer;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -122,6 +123,9 @@ namespace CountdownTimer
 
         [CategoryAttribute("Behaviour")]
         public bool AutoRestart { get; set; } = false;
+
+        [CategoryAttribute("Behaviour")]
+        public TimeSpan SequenceItemBuffer { get; set; } = new TimeSpan();
 
         public TimeSpan[] Presets =
         {

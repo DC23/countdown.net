@@ -357,7 +357,7 @@ namespace CountdownTimer
 
                 // set timer to the selected row
                 int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
-                SetTime = new TimeSpan(0, minutes, 0);
+                SetTime = new TimeSpan(0, minutes, 0) + userProperties.SequenceItemBuffer;
             }
         }
         #endregion

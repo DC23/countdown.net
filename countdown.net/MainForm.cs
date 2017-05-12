@@ -203,6 +203,11 @@ namespace CountdownTimer
                     practiceSessionGrid.DataSource = sessionItems;
                     practiceSessionGrid.Rows[0].Selected = true;
                     practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                    // adjust the column fill weights
+                    int[] weights = {80, 40, 40, 150, 30};
+                    for (int i = 0; i < weights.Length; i++)
+                        practiceSessionGrid.Columns[i].FillWeight = weights[i];
                 }
             }
         }
@@ -334,10 +339,27 @@ namespace CountdownTimer
             // fix bug where the set window can be inaccessible if the main window is set to top-most
             bool topMostSetting = TopMost;
             TopMost = false;
-            if (stf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (stf.ShowDialog() == DialogResult.OK)
                 SetTime = stf.Time;
 
             TopMost = topMostSetting;
+        }
+
+        private void practiceSessionGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (practiceSessionGrid.SelectedRows.Count > 0)
+            {
+                // update the info box
+                currentPracticeItem.Text = string.Empty;
+                foreach (DataGridViewCell cell in practiceSessionGrid.SelectedRows[0].Cells)
+                {
+                    currentPracticeItem.Text += cell.Value.ToString() + Environment.NewLine;
+                }
+
+                // set timer to the selected row
+                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                SetTime = new TimeSpan(0, minutes, 0);
+            }
         }
         #endregion
 
@@ -405,21 +427,5 @@ namespace CountdownTimer
 
         #endregion
 
-        private void practiceSessionGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            if (practiceSessionGrid.SelectedRows.Count > 0)
-            {
-                // update the info box
-                currentPracticeItem.Text = string.Empty;
-                foreach (DataGridViewCell cell in practiceSessionGrid.SelectedRows[0].Cells)
-                {
-                    currentPracticeItem.Text += cell.Value.ToString() + Environment.NewLine;
-                }
-
-                // set timer to the selected row
-                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
-                SetTime = new TimeSpan(0, minutes, 0);
-            }
-        }
     }
 }

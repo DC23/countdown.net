@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(942, 542);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1069, 579);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -329,6 +329,7 @@
             // 
             this.practiceSessionGrid.AllowUserToAddRows = false;
             this.practiceSessionGrid.AllowUserToDeleteRows = false;
+            this.practiceSessionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.practiceSessionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.practiceSessionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.practiceSessionGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -338,7 +339,7 @@
             this.practiceSessionGrid.ReadOnly = true;
             this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
             this.practiceSessionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 501);
+            this.practiceSessionGrid.Size = new System.Drawing.Size(679, 538);
             this.practiceSessionGrid.TabIndex = 5;
             this.practiceSessionGrid.SelectionChanged += new System.EventHandler(this.practiceSessionGrid_SelectionChanged);
             // 
@@ -354,7 +355,7 @@
             this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 309);
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 346);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = resources.GetString("currentPracticeItem.Text");
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
@@ -392,7 +393,7 @@
             this.uptimeLabel.AutoSize = true;
             this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uptimeLabel.Location = new System.Drawing.Point(0, 507);
+            this.uptimeLabel.Location = new System.Drawing.Point(0, 544);
             this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0);
             this.uptimeLabel.Name = "uptimeLabel";
             this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
@@ -406,9 +407,9 @@
             this.panel2.Controls.Add(this.buttonLoadSession);
             this.panel2.Controls.Add(this.buttonGenerateSession);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(387, 510);
+            this.panel2.Location = new System.Drawing.Point(387, 547);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(661, 29);
+            this.panel2.Size = new System.Drawing.Size(679, 29);
             this.panel2.TabIndex = 14;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
@@ -444,7 +445,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(942, 542);
+            this.ClientSize = new System.Drawing.Size(1069, 579);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -102,32 +102,7 @@ namespace CountdownTimer
         private void Reset()
         {
             timer.Reset();
-            int numRows = practiceSessionGrid.Rows.Count;
-            if (numRows > 0)
-            {
-                int nextRowIndex = practiceSessionGrid.SelectedRows[0].Index + 1;
-                if (nextRowIndex < numRows)
-                {
-                    // select next row
-                    practiceSessionGrid.Rows[nextRowIndex].Selected = true;
-                    practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
-
-                    // set timer time to first element
-                    int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
-                    SetTime = new TimeSpan(0, minutes, 0);
-                }
-                else
-                {
-                    // Out of rows. Stop timing
-                    SetTime = originalSetTime;
-                    Stop();
-                    resetNextNTicks = 0;  // hacky side-effect method to prevent restarting the timer if AutoLoop is true
-                }
-            }
-            else
-            {
-                SetTime = originalSetTime; // set the current set time back into itself. Hacky way to refresh the display
-            }
+            SetTime = originalSetTime; // set the current set time back into itself. Hacky way to refresh the display
         }
 
         void Stop()
@@ -143,7 +118,6 @@ namespace CountdownTimer
                 // pause/abort
                 timer.Stop();
                 buttonStartPause.Text = "&Start";
-                //updateTick.Enabled = false;
             }
             else
             {
@@ -286,7 +260,7 @@ namespace CountdownTimer
                 else
                 {
                     // time's up
-                    ToggleTimerState();
+                    Stop();
                     UpdateTimeDisplay(TimeSpan.Zero);
 
                     if (UserProperties.AudioDing)
@@ -303,6 +277,32 @@ namespace CountdownTimer
 
                     if (UserProperties.AutoRestart)
                         resetNextNTicks = 2;
+
+                    // Update the timer sequence
+                    int numRows = practiceSessionGrid.Rows.Count;
+                    if (numRows > 0)
+                    {
+                        int nextRowIndex = practiceSessionGrid.SelectedRows[0].Index + 1;
+                        if (nextRowIndex < numRows)
+                        {
+                            // select next row
+                            practiceSessionGrid.Rows[nextRowIndex].Selected = true;
+                            practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                            // set timer to the selection
+                            int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                            SetTime = new TimeSpan(0, minutes, 0);
+                        }
+                        else
+                        {
+                            // Out of rows. Stop timing
+                            SetTime = originalSetTime;
+                            Stop();
+                            resetNextNTicks = 0;  // hacky side-effect method to prevent restarting the timer if AutoLoop is true
+                            practiceSessionGrid.Rows[0].Selected = true;
+                            practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+                        }
+                    }
 
                     Reset();
                 }
@@ -418,10 +418,6 @@ namespace CountdownTimer
                 practiceSessionGrid.Rows[0].Selected = true;
                 practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
 
-                // set timer time to first element
-                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
-                SetTime = new TimeSpan(0, minutes, 0);
-
                 // Start the timer
                 ToggleTimerState();
             }
@@ -431,11 +427,16 @@ namespace CountdownTimer
         {
             if (practiceSessionGrid.SelectedRows.Count > 0)
             {
+                // update the info box
                 currentPracticeItem.Text = string.Empty;
                 foreach (DataGridViewCell cell in practiceSessionGrid.SelectedRows[0].Cells)
                 {
                     currentPracticeItem.Text += cell.Value.ToString() + Environment.NewLine;
                 }
+
+                // set timer to the selected row
+                int minutes = (int)practiceSessionGrid.SelectedRows[0].Cells[4].Value;
+                SetTime = new TimeSpan(0, minutes, 0);
             }
         }
     }

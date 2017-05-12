@@ -56,9 +56,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uptimeLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonStartSequence = new System.Windows.Forms.Button();
             this.buttonLoadSession = new System.Windows.Forms.Button();
             this.buttonGenerateSession = new System.Windows.Forms.Button();
-            this.buttonStartSequence = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -87,7 +87,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1051, 657);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 524);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelTimer
@@ -339,7 +339,7 @@
             this.practiceSessionGrid.ReadOnly = true;
             this.tableLayoutPanel1.SetRowSpan(this.practiceSessionGrid, 3);
             this.practiceSessionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 616);
+            this.practiceSessionGrid.Size = new System.Drawing.Size(661, 483);
             this.practiceSessionGrid.TabIndex = 5;
             this.practiceSessionGrid.SelectionChanged += new System.EventHandler(this.practiceSessionGrid_SelectionChanged);
             // 
@@ -355,7 +355,7 @@
             this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(0);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
-            this.currentPracticeItem.Size = new System.Drawing.Size(384, 424);
+            this.currentPracticeItem.Size = new System.Drawing.Size(384, 291);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = resources.GetString("currentPracticeItem.Text");
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
@@ -393,7 +393,7 @@
             this.uptimeLabel.AutoSize = true;
             this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uptimeLabel.Location = new System.Drawing.Point(0, 622);
+            this.uptimeLabel.Location = new System.Drawing.Point(0, 489);
             this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0);
             this.uptimeLabel.Name = "uptimeLabel";
             this.uptimeLabel.Size = new System.Drawing.Size(384, 35);
@@ -408,11 +408,24 @@
             this.panel2.Controls.Add(this.buttonLoadSession);
             this.panel2.Controls.Add(this.buttonGenerateSession);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(387, 625);
+            this.panel2.Location = new System.Drawing.Point(387, 492);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(661, 29);
             this.panel2.TabIndex = 14;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            // 
+            // buttonStartSequence
+            // 
+            this.buttonStartSequence.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonStartSequence.FlatAppearance.BorderSize = 0;
+            this.buttonStartSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonStartSequence.Location = new System.Drawing.Point(194, 3);
+            this.buttonStartSequence.Name = "buttonStartSequence";
+            this.buttonStartSequence.Size = new System.Drawing.Size(95, 23);
+            this.buttonStartSequence.TabIndex = 2;
+            this.buttonStartSequence.Text = "Start Se&quence";
+            this.buttonStartSequence.UseVisualStyleBackColor = false;
+            this.buttonStartSequence.Click += new System.EventHandler(this.buttonStartSequence_Click);
             // 
             // buttonLoadSession
             // 
@@ -440,26 +453,13 @@
             this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
             // 
-            // buttonStartSequence
-            // 
-            this.buttonStartSequence.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonStartSequence.FlatAppearance.BorderSize = 0;
-            this.buttonStartSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonStartSequence.Location = new System.Drawing.Point(194, 3);
-            this.buttonStartSequence.Name = "buttonStartSequence";
-            this.buttonStartSequence.Size = new System.Drawing.Size(95, 23);
-            this.buttonStartSequence.TabIndex = 2;
-            this.buttonStartSequence.Text = "Start Se&quence";
-            this.buttonStartSequence.UseVisualStyleBackColor = false;
-            this.buttonStartSequence.Click += new System.EventHandler(this.buttonStartSequence_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(1051, 657);
+            this.ClientSize = new System.Drawing.Size(877, 524);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

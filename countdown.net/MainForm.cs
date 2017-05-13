@@ -47,6 +47,8 @@ namespace CountdownTimer
             soundPlayer.Load();
 
             UpdateStatusText();
+
+            buttonGenerateSession_Click(null, null);
         }
 
         private void UpdatePresets()

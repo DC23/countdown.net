@@ -185,7 +185,33 @@ namespace CountdownTimer
             
         private void buttonGenerateSession_Click(object sender, EventArgs e)
         {
+            // configuration of the Python script
+            FileInfo generateScript = new FileInfo("C:/Users/Daniel/code/practice-randomiser/practice-randomiser.py");
+            FileInfo practiceItemsFile = new FileInfo("C:/Users/Daniel/Dropbox/practice_elements.xlsx");
+            int sessionDuration = 30;
+            string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
 
+            // Build the command
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.RedirectStandardOutput = true;
+            startInfo.UseShellExecute = false;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.FileName = "python";
+            startInfo.Arguments = String.Format(
+                "{0} --input-file {1} --output-csv-file {2} --duration {3}",
+                generateScript.FullName,
+                practiceItemsFile.FullName,
+                sessionFile,
+                sessionDuration.ToString());
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+            if (process.ExitCode == 0)
+            {
+                // Open the file as a stream and load the session
+                LoadSession(File.OpenRead(sessionFile));
+            }
         }
 
         private void buttonLoadSession_Click(object sender, EventArgs e)
@@ -196,19 +222,24 @@ namespace CountdownTimer
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 var stream = dlg.OpenFile();
-                if (stream != null)
-                {
-                    var csv = new CsvReader(new StreamReader(stream));
-                    var sessionItems = csv.GetRecords<SessionItem>().ToList();
-                    practiceSessionGrid.DataSource = sessionItems;
-                    practiceSessionGrid.Rows[0].Selected = true;
-                    practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+                LoadSession(stream);
+            }
+        }
 
-                    // adjust the column fill weights
-                    int[] weights = {80, 40, 40, 150, 30};
-                    for (int i = 0; i < weights.Length; i++)
-                        practiceSessionGrid.Columns[i].FillWeight = weights[i];
-                }
+        private void LoadSession(Stream stream)
+        {
+            if (stream != null)
+            {
+                var csv = new CsvReader(new StreamReader(stream));
+                var sessionItems = csv.GetRecords<SessionItem>().ToList();
+                practiceSessionGrid.DataSource = sessionItems;
+                practiceSessionGrid.Rows[0].Selected = true;
+                practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                // adjust the column fill weights
+                int[] weights = { 80, 40, 40, 150, 30 };
+                for (int i = 0; i < weights.Length; i++)
+                    practiceSessionGrid.Columns[i].FillWeight = weights[i];
             }
         }
 

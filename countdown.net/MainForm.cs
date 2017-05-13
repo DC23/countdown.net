@@ -244,6 +244,9 @@ namespace CountdownTimer
         {
             if (stream != null)
             {
+                // Stop the timer
+                Stop();
+
                 var csv = new CsvReader(new StreamReader(stream));
                 var sessionItems = csv.GetRecords<SessionItem>().ToList();
                 practiceSessionGrid.DataSource = sessionItems;
@@ -257,7 +260,9 @@ namespace CountdownTimer
 
                 // calculate total session duration in minutes
                 int totalMinutes = sessionItems.Sum(item => item.Duration);
-                SessionDuration = new TimeSpan(0, totalMinutes, 0);
+                long bufferTicks = UserProperties.SequenceItemBuffer.Ticks * sessionItems.Count;
+                TimeSpan buffer = new TimeSpan(bufferTicks);
+                SessionDuration = new TimeSpan(0, totalMinutes, 0).Add(buffer);
             }
         }
 

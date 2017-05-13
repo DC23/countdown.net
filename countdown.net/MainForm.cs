@@ -16,6 +16,7 @@ namespace CountdownTimer
         Stopwatch timer = new Stopwatch();
         TimeSpan setTime = new TimeSpan();
         TimeSpan originalSetTime = new TimeSpan();
+        TimeSpan sessionDuration;
         Timer updateTick = new Timer();
         SoundPlayer soundPlayer = new SoundPlayer();
         DateTime start = DateTime.Now;
@@ -85,7 +86,7 @@ namespace CountdownTimer
             labelTimer.ForeColor = UserProperties.FontColor;
             labelTimer.Font = UserProperties.TimerFont;
             Opacity = UserProperties.Opacity;
-            SetFormColor(UserProperties.TimerColor);
+            SetFormColor(UserProperties.BackgroundColor);
             FormBorderStyle = UserProperties.Border;
             TopMost = UserProperties.TopMost;
             UpdatePresets();
@@ -93,10 +94,17 @@ namespace CountdownTimer
 
         void UpdateStatusText()
         {
-            TimeSpan up = Uptime;
-            uptimeLabel.Text = string.Format("Uptime: {0:D2}:{1:D2}",
-                up.Hours,
-                up.Minutes);
+            string status = string.Format(
+                "Uptime: {0:D2}:{1:D2}\t",
+                Uptime.Hours,
+                Uptime.Minutes);
+
+            if (SessionDuration.Ticks > 0)
+                status += string.Format(
+                    "    Total Session: {0}",
+                    SessionDuration.ToString());
+
+            uptimeLabel.Text = status;
         }
 
         private void Reset()
@@ -108,6 +116,12 @@ namespace CountdownTimer
         void Stop()
         {
             if (IsRunning)
+                ToggleTimerState();
+        }
+
+        void Start()
+        {
+            if (!IsRunning)
                 ToggleTimerState();
         }
 
@@ -186,9 +200,9 @@ namespace CountdownTimer
         private void buttonGenerateSession_Click(object sender, EventArgs e)
         {
             // configuration of the Python script
-            FileInfo generateScript = new FileInfo("C:/Users/Daniel/code/practice-randomiser/practice-randomiser.py");
-            FileInfo practiceItemsFile = new FileInfo("C:/Users/Daniel/Dropbox/practice_elements.xlsx");
-            int sessionDuration = 30;
+            string generateScript = UserProperties.SessionGenerationScript;
+            string practiceItemsFile = UserProperties.PracticeItemsSpreadsheet;
+            int sessionDuration = UserProperties.SessionDuration;
             string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
 
             // Build the command
@@ -200,8 +214,8 @@ namespace CountdownTimer
             startInfo.FileName = "python";
             startInfo.Arguments = String.Format(
                 "{0} --input-file {1} --output-csv-file {2} --duration {3}",
-                generateScript.FullName,
-                practiceItemsFile.FullName,
+                generateScript,
+                practiceItemsFile,
                 sessionFile,
                 sessionDuration.ToString());
             process.StartInfo = startInfo;
@@ -240,6 +254,10 @@ namespace CountdownTimer
                 int[] weights = { 80, 40, 40, 150, 30 };
                 for (int i = 0; i < weights.Length; i++)
                     practiceSessionGrid.Columns[i].FillWeight = weights[i];
+
+                // calculate total session duration in minutes
+                int totalMinutes = sessionItems.Sum(item => item.Duration);
+                SessionDuration = new TimeSpan(0, totalMinutes, 0);
             }
         }
 
@@ -380,6 +398,9 @@ namespace CountdownTimer
         {
             if (practiceSessionGrid.SelectedRows.Count > 0)
             {
+                bool running = IsRunning;
+                Stop();
+
                 // update the info box
                 currentPracticeItem.Text = Environment.NewLine;
                 currentPracticeItem.Text += practiceSessionGrid.SelectedCells[0].Value.ToString() + Environment.NewLine + Environment.NewLine;
@@ -389,6 +410,9 @@ namespace CountdownTimer
                 // set timer to the selected row
                 int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
                 SetTime = new TimeSpan(0, minutes, 0) + userProperties.SequenceItemBuffer;
+
+                if (running)
+                    Start();
             }
         }
         #endregion
@@ -454,6 +478,18 @@ namespace CountdownTimer
             }
         }
 
+        TimeSpan SessionDuration
+        {
+            get
+            {
+                return sessionDuration;
+            }
+            set
+            {
+                sessionDuration = value;
+                UpdateStatusText();
+            }
+        }
 
         #endregion
 

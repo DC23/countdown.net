@@ -357,7 +357,7 @@
             this.currentPracticeItem.ReadOnly = true;
             this.currentPracticeItem.Size = new System.Drawing.Size(384, 330);
             this.currentPracticeItem.TabIndex = 4;
-            this.currentPracticeItem.Text = resources.GetString("currentPracticeItem.Text");
+            this.currentPracticeItem.Text = "";
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
             // contextMenuStrip1
@@ -392,7 +392,7 @@
             // 
             this.uptimeLabel.AutoSize = true;
             this.uptimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uptimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uptimeLabel.Location = new System.Drawing.Point(0, 544);
             this.uptimeLabel.Margin = new System.Windows.Forms.Padding(0);
             this.uptimeLabel.Name = "uptimeLabel";

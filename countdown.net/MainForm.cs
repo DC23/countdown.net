@@ -207,6 +207,9 @@ namespace CountdownTimer
             int sessionDuration = UserProperties.SessionDuration;
             string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
 
+            if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
+                return;
+
             // Build the command
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();

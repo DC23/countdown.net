@@ -175,7 +175,15 @@ namespace CountdownTimer
             string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
 
             if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
+            {
+                MessageBox.Show(
+                    "You need to configure the generation script and spreadsheet locations",
+                    "Configuration Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+
                 return;
+            }
 
             // Build the command
             Process process = new Process();

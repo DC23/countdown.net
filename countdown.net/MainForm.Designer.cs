@@ -58,11 +58,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonLoadSession = new System.Windows.Forms.Button();
             this.buttonGenerateSession = new System.Windows.Forms.Button();
+            this.buttonPomodoroSequence = new System.Windows.Forms.Button();
+            this.sequenceTimeSpinner = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sequenceTimeSpinner)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -404,6 +407,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.sequenceTimeSpinner);
+            this.panel2.Controls.Add(this.buttonPomodoroSequence);
             this.panel2.Controls.Add(this.buttonLoadSession);
             this.panel2.Controls.Add(this.buttonGenerateSession);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -418,7 +423,7 @@
             this.buttonLoadSession.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonLoadSession.FlatAppearance.BorderSize = 0;
             this.buttonLoadSession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLoadSession.Location = new System.Drawing.Point(85, 3);
+            this.buttonLoadSession.Location = new System.Drawing.Point(157, 3);
             this.buttonLoadSession.Name = "buttonLoadSession";
             this.buttonLoadSession.Size = new System.Drawing.Size(75, 23);
             this.buttonLoadSession.TabIndex = 1;
@@ -431,13 +436,51 @@
             this.buttonGenerateSession.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonGenerateSession.FlatAppearance.BorderSize = 0;
             this.buttonGenerateSession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGenerateSession.Location = new System.Drawing.Point(3, 3);
+            this.buttonGenerateSession.Location = new System.Drawing.Point(75, 3);
             this.buttonGenerateSession.Name = "buttonGenerateSession";
             this.buttonGenerateSession.Size = new System.Drawing.Size(75, 23);
             this.buttonGenerateSession.TabIndex = 0;
             this.buttonGenerateSession.Text = "&Generate";
             this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
+            // 
+            // buttonPomodoroSequence
+            // 
+            this.buttonPomodoroSequence.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPomodoroSequence.FlatAppearance.BorderSize = 0;
+            this.buttonPomodoroSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPomodoroSequence.Location = new System.Drawing.Point(238, 3);
+            this.buttonPomodoroSequence.Name = "buttonPomodoroSequence";
+            this.buttonPomodoroSequence.Size = new System.Drawing.Size(75, 23);
+            this.buttonPomodoroSequence.TabIndex = 2;
+            this.buttonPomodoroSequence.Text = "&Pomodoro";
+            this.buttonPomodoroSequence.UseVisualStyleBackColor = false;
+            this.buttonPomodoroSequence.Click += new System.EventHandler(this.buttonPomodoroSequence_Click);
+            // 
+            // sequenceTimeSpinner
+            // 
+            this.sequenceTimeSpinner.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sequenceTimeSpinner.Location = new System.Drawing.Point(3, 6);
+            this.sequenceTimeSpinner.Maximum = new decimal(new int[] {
+            480,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.Name = "sequenceTimeSpinner";
+            this.sequenceTimeSpinner.Size = new System.Drawing.Size(69, 16);
+            this.sequenceTimeSpinner.TabIndex = 3;
+            this.sequenceTimeSpinner.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.ValueChanged += new System.EventHandler(this.sequenceTimeSpinner_ValueChanged);
+            this.sequenceTimeSpinner.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sequenceTimeSpinner_KeyUp);
             // 
             // MainForm
             // 
@@ -462,6 +505,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sequenceTimeSpinner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,6 +541,8 @@
         private System.Windows.Forms.Button buttonGenerateSession;
         private System.Windows.Forms.Button buttonInc10Secs;
         private System.Windows.Forms.Button buttonDec10Secs;
+        private System.Windows.Forms.Button buttonPomodoroSequence;
+        private System.Windows.Forms.NumericUpDown sequenceTimeSpinner;
     }
 }
 

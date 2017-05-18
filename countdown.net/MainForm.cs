@@ -42,13 +42,13 @@ namespace CountdownTimer
             // other setup
             updateTick.Tick += updateTick_Tick;
             updateTick.Interval = 200;
+            sequenceTimeSpinner.Value = UserProperties.SessionDuration;
 
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
 
             UpdateStatusText();
-
-            buttonGenerateSession_Click(null, null);
+            GenerateSession();
         }
 
         private void UpdatePresets()
@@ -91,6 +91,7 @@ namespace CountdownTimer
             SetFormColor(UserProperties.BackgroundColor);
             FormBorderStyle = UserProperties.Border;
             TopMost = UserProperties.TopMost;
+            sequenceTimeSpinner.Value = UserProperties.SessionDuration;
             UpdatePresets();
         }
 
@@ -165,6 +166,88 @@ namespace CountdownTimer
                 SetTime = newTime;
         }
 
+        private void GenerateSession()
+        {
+            // configuration of the Python script
+            string generateScript = UserProperties.SessionGenerationScript;
+            string practiceItemsFile = UserProperties.PracticeItemsSpreadsheet;
+            int sessionDuration = UserProperties.SessionDuration;
+            string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
+
+            if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
+                return;
+
+            // Build the command
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.RedirectStandardOutput = true;
+            startInfo.UseShellExecute = false;
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.FileName = "python";
+            startInfo.Arguments = String.Format(
+                "{0} --input-file {1} --output-csv-file {2} --duration {3}",
+                generateScript,
+                practiceItemsFile,
+                sessionFile,
+                sessionDuration.ToString());
+
+            // For short sessions, ignore per-category minimum item counts and the essential flag.
+            // Including them often forces sessions to be longer than the requested duration.
+            if (sessionDuration <= 15)
+                startInfo.Arguments += " --ignore-category-min-counts --ignore-essential-flag";
+
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+            if (process.ExitCode == 0)
+            {
+                // Open the file as a stream and load the session
+                LoadSession(File.OpenRead(sessionFile));
+            }
+        }
+
+        private void LoadSession()
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Comma-separated Value Files|*.csv";
+            dlg.Title = "Select a CSV timer session file";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                var stream = dlg.OpenFile();
+                LoadSession(stream);
+            }
+        }
+
+        private void LoadSession(Stream stream)
+        {
+            if (stream != null)
+            {
+                // Stop the timer
+                Stop();
+
+                var csv = new CsvReader(new StreamReader(stream));
+                var sessionItems = csv.GetRecords<SessionItem>().ToList();
+                practiceSessionGrid.DataSource = sessionItems;
+                practiceSessionGrid.Rows[0].Selected = true;
+                practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
+
+                // adjust the column fill weights
+                int[] weights = { 80, 40, 40, 150, 30 };
+                for (int i = 0; i < weights.Length; i++)
+                    practiceSessionGrid.Columns[i].FillWeight = weights[i];
+
+                // calculate total session duration in minutes
+                int totalMinutes = sessionItems.Sum(item => item.Duration);
+                long bufferTicks = UserProperties.SequenceItemBuffer.Ticks * sessionItems.Count;
+                TimeSpan buffer = new TimeSpan(bufferTicks);
+                SessionDuration = new TimeSpan(0, totalMinutes, 0).Add(buffer);
+            }
+        }
+
+        void CreatePomodoroSession()
+        {
+        }
+
         #region DragMove implementation for borderless mode
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -201,74 +284,12 @@ namespace CountdownTimer
             
         private void buttonGenerateSession_Click(object sender, EventArgs e)
         {
-            // configuration of the Python script
-            string generateScript = UserProperties.SessionGenerationScript;
-            string practiceItemsFile = UserProperties.PracticeItemsSpreadsheet;
-            int sessionDuration = UserProperties.SessionDuration;
-            string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
-
-            if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
-                return;
-
-            // Build the command
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.RedirectStandardOutput = true;
-            startInfo.UseShellExecute = false;
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.FileName = "python";
-            startInfo.Arguments = String.Format(
-                "{0} --input-file {1} --output-csv-file {2} --duration {3}",
-                generateScript,
-                practiceItemsFile,
-                sessionFile,
-                sessionDuration.ToString());
-            process.StartInfo = startInfo;
-            process.Start();
-            process.WaitForExit();
-            if (process.ExitCode == 0)
-            {
-                // Open the file as a stream and load the session
-                LoadSession(File.OpenRead(sessionFile));
-            }
+            GenerateSession();
         }
 
         private void buttonLoadSession_Click(object sender, EventArgs e)
         {
-            var dlg = new OpenFileDialog();
-            dlg.Filter = "Comma-separated Value Files|*.csv";
-            dlg.Title = "Select a CSV timer session file";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                var stream = dlg.OpenFile();
-                LoadSession(stream);
-            }
-        }
-
-        private void LoadSession(Stream stream)
-        {
-            if (stream != null)
-            {
-                // Stop the timer
-                Stop();
-
-                var csv = new CsvReader(new StreamReader(stream));
-                var sessionItems = csv.GetRecords<SessionItem>().ToList();
-                practiceSessionGrid.DataSource = sessionItems;
-                practiceSessionGrid.Rows[0].Selected = true;
-                practiceSessionGrid.CurrentCell = practiceSessionGrid.SelectedRows[0].Cells[0];
-
-                // adjust the column fill weights
-                int[] weights = { 80, 40, 40, 150, 30 };
-                for (int i = 0; i < weights.Length; i++)
-                    practiceSessionGrid.Columns[i].FillWeight = weights[i];
-
-                // calculate total session duration in minutes
-                int totalMinutes = sessionItems.Sum(item => item.Duration);
-                long bufferTicks = UserProperties.SequenceItemBuffer.Ticks * sessionItems.Count;
-                TimeSpan buffer = new TimeSpan(bufferTicks);
-                SessionDuration = new TimeSpan(0, totalMinutes, 0).Add(buffer);
-            }
+            LoadSession();
         }
 
         private void buttonDec10Secs_Click(object sender, EventArgs e)
@@ -415,7 +436,7 @@ namespace CountdownTimer
                 currentPracticeItem.Text = Environment.NewLine;
                 currentPracticeItem.Text += practiceSessionGrid.SelectedCells[0].Value.ToString() + Environment.NewLine + Environment.NewLine;
                 currentPracticeItem.Text += "Tempo: " + practiceSessionGrid.SelectedCells[2].Value.ToString() + Environment.NewLine + Environment.NewLine;
-                currentPracticeItem.Text += "Notes: " + practiceSessionGrid.SelectedCells[3].Value.ToString();
+                currentPracticeItem.Text += practiceSessionGrid.SelectedCells[3].Value.ToString();
 
                 // set timer to the selected row
                 int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
@@ -423,6 +444,27 @@ namespace CountdownTimer
 
                 if (running)
                     Start();
+            }
+        }
+
+        private void buttonPomodoroSequence_Click(object sender, EventArgs e)
+        {
+            CreatePomodoroSession();
+        }
+
+        private void sequenceTimeSpinner_ValueChanged(object sender, EventArgs e)
+        {
+            var duration = (int)sequenceTimeSpinner.Value;
+            if (duration != UserProperties.SessionDuration)
+                UserProperties.SessionDuration = duration;
+        }
+
+        private void sequenceTimeSpinner_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                GenerateSession();
+                e.Handled = true;
             }
         }
         #endregion

@@ -218,8 +218,10 @@ namespace CountdownTimer
                 startInfo.Arguments += " --ignore-category-max-counts";
 
             process.StartInfo = startInfo;
+            UseWaitCursor = true;
             process.Start();
             process.WaitForExit();
+            UseWaitCursor = false;
             if (process.ExitCode == 0)
             {
                 // Open the file as a stream and load the session

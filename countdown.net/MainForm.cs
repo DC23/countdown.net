@@ -191,10 +191,23 @@ namespace CountdownTimer
                 sessionFile,
                 sessionDuration.ToString());
 
-            // For short sessions, ignore per-category minimum item counts and the essential flag.
-            // Including them often forces sessions to be longer than the requested duration.
-            if (sessionDuration <= 15)
+            // For short sessions, ignore per-category minimum item counts and the essential flag regardless of the 
+            // current user options. Including them often forces sessions to be longer than the requested duration.
+            if (sessionDuration <= UserProperties.ShortSessionThreshold)
+            {
                 startInfo.Arguments += " --ignore-category-min-counts --ignore-essential-flag";
+            }
+            else
+            {
+                if (UserProperties.IgnoreCategoryMinItemLimit)
+                    startInfo.Arguments += " --ignore-category-min-counts";
+
+                if (UserProperties.IgnoreEssentialFlag)
+                    startInfo.Arguments += " --ignore-essential-flag";
+            }
+
+            if (UserProperties.IgnoreCategoryMaxItemLimit)
+                startInfo.Arguments += " --ignore-category-max-counts";
 
             process.StartInfo = startInfo;
             process.Start();
@@ -205,7 +218,7 @@ namespace CountdownTimer
                 LoadSession(File.OpenRead(sessionFile));
             }
         }
-
+        
         private void LoadSession()
         {
             var dlg = new OpenFileDialog();

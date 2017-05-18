@@ -55,6 +55,10 @@ namespace CountdownTimer
             SessionGenerationScript = that.SessionGenerationScript;
             SessionDuration = that.SessionDuration;
             PracticeItemsSpreadsheet = that.PracticeItemsSpreadsheet;
+            IgnoreEssentialFlag = that.IgnoreEssentialFlag;
+            IgnoreCategoryMinItemLimit = that.IgnoreCategoryMinItemLimit;
+            IgnoreCategoryMaxItemLimit = that.IgnoreCategoryMaxItemLimit;
+            ShortSessionThreshold = that.ShortSessionThreshold;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -161,6 +165,26 @@ namespace CountdownTimer
         [DefaultValue(30)]
         [Description("Practice session total duration in minutes")]
         public int SessionDuration { get; set; } = 30;
+
+        [Category("Session Generation")]
+        [DefaultValue(15)]
+        [Description("Threshold in minutes for determining a short session. Short sessions ignore the essential flag and min item limits.")]
+        public int ShortSessionThreshold { get; set; } = 15;
+
+        [Category("Session Generation")]
+        [DefaultValue(false)]
+        [Description("Should the essential flag be ignored?")]
+        public bool IgnoreEssentialFlag { get; set; } = false;
+
+        [Category("Session Generation")]
+        [DefaultValue(false)]
+        [Description("Should the per-category max item count limit setting be ignored?")]
+        public bool IgnoreCategoryMaxItemLimit { get; set; } = false;
+
+        [Category("Session Generation")]
+        [DefaultValue(false)]
+        [Description("Should the per-category min item count limit setting be ignored?")]
+        public bool IgnoreCategoryMinItemLimit { get; set; } = false;
 
         public TimeSpan[] Presets =
         {

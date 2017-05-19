@@ -28,6 +28,13 @@ namespace CountdownTimer
             }
         }
 
+        public enum InitialSessionType
+        {
+            None,
+            Practice,
+            Pomodoro,
+        }
+
         private const int version = 4;
 
         [Category("Properties Version")]
@@ -40,6 +47,7 @@ namespace CountdownTimer
 
         private UserProperties(UserProperties that)
         {
+            Size = that.Size;
             Version = that.Version;
             BackgroundColor = that.BackgroundColor;
             FontColor = that.FontColor;
@@ -59,6 +67,7 @@ namespace CountdownTimer
             IgnoreCategoryMinItemLimit = that.IgnoreCategoryMinItemLimit;
             IgnoreCategoryMaxItemLimit = that.IgnoreCategoryMaxItemLimit;
             ShortSessionThreshold = that.ShortSessionThreshold;
+            InitialSession = that.InitialSession;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -98,6 +107,11 @@ namespace CountdownTimer
         {
             return new UserProperties(this);
         }
+
+        [Category("Appearance")]
+        [DefaultValue(typeof(Size), "1085 x 617")]
+        [Description("Size")]
+        public Size Size { get; set; } = new Size(1085, 617);
 
         [Category("Appearance")]
         [DefaultValue(typeof(Color), "LightSteelBlue")]
@@ -185,6 +199,11 @@ namespace CountdownTimer
         [DefaultValue(false)]
         [Description("Should the per-category min item count limit setting be ignored?")]
         public bool IgnoreCategoryMinItemLimit { get; set; } = false;
+
+        [Category("Session Generation")]
+        [DefaultValue(InitialSessionType.None)]
+        [Description("Which type of session should be created on application start")]
+        public InitialSessionType InitialSession { get; set; } = InitialSessionType.None;
 
         public TimeSpan[] Presets =
         {

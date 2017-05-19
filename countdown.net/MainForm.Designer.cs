@@ -56,10 +56,10 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uptimeLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sequenceTimeSpinner = new System.Windows.Forms.NumericUpDown();
+            this.buttonPomodoroSequence = new System.Windows.Forms.Button();
             this.buttonLoadSession = new System.Windows.Forms.Button();
             this.buttonGenerateSession = new System.Windows.Forms.Button();
-            this.buttonPomodoroSequence = new System.Windows.Forms.Button();
-            this.sequenceTimeSpinner = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -418,6 +418,44 @@
             this.panel2.TabIndex = 14;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
+            // sequenceTimeSpinner
+            // 
+            this.sequenceTimeSpinner.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sequenceTimeSpinner.Location = new System.Drawing.Point(3, 6);
+            this.sequenceTimeSpinner.Maximum = new decimal(new int[] {
+            480,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.Name = "sequenceTimeSpinner";
+            this.sequenceTimeSpinner.Size = new System.Drawing.Size(69, 16);
+            this.sequenceTimeSpinner.TabIndex = 3;
+            this.sequenceTimeSpinner.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.sequenceTimeSpinner.ValueChanged += new System.EventHandler(this.sequenceTimeSpinner_ValueChanged);
+            this.sequenceTimeSpinner.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sequenceTimeSpinner_KeyUp);
+            // 
+            // buttonPomodoroSequence
+            // 
+            this.buttonPomodoroSequence.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPomodoroSequence.FlatAppearance.BorderSize = 0;
+            this.buttonPomodoroSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPomodoroSequence.Location = new System.Drawing.Point(238, 3);
+            this.buttonPomodoroSequence.Name = "buttonPomodoroSequence";
+            this.buttonPomodoroSequence.Size = new System.Drawing.Size(75, 23);
+            this.buttonPomodoroSequence.TabIndex = 2;
+            this.buttonPomodoroSequence.Text = "&Pomodoro";
+            this.buttonPomodoroSequence.UseVisualStyleBackColor = false;
+            this.buttonPomodoroSequence.Click += new System.EventHandler(this.buttonPomodoroSequence_Click);
+            // 
             // buttonLoadSession
             // 
             this.buttonLoadSession.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -444,44 +482,6 @@
             this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
             // 
-            // buttonPomodoroSequence
-            // 
-            this.buttonPomodoroSequence.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonPomodoroSequence.FlatAppearance.BorderSize = 0;
-            this.buttonPomodoroSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPomodoroSequence.Location = new System.Drawing.Point(238, 3);
-            this.buttonPomodoroSequence.Name = "buttonPomodoroSequence";
-            this.buttonPomodoroSequence.Size = new System.Drawing.Size(75, 23);
-            this.buttonPomodoroSequence.TabIndex = 2;
-            this.buttonPomodoroSequence.Text = "&Pomodoro";
-            this.buttonPomodoroSequence.UseVisualStyleBackColor = false;
-            this.buttonPomodoroSequence.Click += new System.EventHandler(this.buttonPomodoroSequence_Click);
-            // 
-            // sequenceTimeSpinner
-            // 
-            this.sequenceTimeSpinner.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.sequenceTimeSpinner.Location = new System.Drawing.Point(3, 6);
-            this.sequenceTimeSpinner.Maximum = new decimal(new int[] {
-            480,
-            0,
-            0,
-            0});
-            this.sequenceTimeSpinner.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.sequenceTimeSpinner.Name = "sequenceTimeSpinner";
-            this.sequenceTimeSpinner.Size = new System.Drawing.Size(69, 16);
-            this.sequenceTimeSpinner.TabIndex = 3;
-            this.sequenceTimeSpinner.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.sequenceTimeSpinner.ValueChanged += new System.EventHandler(this.sequenceTimeSpinner_ValueChanged);
-            this.sequenceTimeSpinner.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sequenceTimeSpinner_KeyUp);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,6 +498,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "countdown.net";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

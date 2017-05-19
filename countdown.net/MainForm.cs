@@ -43,12 +43,17 @@ namespace CountdownTimer
             updateTick.Tick += updateTick_Tick;
             updateTick.Interval = 200;
             sequenceTimeSpinner.Value = UserProperties.SessionDuration;
+            Size = UserProperties.Size;
 
             soundPlayer.SoundLocation = "TimesUp.wav";
             soundPlayer.Load();
 
             UpdateStatusText();
-            GenerateSession();
+
+            if (UserProperties.InitialSession == UserProperties.InitialSessionType.Practice)
+                GenerateSession();
+            else if (UserProperties.InitialSession == UserProperties.InitialSessionType.Pomodoro)
+                CreatePomodoroSession();
         }
 
         private void UpdatePresets()
@@ -269,6 +274,17 @@ namespace CountdownTimer
 
         void CreatePomodoroSession()
         {
+            Stop();
+            var session = new List<SessionItem>();
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
+            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
+            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
+            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
+            session.Add(new SessionItem() { Name="Long Break", Duration=15 });
+            practiceSessionGrid.DataSource = session;
         }
 
         #region DragMove implementation for borderless mode
@@ -347,6 +363,8 @@ namespace CountdownTimer
 
             if (result == DialogResult.OK)
                 UserProperties = (UserProperties)properties.SelectedObject;
+
+            Size = UserProperties.Size;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -456,10 +474,17 @@ namespace CountdownTimer
                 Stop();
 
                 // update the info box
-                currentPracticeItem.Text = Environment.NewLine;
-                currentPracticeItem.Text += practiceSessionGrid.SelectedCells[0].Value.ToString() + Environment.NewLine + Environment.NewLine;
-                currentPracticeItem.Text += "Tempo: " + practiceSessionGrid.SelectedCells[2].Value.ToString() + Environment.NewLine + Environment.NewLine;
-                currentPracticeItem.Text += practiceSessionGrid.SelectedCells[3].Value.ToString();
+                string name = practiceSessionGrid.SelectedCells[0].Value.ToString();
+                string tempo = practiceSessionGrid.SelectedCells[2].Value.ToString();
+                string notes = practiceSessionGrid.SelectedCells[3].Value.ToString();
+
+                currentPracticeItem.Text = string.Empty;
+                if (!string.IsNullOrEmpty(name))
+                    currentPracticeItem.Text += name + Environment.NewLine + Environment.NewLine;
+                if (!string.IsNullOrEmpty(tempo))
+                    currentPracticeItem.Text += "Tempo: " + tempo + Environment.NewLine + Environment.NewLine;
+                if (!string.IsNullOrEmpty(notes))
+                    currentPracticeItem.Text += notes;
 
                 // set timer to the selected row
                 int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
@@ -568,5 +593,9 @@ namespace CountdownTimer
 
         #endregion
 
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            UserProperties.Size = Size;
+        }
     }
 }

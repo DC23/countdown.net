@@ -173,64 +173,70 @@ namespace CountdownTimer
 
         private void GenerateSession()
         {
-            // configuration of the Python script
-            string generateScript = UserProperties.SessionGenerationScript;
-            string practiceItemsFile = UserProperties.PracticeItemsSpreadsheet;
-            int sessionDuration = UserProperties.SessionDuration;
-            string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
-
-            if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
+            try
             {
-                MessageBox.Show(
-                    "You need to configure the generation script and spreadsheet locations",
-                    "Configuration Required",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Asterisk);
+                // configuration of the Python script
+                string generateScript = UserProperties.SessionGenerationScript;
+                string practiceItemsFile = UserProperties.PracticeItemsSpreadsheet;
+                int sessionDuration = UserProperties.SessionDuration;
+                string sessionFile = Path.ChangeExtension(Path.GetTempFileName(), "csv");
 
-                return;
+                if (string.IsNullOrEmpty(generateScript) || string.IsNullOrEmpty(practiceItemsFile))
+                {
+                    MessageBox.Show(
+                        "You need to configure the generation script and spreadsheet locations",
+                        "Configuration Required",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+
+                    return;
+                }
+
+                UseWaitCursor = true;
+                // Build the command
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.RedirectStandardOutput = true;
+                startInfo.UseShellExecute = false;
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.FileName = "python";
+                startInfo.Arguments = String.Format(
+                    "{0} --input-file {1} --output-csv-file {2} --duration {3}",
+                    generateScript,
+                    practiceItemsFile,
+                    sessionFile,
+                    sessionDuration.ToString());
+
+                // For short sessions, ignore per-category minimum item counts and the essential flag regardless of the 
+                // current user options. Including them often forces sessions to be longer than the requested duration.
+                if (sessionDuration <= UserProperties.ShortSessionThreshold)
+                {
+                    startInfo.Arguments += " --ignore-category-min-counts --ignore-essential-flag";
+                }
+                else
+                {
+                    if (UserProperties.IgnoreCategoryMinItemLimit)
+                        startInfo.Arguments += " --ignore-category-min-counts";
+
+                    if (UserProperties.IgnoreEssentialFlag)
+                        startInfo.Arguments += " --ignore-essential-flag";
+                }
+
+                if (UserProperties.IgnoreCategoryMaxItemLimit)
+                    startInfo.Arguments += " --ignore-category-max-counts";
+
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
+                if (process.ExitCode == 0)
+                {
+                    // Open the file as a stream and load the session
+                    LoadSession(File.OpenRead(sessionFile));
+                }
             }
-
-            // Build the command
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.RedirectStandardOutput = true;
-            startInfo.UseShellExecute = false;
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.FileName = "python";
-            startInfo.Arguments = String.Format(
-                "{0} --input-file {1} --output-csv-file {2} --duration {3}",
-                generateScript,
-                practiceItemsFile,
-                sessionFile,
-                sessionDuration.ToString());
-
-            // For short sessions, ignore per-category minimum item counts and the essential flag regardless of the 
-            // current user options. Including them often forces sessions to be longer than the requested duration.
-            if (sessionDuration <= UserProperties.ShortSessionThreshold)
+            finally
             {
-                startInfo.Arguments += " --ignore-category-min-counts --ignore-essential-flag";
-            }
-            else
-            {
-                if (UserProperties.IgnoreCategoryMinItemLimit)
-                    startInfo.Arguments += " --ignore-category-min-counts";
-
-                if (UserProperties.IgnoreEssentialFlag)
-                    startInfo.Arguments += " --ignore-essential-flag";
-            }
-
-            if (UserProperties.IgnoreCategoryMaxItemLimit)
-                startInfo.Arguments += " --ignore-category-max-counts";
-
-            process.StartInfo = startInfo;
-            UseWaitCursor = true;
-            process.Start();
-            process.WaitForExit();
-            UseWaitCursor = false;
-            if (process.ExitCode == 0)
-            {
-                // Open the file as a stream and load the session
-                LoadSession(File.OpenRead(sessionFile));
+                UseWaitCursor = false;
             }
         }
         

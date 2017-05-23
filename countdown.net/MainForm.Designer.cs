@@ -60,6 +60,7 @@
             this.buttonPomodoroSequence = new System.Windows.Forms.Button();
             this.buttonLoadSession = new System.Windows.Forms.Button();
             this.buttonGenerateSession = new System.Windows.Forms.Button();
+            this.buttonClearSequence = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSessionGrid)).BeginInit();
@@ -407,6 +408,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonClearSequence);
             this.panel2.Controls.Add(this.sequenceTimeSpinner);
             this.panel2.Controls.Add(this.buttonPomodoroSequence);
             this.panel2.Controls.Add(this.buttonLoadSession);
@@ -482,6 +484,19 @@
             this.buttonGenerateSession.UseVisualStyleBackColor = false;
             this.buttonGenerateSession.Click += new System.EventHandler(this.buttonGenerateSession_Click);
             // 
+            // buttonClearSequence
+            // 
+            this.buttonClearSequence.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonClearSequence.FlatAppearance.BorderSize = 0;
+            this.buttonClearSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearSequence.Location = new System.Drawing.Point(319, 3);
+            this.buttonClearSequence.Name = "buttonClearSequence";
+            this.buttonClearSequence.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearSequence.TabIndex = 4;
+            this.buttonClearSequence.Text = "&Clear";
+            this.buttonClearSequence.UseVisualStyleBackColor = false;
+            this.buttonClearSequence.Click += new System.EventHandler(this.buttonClearSequence_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,6 +559,7 @@
         private System.Windows.Forms.Button buttonDec10Secs;
         private System.Windows.Forms.Button buttonPomodoroSequence;
         private System.Windows.Forms.NumericUpDown sequenceTimeSpinner;
+        private System.Windows.Forms.Button buttonClearSequence;
     }
 }
 

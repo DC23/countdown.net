@@ -239,6 +239,13 @@ namespace CountdownTimer
                 UseWaitCursor = false;
             }
         }
+
+        void ClearSession()
+        {
+            Stop();
+            practiceSessionGrid.DataSource = null;
+            currentPracticeItem.Text = string.Empty;
+        }
         
         private void LoadSession()
         {
@@ -521,6 +528,16 @@ namespace CountdownTimer
                 e.Handled = true;
             }
         }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            UserProperties.Size = Size;
+        }
+
+        private void buttonClearSequence_Click(object sender, EventArgs e)
+        {
+            ClearSession();
+        }
         #endregion
 
         #region Properties
@@ -598,10 +615,5 @@ namespace CountdownTimer
         }
 
         #endregion
-
-        private void MainForm_SizeChanged(object sender, EventArgs e)
-        {
-            UserProperties.Size = Size;
-        }
     }
 }

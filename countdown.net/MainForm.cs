@@ -156,6 +156,7 @@ namespace CountdownTimer
         private void UpdateTimeDisplay(TimeSpan time)
         {
             labelTimer.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", time.Hours, time.Minutes, time.Seconds);
+            Text = labelTimer.Text;
         }
 
         private void SetFormColor(Color color)

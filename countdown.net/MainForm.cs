@@ -37,9 +37,9 @@ namespace CountdownTimer
             presetButtons.Add(buttonPreset7);
             presetButtons.Add(buttonPreset8);
 
-            UserProperties = UserProperties.Load();
-
             // other setup
+            UserProperties = UserProperties.Load();
+            UpdateProperties();
             updateTick.Tick += updateTick_Tick;
             updateTick.Interval = 200;
             sequenceTimeSpinner.Value = UserProperties.SessionDuration;
@@ -532,7 +532,13 @@ namespace CountdownTimer
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            UserProperties.Size = Size;
+            try
+            {
+                UserProperties.Size = Size;
+            }
+            catch
+            {
+            }
         }
 
         private void buttonClearSequence_Click(object sender, EventArgs e)

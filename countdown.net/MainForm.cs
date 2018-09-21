@@ -194,19 +194,33 @@ namespace CountdownTimer
                 }
 
                 UseWaitCursor = true;
+                
                 // Build the command
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.RedirectStandardOutput = true;
                 startInfo.UseShellExecute = false;
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.FileName = "python";
-                startInfo.Arguments = String.Format(
-                    "{0} --input-file {1} --output-csv-file {2} --duration {3}",
-                    generateScript,
-                    practiceItemsFile,
-                    sessionFile,
-                    sessionDuration.ToString());
+
+                if (generateScript.EndsWith(".exe"))
+                {
+                    startInfo.FileName = generateScript;
+                    startInfo.Arguments = string.Format(
+                        "--input-file {0} --output-csv-file {1} --duration {2}",
+                        practiceItemsFile,
+                        sessionFile,
+                        sessionDuration.ToString());
+                }
+                else
+                {
+                    startInfo.FileName = "python";
+                    startInfo.Arguments = string.Format(
+                        "{0} --input-file {1} --output-csv-file {2} --duration {3}",
+                        generateScript,
+                        practiceItemsFile,
+                        sessionFile,
+                        sessionDuration.ToString());
+                }
 
                 // For short sessions, ignore per-category minimum item counts and the essential flag regardless of the 
                 // current user options. Including them often forces sessions to be longer than the requested duration.

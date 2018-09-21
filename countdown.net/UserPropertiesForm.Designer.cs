@@ -44,7 +44,7 @@
             this.propertyGrid1.Location = new System.Drawing.Point(3, 3);
             this.propertyGrid1.MinimumSize = new System.Drawing.Size(200, 80);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(342, 555);
+            this.propertyGrid1.Size = new System.Drawing.Size(823, 555);
             this.propertyGrid1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -60,7 +60,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.23309F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.766917F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 602);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(829, 602);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -72,7 +72,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 564);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(80, 30);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(342, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(823, 35);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // buttonOk
@@ -111,7 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(348, 602);
+            this.ClientSize = new System.Drawing.Size(829, 602);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MinimumSize = new System.Drawing.Size(250, 150);

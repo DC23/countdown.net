@@ -166,7 +166,7 @@ namespace CountdownTimer
         [Category("Session Generation")]
         [Editor(typeof(System.Windows.Forms.Design.FileNameEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [DefaultValue("")]
-        [Description("Full path to the practice-randomiser.py script")]
+        [Description("Full path to the practice-randomiser.py script, or to the practice-randomiser.exe")]
         public string SessionGenerationScript { get; set; } = "";
 
         [Category("Session Generation")]

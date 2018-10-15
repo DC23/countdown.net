@@ -244,6 +244,9 @@ namespace CountdownTimer
                 if (UserProperties.UseOneWorksheetPerCategory)
                     startInfo.Arguments += " --one-category-per-sheet";
 
+                if (UserProperties.CategoryLimitBlockDuration > 0)
+                    startInfo.Arguments += string.Format(" --category-limit-block-duration {0}", UserProperties.CategoryLimitBlockDuration);
+
                 // Time scaling
                 startInfo.Arguments += string.Format(" --time-scale {0:F1}", UserProperties.TimeScale);
 

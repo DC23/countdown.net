@@ -71,6 +71,7 @@ namespace CountdownTimer
             TimeScale = that.TimeScale;
             UseOneWorksheetPerCategory = that.UseOneWorksheetPerCategory;
             Python = that.Python;
+            CategoryLimitBlockDuration = that.CategoryLimitBlockDuration;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -182,6 +183,11 @@ namespace CountdownTimer
         [DefaultValue(30)]
         [Description("Practice session total duration in minutes")]
         public int SessionDuration { get; set; } = 30;
+
+        [Category("Session Generation")]
+        [DefaultValue(0)]
+        [Description("If this value is specified, then the per-category item limits are interpreted as limits per each N - minute block of time, rather than being applied as hard limits on the number of per - category items for the entire session.")]
+        public int CategoryLimitBlockDuration { get; set; } = 0;
 
         [Category("Session Generation")]
         [DefaultValue(15)]

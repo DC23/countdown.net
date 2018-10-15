@@ -68,6 +68,8 @@ namespace CountdownTimer
             IgnoreCategoryMaxItemLimit = that.IgnoreCategoryMaxItemLimit;
             ShortSessionThreshold = that.ShortSessionThreshold;
             InitialSession = that.InitialSession;
+            TimeScale = that.TimeScale;
+            UseOneWorksheetPerCategory = that.UseOneWorksheetPerCategory;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -186,6 +188,11 @@ namespace CountdownTimer
         public int ShortSessionThreshold { get; set; } = 15;
 
         [Category("Session Generation")]
+        [DefaultValue(1.0)]
+        [Description("Item min and max time scale.")]
+        public float TimeScale { get; set; } = 1.0f;
+
+        [Category("Session Generation")]
         [DefaultValue(false)]
         [Description("Should the essential flag be ignored?")]
         public bool IgnoreEssentialFlag { get; set; } = false;
@@ -204,6 +211,11 @@ namespace CountdownTimer
         [DefaultValue(InitialSessionType.None)]
         [Description("Which type of session should be created on application start")]
         public InitialSessionType InitialSession { get; set; } = InitialSessionType.None;
+
+        [Category("Session Generation")]
+        [DefaultValue(false)]
+        [Description("Use the new one-worksheet-per-category spreadsheet format")]
+        public bool UseOneWorksheetPerCategory { get; set; } = false;
 
         public TimeSpan[] Presets =
         {

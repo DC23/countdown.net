@@ -240,6 +240,12 @@ namespace CountdownTimer
                 if (UserProperties.IgnoreCategoryMaxItemLimit)
                     startInfo.Arguments += " --ignore-category-max-counts";
 
+                if (UserProperties.UseOneWorksheetPerCategory)
+                    startInfo.Arguments += " --one-category-per-sheet";
+
+                // Time scaling
+                startInfo.Arguments += string.Format(" --time-scale {0:F1}", UserProperties.TimeScale);
+
                 process.StartInfo = startInfo;
                 process.Start();
                 process.WaitForExit();

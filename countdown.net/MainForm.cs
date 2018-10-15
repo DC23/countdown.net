@@ -654,5 +654,25 @@ namespace CountdownTimer
         }
 
         #endregion
+
+        private void toolStripMenuItemSessionData_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Excel Files (*.xlsx)|*.xlsx|CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+            dlg.Title = "Select session data file";
+            dlg.CheckFileExists = true;
+            if (dlg.ShowDialog() == DialogResult.OK)
+                UserProperties.PracticeItemsSpreadsheet = dlg.FileName;
+        }
+
+        private void toolStripMenuItemSessionScriptPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Python Scripts (*.py)|*.py|Executable Files (*.exe)|*.exe|All Files (*.*)|*.*";
+            dlg.Title = "Select session generation script";
+            dlg.CheckFileExists = true;
+            if (dlg.ShowDialog() == DialogResult.OK)
+                UserProperties.SessionGenerationScript = dlg.FileName;
+        }
     }
 }

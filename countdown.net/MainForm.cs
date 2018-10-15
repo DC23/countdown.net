@@ -674,5 +674,14 @@ namespace CountdownTimer
             if (dlg.ShowDialog() == DialogResult.OK)
                 UserProperties.SessionGenerationScript = dlg.FileName;
         }
+
+        private void buttonShowSpreadsheet_Click(object sender, EventArgs e)
+        {
+            if (UserProperties.PracticeItemsSpreadsheet != string.Empty)
+            {
+                //MessageBox.Show("open it");
+                Process.Start(UserProperties.PracticeItemsSpreadsheet);
+            }
+        }
     }
 }

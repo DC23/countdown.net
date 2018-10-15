@@ -70,6 +70,7 @@ namespace CountdownTimer
             InitialSession = that.InitialSession;
             TimeScale = that.TimeScale;
             UseOneWorksheetPerCategory = that.UseOneWorksheetPerCategory;
+            Python = that.Python;
         }
 
         public void Save(string filename = "countdown.net.userproperties.bin")
@@ -216,6 +217,12 @@ namespace CountdownTimer
         [DefaultValue(false)]
         [Description("Use the new one-worksheet-per-category spreadsheet format")]
         public bool UseOneWorksheetPerCategory { get; set; } = false;
+
+        [Category("Session Generation")]
+        [DefaultValue("python")]
+        [Description("Python to use")]
+        public string Python { get; set; } = "python";
+
 
         public TimeSpan[] Presets =
         {

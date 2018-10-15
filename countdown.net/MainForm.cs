@@ -214,7 +214,7 @@ namespace CountdownTimer
                 }
                 else
                 {
-                    startInfo.FileName = "python";
+                    startInfo.FileName = UserProperties.Python;
                     startInfo.Arguments = string.Format(
                         "{0} --input-file {1} --output-csv-file {2} --duration {3}",
                         generateScript,

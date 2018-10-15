@@ -199,8 +199,9 @@ namespace CountdownTimer
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.RedirectStandardOutput = true;
+                startInfo.RedirectStandardError = true;
                 startInfo.UseShellExecute = false;
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.WindowStyle = ProcessWindowStyle.Normal;
 
                 if (generateScript.EndsWith(".exe"))
                 {
@@ -253,6 +254,14 @@ namespace CountdownTimer
                 {
                     // Open the file as a stream and load the session
                     LoadSession(File.OpenRead(sessionFile));
+                }
+                else
+                {
+                    MessageBox.Show(
+                        process.StandardError.ReadToEnd(),
+                        "Python Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             finally

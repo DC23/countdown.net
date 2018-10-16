@@ -35,7 +35,7 @@ namespace CountdownTimer
             Pomodoro,
         }
 
-        private const int version = 4;
+        private const int version = 6;
 
         [Category("Properties Version")]
         public int Version { get; private set; }
@@ -63,6 +63,7 @@ namespace CountdownTimer
             SessionGenerationScript = that.SessionGenerationScript;
             SessionDuration = that.SessionDuration;
             PracticeItemsSpreadsheet = that.PracticeItemsSpreadsheet;
+            OneMinuteChangesSpreadsheet = that.OneMinuteChangesSpreadsheet;
             IgnoreEssentialFlag = that.IgnoreEssentialFlag;
             IgnoreCategoryMinItemLimit = that.IgnoreCategoryMinItemLimit;
             IgnoreCategoryMaxItemLimit = that.IgnoreCategoryMaxItemLimit;
@@ -178,6 +179,12 @@ namespace CountdownTimer
         [DefaultValue("")]
         [Description("Your practice items spreadsheet")]
         public string PracticeItemsSpreadsheet { get; set; } = "";
+
+        [Category("Session Generation")]
+        [Editor(typeof(System.Windows.Forms.Design.FileNameEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [DefaultValue("")]
+        [Description("One-minute Changes spreadsheet")]
+        public string OneMinuteChangesSpreadsheet { get; set; } = "";
 
         [Category("Session Generation")]
         [DefaultValue(30)]

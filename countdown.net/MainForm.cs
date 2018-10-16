@@ -678,10 +678,23 @@ namespace CountdownTimer
         private void buttonShowSpreadsheet_Click(object sender, EventArgs e)
         {
             if (UserProperties.PracticeItemsSpreadsheet != string.Empty)
-            {
-                //MessageBox.Show("open it");
                 Process.Start(UserProperties.PracticeItemsSpreadsheet);
-            }
+        }
+
+        private void buttonShowSpreadsheet2_Click(object sender, EventArgs e)
+        {
+            if (UserProperties.OneMinuteChangesSpreadsheet != string.Empty)
+                Process.Start(UserProperties.OneMinuteChangesSpreadsheet);
+        }
+
+        private void oneMinuteChangesSpreadsheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Excel Files (*.xlsx)|*.xlsx|CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+            dlg.Title = "Select session data file";
+            dlg.CheckFileExists = true;
+            if (dlg.ShowDialog() == DialogResult.OK)
+                UserProperties.OneMinuteChangesSpreadsheet = dlg.FileName;
         }
     }
 }

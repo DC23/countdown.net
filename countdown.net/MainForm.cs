@@ -318,7 +318,7 @@ namespace CountdownTimer
             }
         }
 
-        void CreatePomodoroSession()
+        private void CreatePomodoroSession()
         {
             Stop();
             var session = new List<SessionItem>();

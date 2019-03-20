@@ -322,14 +322,14 @@ namespace CountdownTimer
         {
             Stop();
             var session = new List<SessionItem>();
-            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
-            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
-            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
-            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
-            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
-            session.Add(new SessionItem() { Name="Short Break", Duration=5 });
-            session.Add(new SessionItem() { Name="Pomodoro", Duration=25 });
-            session.Add(new SessionItem() { Name="Long Break", Duration=15 });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=UserProperties.PomodoroDuration });
+            session.Add(new SessionItem() { Name="Short Break", Duration=UserProperties.PomodoroShortBreak });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=UserProperties.PomodoroDuration });
+            session.Add(new SessionItem() { Name="Short Break", Duration=UserProperties.PomodoroShortBreak });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=UserProperties.PomodoroDuration });
+            session.Add(new SessionItem() { Name="Short Break", Duration=UserProperties.PomodoroShortBreak });
+            session.Add(new SessionItem() { Name="Pomodoro", Duration=UserProperties.PomodoroDuration });
+            session.Add(new SessionItem() { Name="Long Break", Duration=UserProperties.PomodoroLongBreak });
             practiceSessionGrid.DataSource = session;
         }
 

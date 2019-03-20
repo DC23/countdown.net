@@ -35,7 +35,7 @@ namespace CountdownTimer
             Pomodoro,
         }
 
-        private const int version = 6;
+        private const int version = 7;
 
         [Category("Properties Version")]
         public int Version { get; private set; }
@@ -236,6 +236,23 @@ namespace CountdownTimer
         [Description("Python to use")]
         public string Python { get; set; } = "python";
 
+        [Category("Pomodoro")]
+        [DefaultValue(25)]
+        [DisplayName("Pomodoro length")]
+        [Description("Duration in minutes of the Pomodoro work period.")]
+        public int PomodoroDuration { get; set; } = 25;
+
+        [Category("Pomodoro")]
+        [DefaultValue(5)]
+        [DisplayName("Short break time in minutes")]
+        [Description("Pomodoro short break duration in minutes.")]
+        public int PomodoroShortBreak { get; set; } = 5;
+
+        [Category("Pomodoro")]
+        [DefaultValue(15)]
+        [DisplayName("Long break time in minutes")]
+        [Description("Pomodoro long break duration in minutes.")]
+        public int PomodoroLongBreak { get; set; } = 15;
 
         public TimeSpan[] Presets =
         {

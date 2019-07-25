@@ -525,6 +525,8 @@ namespace CountdownTimer
                 string notes = practiceSessionGrid.SelectedCells[3].Value.ToString();
 
                 currentPracticeItem.Text = string.Empty;
+                // TODO: remove debug url
+                currentPracticeItem.Text = "www.google.com.au\n";
                 if (!string.IsNullOrEmpty(name))
                     currentPracticeItem.Text += name + Environment.NewLine + Environment.NewLine;
                 if (!string.IsNullOrEmpty(tempo))
@@ -695,6 +697,11 @@ namespace CountdownTimer
             dlg.CheckFileExists = true;
             if (dlg.ShowDialog() == DialogResult.OK)
                 UserProperties.OneMinuteChangesSpreadsheet = dlg.FileName;
+        }
+
+        private void currentPracticeItem_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            MessageBox.Show(e.LinkText);
         }
     }
 }

@@ -360,13 +360,14 @@
             this.currentPracticeItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPracticeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentPracticeItem.Location = new System.Drawing.Point(8, 206);
-            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.currentPracticeItem.Margin = new System.Windows.Forms.Padding(8);
             this.currentPracticeItem.Name = "currentPracticeItem";
             this.currentPracticeItem.ReadOnly = true;
             this.currentPracticeItem.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.currentPracticeItem.Size = new System.Drawing.Size(384, 330);
             this.currentPracticeItem.TabIndex = 4;
             this.currentPracticeItem.Text = "";
+            this.currentPracticeItem.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.currentPracticeItem_LinkClicked);
             this.currentPracticeItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             // 
             // contextMenuStrip1

@@ -696,5 +696,10 @@ namespace CountdownTimer
             if (dlg.ShowDialog() == DialogResult.OK)
                 UserProperties.OneMinuteChangesSpreadsheet = dlg.FileName;
         }
+
+        private void currentPracticeItem_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(e.LinkText);
+        }
     }
 }

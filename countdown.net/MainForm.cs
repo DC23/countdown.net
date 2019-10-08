@@ -521,6 +521,7 @@ namespace CountdownTimer
 
                 // update the info box
                 string name = practiceSessionGrid.SelectedCells[0].Value.ToString();
+                string category = practiceSessionGrid.SelectedCells[1].Value.ToString();
                 string tempo = practiceSessionGrid.SelectedCells[2].Value.ToString();
                 string notes = practiceSessionGrid.SelectedCells[3].Value.ToString();
 
@@ -534,7 +535,8 @@ namespace CountdownTimer
 
                 // set timer to the selected row
                 int minutes = (int)practiceSessionGrid.SelectedCells[4].Value;
-                SetTime = new TimeSpan(0, minutes, 0) + userProperties.SequenceItemBuffer;
+                int seconds = category == "1 minute changes" ? 10 : 0;
+                SetTime = new TimeSpan(0, minutes, seconds) + userProperties.SequenceItemBuffer;
 
                 if (running)
                     Start();

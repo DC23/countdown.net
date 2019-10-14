@@ -5,7 +5,7 @@ XBUILD_FLAGS=/verbosity:normal
 all: clean build
 
 .PHONY: build
-build:
+build: restore_packages
 	msbuild $(XBUILD_FLAGS) /p:Configuration=Debug $(SOLUTION)
 
 .PHONY: clean
@@ -16,6 +16,10 @@ clean:
 	rm -rf ./countdown.net/obj/
 
 .PHONY: release
-release:
+release: restore_packages
 	msbuild $(XBUILD_FLAGS) /t:Clean /p:Configuration=Release $(SOLUTION)
 	msbuild $(XBUILD_FLAGS) /t:Build /p:Configuration=Release $(SOLUTION)
+
+.PHONY: restore_packages
+restore_packages:
+	nuget restore $(SOLUTION)
